@@ -1,21 +1,21 @@
 name: Build and Publish
 
-# on: push
+on: push
 
-on:
-  pull_request:
-    branches:
-      - main
-    types: [closed]
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#     types: [closed]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        if: github.event.pull_request.merged
-        with:
-          ref: refs/heads/main
+        # if: github.event.pull_request.merged
+        # with:
+        #   ref: refs/heads/main
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
