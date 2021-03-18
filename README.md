@@ -1,4 +1,4 @@
-# Moon Highway Timesplitter
+# Timesplitter
 
 The `timesplitter` helps presenters run excellent course agendas. This tool is a web application that displays a presenters entire course plan, one topic at a time, with timing tools to help the presenter stay on track.
 
