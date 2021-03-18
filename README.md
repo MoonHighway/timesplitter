@@ -29,12 +29,13 @@ The course runner reads the `timesplitter.json` file from the root of the instal
 
 The `timesplitter.json` file is a manifest for the presentation that includes agendas, nested agendas, and topics. Each agenda and nested agenda requires a corresponding folder with a lower case name that is hyphenated. Each topic needs to associate a markdown file with a matching name. For example, the above _Example Course_ would require the following files, including the `timesplitter.json` file.
 
-- 📁 chapter-one
-  - 📄 first-topic.md
-  - 📄 second-topic.md
-- 📄 last-topic.md
-- {} timesplitter.json
-- 📄 README.md
+- 📁 example-course
+  - 📁 chapter-one
+    - 📄 first-topic.md
+    - 📄 second-topic.md
+  - 📄 last-topic.md
+  - {} timesplitter.json
+  - 📄 README.md
 
 The _README.MD_ document is required, and shows up in the course as the _course overview_.
 
@@ -42,7 +43,10 @@ The _README.MD_ document is required, and shows up in the course as the _course 
 
 The `@moonhighway/timesplitter` is a cli that can be run globally:
 
-`npm install -g @moonhighway/timesplitter`
+```
+npm install -g @moonhighway/timesplitter
+timesplitter
+```
 
 Once installed you can run the `timesplitter` command from the folder that contains the `timesplitter.json` file.
 
