@@ -6,7 +6,7 @@ The `timesplitter` helps presenters run excellent course agendas. This tool is a
 npm install @moonhighway/timesplitter
 ```
 
-## Create a `content.json` file
+## Create a `timesplitter.json` file
 
 The course runner reads the `timesplitter.json` file from the root of the installed project. Here is an example of a minimal `timesplitter.json` file:
 
