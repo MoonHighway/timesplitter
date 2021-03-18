@@ -1,21 +1,17 @@
 name: Build and Publish
-
-on: push
-
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#     types: [closed]
-
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        # if: github.event.pull_request.merged
-        # with:
-        #   ref: refs/heads/main
+        if: github.event.pull_request.merged
+        with:
+          ref: refs/heads/main
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
@@ -25,10 +21,10 @@ jobs:
         run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-      # - name: Bump Patch Version
-      #   run: npm run bump
-      #   env:
-      #     NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Bump Patch Version
+        run: npm run bump
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Install Dependencies
         run: npm install
         env:
