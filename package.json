@@ -1,7 +1,12 @@
 {
   "name": "@moonhighway/timesplitter",
   "version": "0.0.0",
+  "description": "⏰ A web application that helps presenters run great courses that stay on track and cover everything.",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoonHighway/timesplitter.git"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
