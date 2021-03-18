@@ -2,6 +2,9 @@
   "name": "@moonhighway/timesplitter",
   "version": "0.0.0",
   "description": "⏰ A web application that helps presenters run great courses that stay on track and cover everything.",
+  "keywords": [
+    "Instructor led, presenter, classroom, training, tools, timers, notes"
+  ],
   "private": false,
   "repository": {
     "type": "git",
@@ -20,8 +23,6 @@
     "timesplitter": "server/index.js"
   },
   "scripts": {
-    "prestart:dev": "npm run build",
-    "start:dev": "nodemon server",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -44,8 +45,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
   }
 }

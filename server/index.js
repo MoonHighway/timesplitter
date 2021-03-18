@@ -13,7 +13,7 @@ app.use("/content", contentRoutes);
 app.listen(4224, () => {
   console.log(`
   
-  Moon Highway Course Runner 
+  ⏰ Timesplitter
   http://localhost:4224
   
   `);
