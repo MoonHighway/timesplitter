@@ -15,18 +15,38 @@ The course runner reads the `timesplitter.json` file from the root of the instal
   "title": "Example Course",
   "agenda": [
     {
-      "title": "Chapter One"
+      "title": "Chapter One",
+      "agenda": [{ "title": "first topic" }, { "title": "second topic" }]
     },
     {
-      "title": "Chapter Two"
+      "title": "last topic"
     }
   ]
 }
 ```
 
-## Add a npm script to run `timesplitter`
+## Timesplitter Markdown and Folders
 
-The `timesplitter` command is available in the `node_modules/.bin` folder. You can execute `timesplitter` inside of an npm script:
+The `timesplitter.json` file is a manifest for the presentation that includes agendas, nested agendas, and topics. Each agenda and nested agenda requires a corresponding folder with a lower case name that is hyphenated. Each topic needs to associate a markdown file with a matching name. For example, the above _Example Course_ would require the following files, including the `timesplitter.json` file.
+
+- 📁 chapter-one
+  - 📄 first-topic.md
+  - 📄 second-topic.md
+- 📄 last-topic.md
+- {} timesplitter.json
+- 📄 README.md
+
+The _README.MD_ document is required, and shows up in the course as the _course overview_.
+
+## Running the `timesplitter`
+
+The `@moonhighway/timesplitter` is a cli that can be run globally:
+
+`npm install -g @moonhighway/timesplitter`
+
+Once installed you can run the `timesplitter` command from the folder that contains the `timesplitter.json` file.
+
+Additionally you can install the `timesplitter` local to your repository and run it using an _npm script_:
 
 ```json
 "scripts": {
