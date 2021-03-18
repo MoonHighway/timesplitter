@@ -1,0 +1,8 @@
+coverage/
+src/
+public/
+.gitignore
+bump.js
+package-lock.json
+yarn.lock
+CONTRIBUTING.md
