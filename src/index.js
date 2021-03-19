@@ -16,11 +16,11 @@ render(
       <Switch>
         {/* <Route path="/agenda/:path">
           <Agenda />
-        </Route>
+        </Route> */}
         <Route path="/toc">
           <TOC />
         </Route>
-        <Route path="/how-to-use">
+        {/*<Route path="/how-to-use">
           <HowToUse />
         </Route>
         <Route path="/overview">

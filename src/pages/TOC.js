@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { CourseLab, Timer, TopicIcon } from "../ui";
-// import { agenda } from "../book/manifest.json";
 import { totalTime, urlFriendly, pickFirst } from "../lib";
+import { useContent } from "../hooks";
 import { fonts, colors } from "../theme";
 import styled from "styled-components";
 import { GrOverview } from "react-icons/gr";
@@ -58,33 +58,38 @@ function Block({ id, section }) {
 }
 
 export default function TOC() {
-  return (
-    <h1>Commeted Out</h1>
-    // <Layout>
-    //   <Title>Escape from the JavaScript Jungle</Title>
-    //   <Menu>
-    //     <Link to="/overview">
-    //       <GrOverview size={25} color="black" />
-    //       Course Overview
-    //     </Link>
-    //     <Link to="/how-to-use">
-    //       <GiTeacher size={25} color="black" />
-    //       How to Use this Guide
-    //     </Link>
-    //     <Link to="/">
-    //       <IoIosArrowBack size={25} color="black" />
-    //       Back to Cover
-    //     </Link>
-    //   </Menu>
-    //   {agenda.map((section, i) => (
-    //     <Block
-    //       key={urlFriendly(section.title)}
-    //       id={i + 1}
-    //       section={section}
-    //     />
-    //   ))}
-    // </Layout>
-  );
+  const content = useContent();
+
+  if (content) {
+    return (
+      <Layout>
+        <Title>{content.title}</Title>
+        <Menu>
+          <Link to="/overview">
+            <GrOverview size={25} color="black" />
+            Course Overview
+          </Link>
+          <Link to="/how-to-use">
+            <GiTeacher size={25} color="black" />
+            How to Use this Guide
+          </Link>
+          <Link to="/">
+            <IoIosArrowBack size={25} color="black" />
+            Back to Cover
+          </Link>
+        </Menu>
+        {content.agenda.map((section, i) => (
+          <Block
+            key={urlFriendly(section.title)}
+            id={i + 1}
+            section={section}
+          />
+        ))}
+      </Layout>
+    );
+  }
+
+  return null;
 }
 
 const Layout = styled.section`
