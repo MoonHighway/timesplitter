@@ -1,22 +1,43 @@
-import { lazy, Suspense } from "react";
-import { NavigationBar } from "../ui";
+import { useState, useEffect } from "react";
+import { NavigationBar, MDX } from "../ui";
 import { BookStyles } from "../book-ui";
+import { useContent } from "../hooks";
 
-// const Content = lazy(() =>
-//   import("!babel-loader!mdx-loader!../book/how-to-use.md")
-// );
+//
+// LET'S GO!! 🤨
+//
+//  [x] Serve INSTRUCTIONS.md
+//  [x] Fetch INSTRUCTIONS.md
+//  [x] Render INSTRUCTIONS.md
+//  [ ] If INSTRUCTIONS.md not found... make a nice error message
+//  [ ] If README.md not found... make a nice error message
+//  [x] Refactor MDX component (so you don't have to always add mdxComponents)
+//  [ ] serve _assets from root folder
+//  [ ] Images can be loaded in MDX
+//
 
 export default function HowToUse() {
-  return (
-    <h1>Commeted Out</h1>
-    // <BookStyles>
-    //   <Suspense fallback={<h1>loading</h1>}>
-    //     <Content />
-    //   </Suspense>
-    //   <NavigationBar
-    //     prev={{ to: "/toc", text: "Table of Contents" }}
-    //     next={{ to: "/overview", text: "Overview" }}
-    //   />
-    // </BookStyles>
-  );
+  const content = useContent();
+  const [md, setMD] = useState();
+
+  useEffect(() => {
+    fetch("/content/instructions")
+      .then((res) => res.text())
+      .then(setMD)
+      .catch(console.error);
+  }, []);
+
+  if (md) {
+    return (
+      <BookStyles>
+        <MDX>{md}</MDX>
+        <NavigationBar
+          prev={{ to: "/toc", text: "Table of Contents" }}
+          next={{ to: "/overview", text: "Course Overview" }}
+        />
+      </BookStyles>
+    );
+  }
+
+  return null;
 }

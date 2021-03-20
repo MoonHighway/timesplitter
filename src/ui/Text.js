@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import { fonts, colors } from "../theme";
+import * as mdxComponents from "../mdx-components";
+import Markdown from "@mdx-js/runtime";
+
+export function MDX({ children }) {
+  return <Markdown components={mdxComponents}>{children}</Markdown>;
+}
 
 export function TeacherEditionTitle({ title }) {
   const [two, one, ...rest] = title.split(" ").reverse();

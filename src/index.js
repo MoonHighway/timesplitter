@@ -23,9 +23,10 @@ render(
         <Route path="/overview">
           <Overview />
         </Route>
-        {/*<Route path="/how-to-use">
+        <Route path="/how-to-use">
           <HowToUse />
         </Route>
+        {/*
         <Route path="/end">
           <End />
         </Route> */}

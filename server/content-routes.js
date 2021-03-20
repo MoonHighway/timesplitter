@@ -41,9 +41,15 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:topicName", async (req, res) => {
+  const { topicName } = req.params;
+  let fileName =
+    topicName.toLowerCase() === "overview"
+      ? path.join(process.cwd(), "README.md")
+      : topicName.toLowerCase() === "instructions"
+      ? path.join(process.cwd(), "INSTRUCTIONS.md")
+      : path.join(__dirname, "../build/index.html");
   try {
-    const mdx = await readFile(path.join(process.cwd(), "README.md"), "UTF-8");
-    res.send(mdx);
+    res.send(await readFile(fileName, "UTF-8"));
   } catch (error) {
     res.status(500).send(err);
   }
