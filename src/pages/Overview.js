@@ -1,33 +1,42 @@
-import { lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { NavigationBar } from "../ui";
 import { BookStyles } from "../book-ui";
 import { pickFirst } from "../lib";
 import { useContent } from "../hooks";
-
-// const Content = lazy(() =>
-//   import("!babel-loader!mdx-loader!../book/overview.md")
-// );
+import * as mdxComponents from "../mdx-components";
+import MDX from "@mdx-js/runtime";
 
 export default function Overview() {
   const content = useContent();
-  let [topic, route] = pickFirst(content);
+  const [topic, setTopic] = useState();
+  let [route, setRoute] = useState();
+  const [md, setMD] = useState();
 
-  //
-  // This cannot stand... this new system is for all classes, not just one
-  //
+  useEffect(() => {
+    fetch("/content/overview")
+      .then((res) => res.text())
+      .then(setMD)
+      .catch(console.error);
+  }, []);
 
-  route = route.replace("javascript-jungle-teacher's-edition", "agenda");
+  useEffect(() => {
+    if (!content) return;
+    let [topic, route] = pickFirst(content);
+    setTopic(topic);
+    setRoute(route);
+  }, [content]);
 
-  return (
-    <h1>Commeted Out</h1>
-    // <BookStyles>
-    //   <Suspense fallback={<h1>loading</h1>}>
-    //     <Content />
-    //   </Suspense>
-    //   <NavigationBar
-    //     prev={{ to: "/how-to-use", text: "How to use this Guide" }}
-    //     next={{ to: route, text: `Begin ${topic.title}` }}
-    //   />
-    // </BookStyles>
-  );
+  if (md && topic && route) {
+    return (
+      <BookStyles>
+        <MDX components={mdxComponents}>{md}</MDX>
+        <NavigationBar
+          prev={{ to: "/how-to-use", text: "How to use this Guide" }}
+          next={{ to: route, text: `Begin ${topic.title}` }}
+        />
+      </BookStyles>
+    );
+  }
+
+  return null;
 }

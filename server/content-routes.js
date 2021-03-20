@@ -6,6 +6,7 @@ const path = require("path");
 const readFile = promisify(fs.readFile);
 
 const router = express.Router();
+
 router.get("/", async (req, res) => {
   let content = await readFile(
     path.join(process.cwd(), "timesplitter.json"),
@@ -37,6 +38,15 @@ router.get("/", async (req, res) => {
   }
 
   res.send(content);
+});
+
+router.get("/:topicName", async (req, res) => {
+  try {
+    const mdx = await readFile(path.join(process.cwd(), "README.md"), "UTF-8");
+    res.send(mdx);
+  } catch (error) {
+    res.status(500).send(err);
+  }
 });
 
 module.exports = router;

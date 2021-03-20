@@ -35,13 +35,3 @@ export const BookStyles = styled.div`
     margin-bottom: 2em;
   }
 `;
-
-export const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  p {
-    margin-left: 2em;
-  }
-`;
