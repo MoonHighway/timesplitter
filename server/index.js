@@ -4,7 +4,11 @@ const express = require("express");
 const { exec } = require("child_process");
 const contentRoutes = require("./content-routes");
 const app = express();
-app.use("/content", contentRoutes);
+let [, , rootFolder] = process.argv;
+rootFolder = rootFolder
+  ? path.resolve(process.cwd(), rootFolder)
+  : path.resolve(process.cwd());
+app.use("/content", contentRoutes(rootFolder));
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "../build/index.html"), function (err) {
@@ -15,10 +19,10 @@ app.get("/*", function (req, res) {
 });
 app.listen(4224, () => {
   console.log(`
-  
+
   ⏰ Timesplitter
   http://localhost:4224
-  
+
   `);
   exec("open http://localhost:4224");
 });
