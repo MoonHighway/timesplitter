@@ -1,15 +1,22 @@
 #! /usr/bin/env node
 const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const { exec } = require("child_process");
 const contentRoutes = require("./content-routes");
 const app = express();
-let [command, , rootFolder] = process.argv;
+let [, , rootFolder] = process.argv;
 rootFolder = rootFolder
   ? path.resolve(process.cwd(), rootFolder)
   : path.resolve(process.cwd());
 app.use("/content", contentRoutes(rootFolder));
-app.use(express.static(path.join(__dirname, "..", "build")));
+if (process.env.NODE_ENV !== "development") {
+  app.use(express.static(path.join(__dirname, "..", "build")));
+}
+const assetsFolder = path.join(rootFolder, "_assets");
+if (fs.existsSync(assetsFolder)) {
+  app.use(express.static(assetsFolder));
+}
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "../build/index.html"), function (err) {
     if (err) {
@@ -22,6 +29,7 @@ app.listen(4224, () => {
 
   ⏰ Timesplitter
   http://localhost:4224
+  ${assetsFolder && assetsFolder}
 
   `);
 

@@ -3,31 +3,25 @@ import { NavigationBar, MDX } from "../ui";
 import { BookStyles } from "../book-ui";
 import { useContent } from "../hooks";
 
-//
-// LET'S GO!! 🤨
-//
-//  [x] Serve INSTRUCTIONS.md
-//  [x] Fetch INSTRUCTIONS.md
-//  [x] Render INSTRUCTIONS.md
-//  [ ] If INSTRUCTIONS.md not found... make a nice error message
-//  [ ] If README.md not found... make a nice error message
-//  [x] Refactor MDX component (so you don't have to always add mdxComponents)
-//  [ ] serve _assets from root folder
-//  [ ] Images can be loaded in MDX
-//
+const missingInstructions = `
+# Missing INSTRUCTIONS.md
+
+<Warning>
+The INSTRUCTIONS.md cannot be found in the root of this project.
+
+Currently timesplitter projects require an INSTRUCTIONS.md document that explains to presenters/instructors how to use the course.
+</Warning>
+`;
 
 export default function HowToUse() {
   const content = useContent();
   const [md, setMD] = useState();
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch("/content/instructions")
-        .then((res) => res.text())
-        .catch(console.error);
-
-      console.log(res);
-    })();
+    fetch("/content/instructions")
+      .then((res) => (res.status === 500 ? missingInstructions : res.text()))
+      .then(setMD)
+      .catch(console.error);
   }, []);
 
   if (md) {

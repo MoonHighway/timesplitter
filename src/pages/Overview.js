@@ -6,6 +6,16 @@ import { useContent } from "../hooks";
 import * as mdxComponents from "../mdx-components";
 import MDX from "@mdx-js/runtime";
 
+const missingREADME = `
+# Missing README.md
+
+<Warning>
+The README.md cannot be found in the root of this project.
+
+Currently timesplitter projects require an README.md that provides presenters/instructors with an overview of the course materials.
+</Warning>
+`;
+
 export default function Overview() {
   const content = useContent();
   const [topic, setTopic] = useState();
@@ -14,7 +24,7 @@ export default function Overview() {
 
   useEffect(() => {
     fetch("/content/overview")
-      .then((res) => res.text())
+      .then((res) => (res.status === 500 ? missingREADME : res.text()))
       .then(setMD)
       .catch(console.error);
   }, []);
