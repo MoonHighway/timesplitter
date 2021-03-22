@@ -32,7 +32,7 @@
   "scripts": {
     "start:server": "nodemon ./server ./DevelopmentSampleContent",
     "start:client": "react-scripts start",
-    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start": "export NODE_ENV=development; concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "bump": "node bump"

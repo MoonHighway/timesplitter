@@ -52,7 +52,7 @@ module.exports = function (rootFolder) {
     try {
       res.send(await readFile(fileName, "UTF-8"));
     } catch (error) {
-      res.status(500).send(err);
+      res.status(500).send(error);
     }
   });
   return router;

@@ -21,10 +21,13 @@ export default function HowToUse() {
   const [md, setMD] = useState();
 
   useEffect(() => {
-    fetch("/content/instructions")
-      .then((res) => res.text())
-      .then(setMD)
-      .catch(console.error);
+    (async () => {
+      const res = await fetch("/content/instructions")
+        .then((res) => res.text())
+        .catch(console.error);
+
+      console.log(res);
+    })();
   }, []);
 
   if (md) {

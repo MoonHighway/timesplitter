@@ -4,7 +4,7 @@ const express = require("express");
 const { exec } = require("child_process");
 const contentRoutes = require("./content-routes");
 const app = express();
-let [, , rootFolder] = process.argv;
+let [command, , rootFolder] = process.argv;
 rootFolder = rootFolder
   ? path.resolve(process.cwd(), rootFolder)
   : path.resolve(process.cwd());
@@ -24,5 +24,8 @@ app.listen(4224, () => {
   http://localhost:4224
 
   `);
-  exec("open http://localhost:4224");
+
+  if (process.env.NODE_ENV !== "development") {
+    exec("open http://localhost:4224");
+  }
 });
