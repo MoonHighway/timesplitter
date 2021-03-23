@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { toJSON } from "./lib";
 
-export const useContent = () => {
-  const [content, setContent] = useState();
+export const useContent = (contentPath = "") => {
+  const [content, setContent] = useState(contentPath);
   useEffect(() => {
-    fetch("/content")
+    fetch(`/content${contentPath}`)
       .then(toJSON)
       .then(setContent)
       .catch((error) => {

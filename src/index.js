@@ -14,9 +14,9 @@ render(
     <GlobalStyle />
     <Router>
       <Switch>
-        {/* <Route path="/agenda/:path">
+        <Route path="/agenda/:path">
           <Agenda />
-        </Route> */}
+        </Route>
         <Route path="/toc">
           <TOC />
         </Route>
@@ -26,10 +26,9 @@ render(
         <Route path="/how-to-use">
           <HowToUse />
         </Route>
-        {/*
         <Route path="/end">
           <End />
-        </Route> */}
+        </Route>
         <Route path="/">
           <Cover />
         </Route>

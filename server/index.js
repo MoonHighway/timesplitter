@@ -29,7 +29,6 @@ app.listen(4224, () => {
 
   ⏰ Timesplitter
   http://localhost:4224
-  ${assetsFolder && assetsFolder}
 
   `);
 
