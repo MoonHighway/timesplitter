@@ -55,5 +55,12 @@ module.exports = function (rootFolder) {
       res.status(500).send(error);
     }
   });
+
+  router.get("/agenda/:fullPath*", (req, res) => {
+    res.send({
+      path: req.url,
+    });
+  });
+
   return router;
 };

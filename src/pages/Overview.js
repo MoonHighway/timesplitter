@@ -32,6 +32,8 @@ export default function Overview() {
   useEffect(() => {
     if (!content) return;
     let [topic, route] = pickFirst(content);
+    let [, ...rest] = route.split("/");
+    route = [, "agenda", ...rest].join("/");
     setTopic(topic);
     setRoute(route);
   }, [content]);
