@@ -1,4 +1,4 @@
-import { toJSON } from "./lib";
+import { toJSON } from "./toJSON";
 
 describe("toJSON", () => {
   it("calls .json() on the response", () => {

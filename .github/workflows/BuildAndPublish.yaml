@@ -31,6 +31,8 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Build Client
         run: npm run build
+        env:
+          CI: false
       - name: Push Version Bump
         uses: ad-m/github-push-action@master
         with:
