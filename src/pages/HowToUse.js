@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavigationBar, MDX } from "../ui";
 import { BookStyles } from "../book-ui";
-import { useContent } from "../hooks";
 
 const missingInstructions = `
 # Missing INSTRUCTIONS.md
@@ -14,16 +13,13 @@ Currently timesplitter projects require an INSTRUCTIONS.md document that explain
 `;
 
 export default function HowToUse() {
-  const content = useContent();
   const [md, setMD] = useState();
-
   useEffect(() => {
     fetch("/content/instructions")
       .then((res) => (res.status === 500 ? missingInstructions : res.text()))
       .then(setMD)
       .catch(console.error);
   }, []);
-
   if (md) {
     return (
       <BookStyles>
