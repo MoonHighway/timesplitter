@@ -56,10 +56,15 @@ module.exports = function (rootFolder) {
     }
   });
 
-  router.get("/agenda/:fullPath*", (req, res) => {
-    res.send({
-      path: req.url,
-    });
+  router.get("/agenda/:fullPath*", async (req, res) => {
+    const [, , ...p] = req.url.split("/");
+    const filePath = path.join(rootFolder, p.join("/"));
+    try {
+      const content = await readFile(`${filePath}.md`, "UTF-8");
+      res.send(content);
+    } catch (error) {
+      res.status(500).send(error);
+    }
   });
 
   return router;
