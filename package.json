@@ -2,31 +2,42 @@
   "name": "@moonhighway/timesplitter",
   "version": "0.0.0",
   "description": "⏰ A web application that helps presenters run great courses that stay on track and cover everything.",
+  "keywords": [
+    "Instructor led, presenter, classroom, training, tools, timers, notes"
+  ],
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MoonHighway/timesplitter.git"
   },
   "dependencies": {
+    "@mdx-js/runtime": "^1.6.22",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "mdx-loader": "^3.0.2",
+    "prism-react-renderer": "^1.2.0",
+    "prismjs": "^1.23.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"
   },
   "bin": {
     "timesplitter": "server/index.js"
   },
   "scripts": {
-    "prestart:dev": "npm run build",
-    "start:dev": "nodemon server",
-    "start": "react-scripts start",
+    "start:server": "nodemon ./server ./DevelopmentSampleContent",
+    "start:client": "react-scripts start",
+    "start": "export NODE_ENV=development; concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "bump": "node bump"
   },
+  "proxy": "http://localhost:4224",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,6 +57,6 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "concurrently": "^6.0.0"
   }
 }
