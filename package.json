@@ -11,20 +11,7 @@
     "url": "git+https://github.com/MoonHighway/timesplitter.git"
   },
   "dependencies": {
-    "@mdx-js/runtime": "^1.6.22",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "mdx-loader": "^3.0.2",
-    "prism-react-renderer": "^1.2.0",
-    "prismjs": "^1.23.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-icons": "^4.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.2.1",
-    "web-vitals": "^1.0.1"
+    "express": "^4.17.1"
   },
   "bin": {
     "timesplitter": "server/index.js"
@@ -57,7 +44,21 @@
     ]
   },
   "devDependencies": {
+    "@mdx-js/runtime": "^1.6.22",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "concurrently": "^6.0.0",
-    "nodemon": "^2.0.7"
+    "mdx-loader": "^3.0.2",
+    "nodemon": "^2.0.7",
+    "prism-react-renderer": "^1.2.0",
+    "prismjs": "^1.23.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
+    "web-vitals": "^1.0.1"
   }
 }
