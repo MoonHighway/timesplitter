@@ -16,10 +16,7 @@ The course runner reads the `timesplitter.json` file from the root of the instal
   "agenda": [
     {
       "title": "Chapter One",
-      "agenda": [
-        { "title": "first topic" },
-        { "title": "second topic" }
-      ]
+      "agenda": [{ "title": "first topic" }, { "title": "second topic" }]
     },
     {
       "title": "last topic"
@@ -68,7 +65,6 @@ Additionally, you can install `timesplitter` locally to your repository and run 
 - [@moonhighway/timesplitter-dev](https://www.npmjs.com/package/@moonhighway/timesplitter-dev) is a companion package to help presenters create captivating presentations that can be run by `timesplitter` without having to manage a complicated manifest or folders structure on their own.
 - [@moonhighway/create-timesplitter-course](https://www.npmjs.com/package/@moonhighway/timesplitter-dev) is a CLI that can be used to create the boilerplate for a `timesplitter` course including both `timesplitter` and `timesplitter-dev` along with all of the necessary configuration to easily run either of these applications.
 
-
 ## Under Construction 🚧
 
-This project is currently under construction. Please send your questions to [info@moonhighway.com](info@moonhighway.com).
+This project is currently under construction. Please send your questions to [info@moonhighway.com](info@moonhighway.com)
