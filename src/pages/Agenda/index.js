@@ -5,6 +5,7 @@ import { useContentLinks, useContentFile } from "../../hooks";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
 import TopicTitle from "./TopicTitle";
+import CourseProgressBar from "./CourseProgressBar";
 import styled from "styled-components";
 
 export default function Agenda() {
@@ -18,6 +19,7 @@ export default function Agenda() {
       <TopicIconInfo />
       <TopicTitle />
       <Contents>
+        <CourseProgressBar />
         <BookStyles>
           <MDX>{md}</MDX>
           <NavigationBar

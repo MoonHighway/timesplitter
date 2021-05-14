@@ -1,14 +1,38 @@
+import Breadcrumbs from "./Breadcrumbs";
 import styled from "styled-components";
 
-export default function TopicTitle() {
-  return <Container>&lt;TopicTitle /&gt;</Container>;
+export default function TopicTitle({ title = "Untitled Topic" }) {
+  return (
+    <Container>
+      <h1>{title}</h1>
+      <Breadcrumbs />
+    </Container>
+  );
 }
 
 const Container = styled.div`
   grid-area: 1 / 3 / 2 / 9;
   background-color: lightgreen;
+  padding: 1em;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+
+  h1 {
+  }
+
+  a {
+    text-decoration: none;
+    color: blue;
+    &:after {
+      content: " > ";
+    }
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+  }
 `;
