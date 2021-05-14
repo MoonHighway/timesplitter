@@ -1,7 +1,10 @@
 import { useLocation } from "react-router-dom";
-import { NavigationBar, MDX } from "../ui";
-import { BookStyles } from "../book-ui";
-import { useContentLinks, useContentFile } from "../hooks";
+import { NavigationBar, MDX } from "../../ui";
+import { BookStyles } from "../../book-ui";
+import { useContentLinks, useContentFile } from "../../hooks";
+import TopicTime from "./TopicTime";
+import TopicIconInfo from "./TopicIconInfo";
+import TopicTitle from "./TopicTitle";
 import styled from "styled-components";
 
 export default function Agenda() {
@@ -37,19 +40,4 @@ const Container = styled.article`
 
 const Contents = styled.div`
   grid-area: 2 / 1 / 10 / 8;
-`;
-
-const TopicTime = styled.div`
-  grid-area: 1 / 1 / 2 / 2;
-  background-color: orange;
-`;
-
-const TopicIconInfo = styled.div`
-  grid-area: 1 / 2 / 2 / 3;
-  background-color: lightblue;
-`;
-
-const TopicTitle = styled.div`
-  grid-area: 1 / 3 / 2 / 9;
-  background-color: lightgreen;
 `;
