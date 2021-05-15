@@ -17,6 +17,7 @@
     "timesplitter": "server/index.js"
   },
   "scripts": {
+    "develop": "timesplitter-dev ./DevelopmentSampleContent",
     "start:server": "nodemon ./server ./DevelopmentSampleContent",
     "start:client": "react-scripts start",
     "start": "export NODE_ENV=development; concurrently \"npm run start:server\" \"npm run start:client\"",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@mdx-js/runtime": "^1.6.22",
+    "@moonhighway/timesplitter-dev": "0.0.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

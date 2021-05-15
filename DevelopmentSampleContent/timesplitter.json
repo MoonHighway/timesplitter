@@ -8,17 +8,73 @@
       "required": true,
       "agenda": [
         {
-          "title": "Course Welcome",
+          "title": "Overview Slides",
           "length": 5,
           "type": "slides",
-          "required": true
+          "required": true,
+          "difficulty": "beginner"
         },
         {
-          "title": "Course Details",
-          "type": "sample",
+          "title": "Main Example",
+          "type": "exercise",
+          "difficulty": "intermediate",
+          "required": true,
+          "agenda": [
+            {
+              "title": "list pets",
+              "length": 2,
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Markup pets",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": true,
+              "length": 1,
+              "agenda": []
+            },
+            {
+              "title": "add indicators",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": true,
+              "length": 2,
+              "agenda": []
+            }
+          ]
+        },
+        {
+          "title": "Try it out",
+          "difficulty": "advanced",
+          "type": "lab",
+          "required": true,
           "length": 5,
-          "difficulty": "beginner",
-          "required": true
+          "agenda": [
+            {
+              "title": "create content",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "covert to html",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "add loading",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         }
       ]
     },
@@ -27,11 +83,56 @@
       "type": "section",
       "difficulty": "advanced",
       "required": true,
+      "length": 10,
       "agenda": [
-        { "title": "sample one", "difficulty": "intermediate" },
-        { "title": "sample two", "difficulty": "advanced" },
-        { "title": "sample three", "difficulty": "expert" }
+        {
+          "title": "sample one",
+          "difficulty": "intermediate",
+          "length": 10,
+          "required": true
+        },
+        {
+          "title": "sample two",
+          "difficulty": "advanced",
+          "length": 10,
+          "required": false
+        },
+        {
+          "title": "sample three",
+          "difficulty": "expert",
+          "length": 10,
+          "required": false
+        },
+        {
+          "title": "Extra Section",
+          "difficulty": "intermediate",
+          "type": "section",
+          "required": true,
+          "agenda": [
+            {
+              "title": "Extra Sample",
+              "difficulty": "beginner",
+              "type": "sample",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "extra info",
+              "difficulty": "beginner",
+              "type": "slides",
+              "required": false,
+              "agenda": []
+            }
+          ]
+        }
       ]
+    },
+    {
+      "title": "Closing slides",
+      "difficulty": "advanced",
+      "type": "slides",
+      "required": true,
+      "agenda": []
     }
   ]
 }

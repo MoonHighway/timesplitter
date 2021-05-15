@@ -1,0 +1,1 @@
+Maybe you can come up with another sample, maybe not.
