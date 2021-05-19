@@ -254,7 +254,7 @@ describe("pickNext() function", () => {
   });
 });
 
-describe.skip("pickPrev() function", () => {
+describe("pickPrev() function", () => {
   describe("picking previous sibling", () => {
     let topic, route;
     beforeAll(() => {
@@ -272,7 +272,7 @@ describe.skip("pickPrev() function", () => {
     });
   });
 
-  describe("picking the last topic in the previous section", () => {
+  describe("picking the previous parent topic", () => {
     let topic, route;
     beforeAll(() => {
       [topic, route] = pickPrevious(
@@ -282,12 +282,29 @@ describe.skip("pickPrev() function", () => {
       );
     });
     it("picks the correct topic title", () => {
-      expect(topic.title).toEqual("Sub Topic III");
+      expect(topic.title).toEqual("Second Section");
     });
     it("picks the correct route", () => {
-      expect(route).toEqual(
-        "first-section/first-topic/sub-topic/sub-topic-ii/sub-topic-iii"
+      expect(route).toEqual("second-section");
+    });
+  });
+
+  describe("picking the previous deep parent topic", () => {
+    let topic, route;
+    beforeAll(() => {
+      [topic, route] = pickPrevious(
+        deepData,
+        "first-section",
+        "first-topic",
+        "sub-topic",
+        "sub-topic-ii"
       );
+    });
+    it("picks the correct topic title", () => {
+      expect(topic.title).toEqual("Sub Topic");
+    });
+    it("picks the correct route", () => {
+      expect(route).toEqual("first-section/first-topic/sub-topic");
     });
   });
 
@@ -306,10 +323,10 @@ describe.skip("pickPrev() function", () => {
     });
 
     it("picks the correct topic title", () => {
-      expect(topic.title).toEqual("end-topic");
+      expect(topic.title).toEqual("Deep Down");
     });
     it("picks the correct route", () => {
-      expect(route).toEqual("second-section/end-topic");
+      expect(route).toEqual("third-section/going-down/down-down/deep-down");
     });
   });
 
@@ -317,14 +334,7 @@ describe.skip("pickPrev() function", () => {
     let topic, route;
 
     beforeAll(() => {
-      [topic, route] = pickPrevious(
-        deepData,
-        "first-section",
-        "first-topic",
-        "sub-topic",
-        "sub-topic-ii",
-        "sub-topic-iii"
-      );
+      [topic, route] = pickPrevious(deepData, "first-section");
     });
 
     it("returns null for topic", () => {

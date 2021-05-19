@@ -270,6 +270,17 @@ export const pickPrevious = (function () {
     if (index - 1 < 0) {
       // Climb the tree until we find a topic that is not the first topic
       // in the agenda
+
+      if (!!route.length) {
+        const [lastItem] = [...route].reverse();
+        const [agenda] = [...tree].reverse();
+        const parentTopic = pick({ title: "parent search", agenda }, lastItem);
+        const result = [parentTopic, route.join("/")];
+        route = [];
+        tree = [];
+        return result;
+      }
+
       let [n, lastTree, lastRoute] = climb();
       while (lastTree && n === 0) {
         [n, lastTree, lastRoute] = climb();
