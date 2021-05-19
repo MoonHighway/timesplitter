@@ -7,8 +7,10 @@ export const urlFriendly = (str) => str.trim().toLowerCase().replace(/ /g, "-");
 // a function that can be used to check title fields against that value
 // It also converts everything to lowercases and replaces spaces before compairing the title
 // so that routes will match titles and titles will match titles
-export const searchByTitle = (location) => ({ title }) =>
-  urlFriendly(title) === urlFriendly(location);
+export const searchByTitle =
+  (location) =>
+  ({ title }) =>
+    urlFriendly(title) === urlFriendly(location);
 
 // These are the argument check errors for sanity checking
 // These just make sure the arguments are passed with expected values
@@ -66,52 +68,17 @@ export function pick(obj, ...path) {
   return topic;
 }
 
-// This function fids the first topic within an agenda that
-// does not have any additional sub topics. It crawls the tree
-// to find the first leaf
-export const pickFirst = (function () {
-  // This function will be like breadcrumbs, it saves the path that we navigate
-  // as we traverse deeply into the tree
-  let route = [];
+export function pickFirst(obj) {
+  argChecks(obj);
+  return [obj, urlFriendly(obj.title)];
+}
 
-  // This is the actual pickFirst function.
-  function _pickFirst(obj) {
-    // Make sure the manifest object is valid
-    argChecks(obj);
-
-    // If the current topic or root manifest topic
-    // has topics in the agenda
-    if (obj.agenda && obj.agenda.length) {
-      // Save the current route
-      route.push(urlFriendly(obj.title));
-
-      // Select the first topic from the agenda
-      const [topic] = obj.agenda;
-
-      // Send the first topic back to pick _pickFirst
-      // Each time this funciton is called the obj is smaller
-      // and smaller until eventually we find a first topic
-      // that does not contain an agenda and we return that
-      return _pickFirst(topic);
-    }
-
-    // This topic does not have an agenda, so it's the one
-    // put togther a result objec that contans the obj "topic"
-    // and then we'll convert the route that we saved along the to a string path.
-    // that can be used in a url
-    const result = [obj, [...route, urlFriendly(obj.title)].join("/")];
-
-    // Clear the route for the next run
-    route = [];
-
-    // return the resulting topic and route to find that topic
-    return result;
-  }
-
-  // Returning the pick first function creates a closure
-  // around the route array
-  return _pickFirst;
-})();
+// pickLast used to deeply pick the last topic
+//  but, it no longer needs to... which greatly simplified this function
+// export function pickLast(obj) {
+//   argChecks(obj);
+//   return [obj, urlFriendly(obj.title)];
+// }
 
 // Like Pick First but the opposite, instead of
 // picking the first topic without children in an agenda
@@ -196,7 +163,27 @@ export const pickNext = (function () {
     if (index + 1 >= obj.agenda.length) {
       // We will climb until there is no more tree (lastTree is null)
       // or until we have found a topic that has next agenda item
+
+      if (topic.agenda) {
+        const [firstChildSection] = topic.agenda;
+
+        if (firstChildSection) {
+          const result = [
+            firstChildSection,
+            [
+              ...route,
+              urlFriendly(topic.title),
+              urlFriendly(firstChildSection.title),
+            ].join("/"),
+          ];
+          route = [];
+          tree = [];
+          return result;
+        }
+      }
+
       let [n, lastTree, lastRoute] = climb();
+
       while (lastTree && n + 1 >= lastTree.length) {
         [n, lastTree, lastRoute] = climb();
       }

@@ -76,15 +76,13 @@ describe("pick() function", () => {
 describe("pickFirst() function", () => {
   it("picks the first shallow leaf", () => {
     const [{ title }, route] = pickFirst(shallowData);
-    expect(title).toEqual("First Section");
-    expect(route).toEqual("course-level/first-section");
+    expect(title).toEqual("Course Level");
+    expect(route).toEqual("course-level");
   });
   it("picks the first deep leaf", () => {
     const [{ title }, route] = pickFirst(deepData);
-    expect(title).toEqual("Sub Topic III");
-    expect(route).toEqual(
-      "course-level/first-section/first-topic/sub-topic/sub-topic-ii/sub-topic-iii"
-    );
+    expect(title).toEqual("Course Level");
+    expect(route).toEqual("course-level");
   });
   describe("errors", () => {
     it("data argument required", () => {
@@ -173,12 +171,41 @@ describe("pickNext() function", () => {
       [topic, route] = pickNext(deepData, "second-section", "end-topic");
     });
     it("picks the correct topic title", () => {
-      expect(topic.title).toEqual("The Bottom");
+      expect(topic.title).toEqual("Third Section");
     });
     it("picks the correct route", () => {
-      expect(route).toEqual(
-        "third-section/going-down/down-down/deep-down/the-bottom"
+      expect(route).toEqual("third-section");
+    });
+  });
+
+  describe("picking the next child section", () => {
+    let topic, route;
+    beforeAll(() => {
+      [topic, route] = pickNext(deepData, "third-section");
+    });
+    it("picks the correct topic title", () => {
+      expect(topic.title).toEqual("Going Down");
+    });
+    it("picks the correct route", () => {
+      expect(route).toEqual("third-section/going-down");
+    });
+  });
+
+  describe("picking the next deep child section", () => {
+    let topic, route;
+    beforeAll(() => {
+      [topic, route] = pickNext(
+        deepData,
+        "third-section",
+        "going-down",
+        "down-down"
       );
+    });
+    it("picks the correct topic title", () => {
+      expect(topic.title).toEqual("Deep Down");
+    });
+    it("picks the correct route", () => {
+      expect(route).toEqual("third-section/going-down/down-down/deep-down");
     });
   });
 
@@ -197,12 +224,10 @@ describe("pickNext() function", () => {
     });
 
     it("picks the correct topic title", () => {
-      expect(topic.title).toEqual("Sub Topic III");
+      expect(topic.title).toEqual("Getting Warm");
     });
     it("picks the correct route", () => {
-      expect(route).toEqual(
-        "third-section/getting-warm/still-writing-code/sub-topic-ii/sub-topic-iii"
-      );
+      expect(route).toEqual("third-section/getting-warm");
     });
   });
 
@@ -229,7 +254,7 @@ describe("pickNext() function", () => {
   });
 });
 
-describe("pickPrev() function", () => {
+describe.skip("pickPrev() function", () => {
   describe("picking previous sibling", () => {
     let topic, route;
     beforeAll(() => {
