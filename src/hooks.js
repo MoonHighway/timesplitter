@@ -34,6 +34,7 @@ export function useContentLinks(path = []) {
 
   let [pTopic, pRoute] = pickPrevious(content, ...path);
   let [nTopic, nRoute] = pickNext(content, ...path);
+
   if (!pTopic) {
     pTopic = { title: "Course Overview" };
     pRoute = "/overview";
