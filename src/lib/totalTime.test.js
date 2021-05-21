@@ -1,4 +1,4 @@
-import { totalTime } from "./totalTime";
+import { totalTime } from ".";
 import { testAgenda, fullAgenda } from "./totalTime.test.data";
 
 describe("Totaling times", () => {

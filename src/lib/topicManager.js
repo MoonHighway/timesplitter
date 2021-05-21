@@ -16,13 +16,18 @@ export const createTime = (length, topic, parent) =>
  * @param {Object} course a deeply nested course of topics. A topic must contain at least a title and an agenda
  * @returns {Array} a flat array of topics
  */
-export function flattenCourse(course, parent) {
+export function flattenCourse(course, parent, breadcrumbs = []) {
   const { agenda, length, ...rest } = course;
   const time = createTime(length, course, parent);
-  const topic = { id: urlFriendly(rest.title), time, ...rest };
+  const topic = { id: urlFriendly(rest.title), time, breadcrumbs, ...rest };
   if (agenda) {
     topic.agenda = agenda.map(titlesOnly);
-    return [topic, ...course.agenda.flatMap((t) => flattenCourse(t, topic))];
+    return [
+      topic,
+      ...course.agenda.flatMap((t) =>
+        flattenCourse(t, topic, [...breadcrumbs, urlFriendly(topic.title)])
+      ),
+    ];
   }
   return topic;
 }
@@ -36,7 +41,7 @@ export function flattenCourse(course, parent) {
  * @returns {Object} a deeply nested topic object that contains topics under parent topic agendas
  */
 function buildTree(ref, topics) {
-  const { id, time, ...rest } = topics.find(byTitle(ref));
+  const { id, time, breadcrumbs, ...rest } = topics.find(byTitle(ref));
   const topic = time.length ? { length: time.length, ...rest } : { ...rest };
   if (topic.agenda) {
     return {
@@ -53,7 +58,7 @@ function buildTree(ref, topics) {
  * @returns {Object} A course with a nested hierarchy of topics
  */
 export function categorizeCourse(flatCourse) {
-  const [{ id, time, ...rest }] = flatCourse;
+  const [{ id, time, breadcrumbs, ...rest }] = flatCourse;
   const course = time.length ? { length: time.length, ...rest } : { ...rest };
   return {
     ...course,

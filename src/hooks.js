@@ -31,6 +31,7 @@ export const usePresenter = (pathname) => {
     id: "task-b",
     title: "task B",
     agenda: ["challenge-1", "challenge-2"],
+    breadcrumbs: ["sample-course", "chapter-one", "step-one"],
     time: {
       length: 5,
       est: 5,
