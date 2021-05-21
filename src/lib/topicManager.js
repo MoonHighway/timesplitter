@@ -17,6 +17,7 @@ export const createTime = (length, topic, parent) =>
  * @returns {Array} a flat array of topics
  */
 export function flattenCourse(course, parent, breadcrumbs = []) {
+  if (!course) return;
   const { agenda, length, ...rest } = course;
   const time = createTime(length, course, parent);
   const topic = { id: urlFriendly(rest.title), time, breadcrumbs, ...rest };

@@ -10,27 +10,32 @@ import styled from "styled-components";
 
 export default function Agenda() {
   let { pathname } = useLocation();
-  const {
-    md,
-    topic: { title, time, breadcrumbs },
-    prev,
-    next,
-  } = usePresenter(pathname);
+  const presenter = usePresenter(pathname);
 
-  return (
-    <Container>
-      <TopicTime {...time} />
-      <TopicIconInfo />
-      <TopicTitle title={title} breadcrumbs={breadcrumbs} />
-      <Contents>
-        <CourseProgressBar />
-        <BookStyles>
-          <MDX>{md}</MDX>
-          <NavigationBar prev={prev} next={next} />
-        </BookStyles>
-      </Contents>
-    </Container>
-  );
+  if (presenter) {
+    const {
+      md,
+      prev,
+      next,
+      topic: { title, time, breadcrumbs },
+    } = presenter;
+    return (
+      <Container>
+        <TopicTime {...time} />
+        <TopicIconInfo />
+        <TopicTitle title={title} breadcrumbs={breadcrumbs} />
+        <Contents>
+          <CourseProgressBar />
+          <BookStyles>
+            <MDX>{md}</MDX>
+            <NavigationBar prev={prev} next={next} />
+          </BookStyles>
+        </Contents>
+      </Container>
+    );
+  }
+
+  return null;
 }
 
 const Container = styled.article`
