@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { NavigationBar, MDX } from "../../ui";
 import { BookStyles } from "../../book-ui";
-import { useContentLinks, useContentFile } from "../../hooks";
+import { usePresenter } from "../../hooks";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
 import TopicTitle from "./TopicTitle";
@@ -10,9 +10,7 @@ import styled from "styled-components";
 
 export default function Agenda() {
   let { pathname } = useLocation();
-  const md = useContentFile(pathname);
-  const [, , ...pathArray] = pathname.split("/");
-  const [[pTopic, pRoute], [nTopic, nRoute]] = useContentLinks(pathArray);
+  const { md, topic, prev, next } = usePresenter(pathname);
   return (
     <Container>
       <TopicTime />
@@ -22,10 +20,7 @@ export default function Agenda() {
         <CourseProgressBar />
         <BookStyles>
           <MDX>{md}</MDX>
-          <NavigationBar
-            prev={{ to: pRoute, text: pTopic.title }}
-            next={{ to: nRoute, text: nTopic.title }}
-          />
+          <NavigationBar prev={prev} next={next} />
         </BookStyles>
       </Contents>
     </Container>

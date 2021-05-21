@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { toJSON, toText, throwIt } from "./lib";
-import { pickPrevious, pickNext } from "./lib/pick";
 
 export const useContent = () => {
   const [content, setContent] = useState();
@@ -27,28 +26,19 @@ export const useContentFile = (path) => {
   return content;
 };
 
-export function useContentLinks(path = []) {
-  const content = useContent();
+export const usePresenter = (pathname) => {
+  const topic = {
+    id: "task-b",
+    title: "task B",
+    agenda: ["challenge-1", "challenge-2"],
+    time: {
+      length: 5,
+      est: 5,
+    },
+  };
+  const md = "## Markdown markdown \n\n\n This is a sample";
+  const prev = { to: "/", text: "TODO: Next" };
+  const next = { to: "/", text: "TODO: Prev" };
 
-  if (!content) return [[{ title: "" }], [{ title: "" }]];
-
-  let [pTopic, pRoute] = pickPrevious(content, ...path);
-  let [nTopic, nRoute] = pickNext(content, ...path);
-
-  if (!pTopic) {
-    pTopic = { title: "Course Overview" };
-    pRoute = "/overview";
-  } else {
-    pRoute = `/agenda/${pRoute}`;
-  }
-  if (!nTopic) {
-    nTopic = { title: "End Course" };
-    nRoute = "/end";
-  } else {
-    nRoute = `/agenda/${nRoute}`;
-  }
-  return [
-    [pTopic, pRoute],
-    [nTopic, nRoute],
-  ];
-}
+  return { md, topic, prev, next };
+};
