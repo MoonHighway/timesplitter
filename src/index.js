@@ -14,7 +14,7 @@ render(
     <GlobalStyle />
     <Router>
       <Switch>
-        <Route path="/topic/:path">
+        <Route path="/agenda/:path">
           <Agenda />
         </Route>
         <Route path="/toc">

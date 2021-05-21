@@ -1,11 +1,14 @@
 import Breadcrumbs from "./Breadcrumbs";
 import styled from "styled-components";
 
-export default function TopicTitle({ title = "Untitled Topic" }) {
+export default function TopicTitle({
+  title = "Untitled Topic",
+  breadcrumbs = [],
+}) {
   return (
     <Container>
       <h1>{title}</h1>
-      <Breadcrumbs />
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
     </Container>
   );
 }

@@ -12,15 +12,16 @@ export default function Agenda() {
   let { pathname } = useLocation();
   const {
     md,
-    topic: { title },
+    topic: { title, time, breadcrumbs },
     prev,
     next,
   } = usePresenter(pathname);
+
   return (
     <Container>
-      <TopicTime />
+      <TopicTime {...time} />
       <TopicIconInfo />
-      <TopicTitle title={title} />
+      <TopicTitle title={title} breadcrumbs={breadcrumbs} />
       <Contents>
         <CourseProgressBar />
         <BookStyles>
