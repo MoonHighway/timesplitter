@@ -10,12 +10,17 @@ import styled from "styled-components";
 
 export default function Agenda() {
   let { pathname } = useLocation();
-  const { md, topic, prev, next } = usePresenter(pathname);
+  const {
+    md,
+    topic: { title },
+    prev,
+    next,
+  } = usePresenter(pathname);
   return (
     <Container>
       <TopicTime />
       <TopicIconInfo />
-      <TopicTitle />
+      <TopicTitle title={title} />
       <Contents>
         <CourseProgressBar />
         <BookStyles>
@@ -28,6 +33,8 @@ export default function Agenda() {
 }
 
 const Container = styled.article`
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(9, 1fr);
