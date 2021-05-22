@@ -28,7 +28,12 @@ export default function Agenda() {
           <CourseProgressBar />
           <BookStyles>
             <MDX>{md}</MDX>
-            <NavigationBar prev={prev} next={next} />
+            <NavigationBar
+              onNext={next}
+              onPrev={prev}
+              next={{ text: "Next" }}
+              prev={{ text: "Prev" }}
+            />
           </BookStyles>
         </Contents>
       </Container>

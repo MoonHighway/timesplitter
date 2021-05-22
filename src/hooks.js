@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import { toJSON, toText, throwIt, flattenCourse } from "./lib";
 
 export const useContent = () => {
@@ -29,6 +30,8 @@ export const useContentFile = (path) => {
 };
 
 export const usePresenter = (path) => {
+  const history = useHistory();
+  const md = useContentFile(path);
   const course = useContent();
   const flatCourse = useMemo(() => {
     if (!course) return;
@@ -45,14 +48,33 @@ export const usePresenter = (path) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flatCourse]);
 
+  const prev = () => index > 0 && setIndex(index - 1);
+
   if (!flatCourse) {
     return;
   }
 
-  const topic = flatCourse[index];
-  const md = "## Markdown markdown \n\n\n This is a sample";
-  const prev = { to: "/", text: "TODO: Next" };
-  const next = { to: "/", text: "TODO: Prev" };
-
-  return { flatCourse, md, topic, prev, next };
+  return {
+    flatCourse,
+    md,
+    topic: flatCourse[index],
+    prev() {
+      const prevIndex = index - 1;
+      if (prevIndex < 0) return;
+      const prevTopic = flatCourse[prevIndex];
+      const [, ...bread] = prevTopic.breadcrumbs;
+      const route = ["agenda", ...bread, prevTopic.id].join("/");
+      setIndex(prevIndex);
+      history.push(`/${route}`);
+    },
+    next() {
+      const nextIndex = index + 1;
+      if (nextIndex >= flatCourse.length) return;
+      const nextTopic = flatCourse[nextIndex];
+      const [, ...bread] = nextTopic.breadcrumbs;
+      const route = ["agenda", ...bread, nextTopic.id].join("/");
+      setIndex(nextIndex);
+      history.push(`/${route}`);
+    },
+  };
 };
