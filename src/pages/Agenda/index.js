@@ -21,7 +21,7 @@ export default function Agenda() {
     } = presenter;
     return (
       <Container>
-        <TopicTime {...time} />
+        <TopicTime title={title} {...time} />
         <TopicIconInfo />
         <TopicTitle title={title} breadcrumbs={breadcrumbs} />
         <Contents>
