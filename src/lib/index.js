@@ -1,5 +1,7 @@
 export * from "./totalTime";
 export * from "./topicManager";
+export * from "./icons";
+export * from "./DifficultyDropDown";
 
 export const toJSON = (res) => res.json();
 

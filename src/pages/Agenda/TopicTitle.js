@@ -1,12 +1,16 @@
 import Breadcrumbs from "./Breadcrumbs";
+import { getTypeColor } from "../../theme";
 import styled from "styled-components";
 
 export default function TopicTitle({
   title = "Untitled Topic",
+  type = "section",
+  required = false,
   breadcrumbs = [],
 }) {
+  console.log(type);
   return (
-    <Container>
+    <Container type={type} required={required}>
       <h1>{title}</h1>
       <Breadcrumbs breadcrumbs={breadcrumbs} />
     </Container>
@@ -15,7 +19,7 @@ export default function TopicTitle({
 
 const Container = styled.div`
   grid-area: 1 / 3 / 2 / 9;
-  background-color: lightgreen;
+  background-color: ${getTypeColor};
   padding: 1em;
 
   display: flex;

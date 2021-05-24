@@ -17,13 +17,18 @@ export default function Agenda() {
       md,
       prev,
       next,
-      topic: { title, time, breadcrumbs },
+      topic: { title, time, type, required, breadcrumbs },
     } = presenter;
     return (
       <Container>
         <TopicTime title={title} {...time} />
         <TopicIconInfo />
-        <TopicTitle title={title} breadcrumbs={breadcrumbs} />
+        <TopicTitle
+          title={title}
+          type={type}
+          required={required}
+          breadcrumbs={breadcrumbs}
+        />
         <Contents>
           <CourseProgressBar />
           <BookStyles>
