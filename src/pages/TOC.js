@@ -8,54 +8,49 @@ import { GrOverview } from "react-icons/gr";
 import { GiTeacher } from "react-icons/gi";
 import { IoIosArrowBack } from "react-icons/io";
 
-// const TopicList = ({ section, agenda = [] }) => (
-//   <List>
-//     {agenda.map((topic, i) => {
-//       const time = totalTime(topic);
-//       let route;
+const TopicList = ({ section, agenda = [] }) => (
+  <List>
+    {agenda.map((topic, i) => {
+      const time = totalTime(topic);
+      return (
+        topic.type !== "meta" && (
+          <Item key={urlFriendly(topic.title)}>
+            <TopicIcon size={20} type={topic.type} />
+            <Link
+              to={`/agenda/${urlFriendly(section.title)}/${urlFriendly(
+                topic.title
+              )}`}
+            >
+              {topic.title}
+            </Link>
+            {time ? <span>{time} mins</span> : null}
+          </Item>
+        )
+      );
+    })}
+  </List>
+);
 
-//       if (topic.agenda) {
-//         [, route] = pickFirst(topic);
-//       } else {
-//         route = urlFriendly(topic.title);
-//       }
+function Block({ id, section }) {
+  const time = totalTime(section);
+  const startSection = () => {
+    window.location = `/agenda/${urlFriendly(section.title)}`;
+  };
 
-//       return (
-//         topic.type !== "meta" && (
-//           <Item key={urlFriendly(topic.title)}>
-//             <TopicIcon size={20} type={topic.type} />
-//             <Link to={`/agenda/${urlFriendly(section.title)}/${route}`}>
-//               {topic.title}
-//             </Link>
-//             {time ? <span>{time} mins</span> : null}
-//           </Item>
-//         )
-//       );
-//     })}
-//   </List>
-// );
-
-// function Block({ id, section }) {
-//   const time = totalTime(section);
-//   const startSection = () => {
-//     const [, route] = pickFirst(section);
-//     window.location = `/agenda/${route}`;
-//   };
-
-//   return (
-//     <Section>
-//       <ID onClick={startSection}>
-//         {id < 4 ? <span>{id}</span> : <CourseLab color="white" size={30} />}
-//       </ID>
-//       <SubTitle onClick={startSection}>{section.title}</SubTitle>
-//       <Time>
-//         <Timer color={colors.primary} size={30} />
-//         <span>{time} mins</span>
-//       </Time>
-//       <TopicList section={section} agenda={section.agenda} />
-//     </Section>
-//   );
-// }
+  return (
+    <Section>
+      <ID onClick={startSection}>
+        {id < 4 ? <span>{id}</span> : <CourseLab color="white" size={30} />}
+      </ID>
+      <SubTitle onClick={startSection}>{section.title}</SubTitle>
+      <Time>
+        <Timer color={colors.primary} size={30} />
+        <span>{time} mins</span>
+      </Time>
+      <TopicList section={section} agenda={section.agenda} />
+    </Section>
+  );
+}
 
 export default function TOC() {
   const content = useContent();
@@ -64,7 +59,7 @@ export default function TOC() {
     return (
       <Layout>
         <Title>{content.title}</Title>
-        {/* <Menu>
+        <Menu>
           <Link to="/overview">
             <GrOverview size={25} color="black" />
             Course Overview
@@ -84,7 +79,7 @@ export default function TOC() {
             id={i + 1}
             section={section}
           />
-        ))} */}
+        ))}
       </Layout>
     );
   }
