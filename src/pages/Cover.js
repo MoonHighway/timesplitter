@@ -13,15 +13,15 @@ export default function Cover() {
   return (
     <Content>
       <BottomCorner>
-        <a href="http://www.moonhighway.com" target="_blank">
-          <img src={MHLogo} />
+        <a href="http://www.moonhighway.com" target="_blank" rel="noreferrer">
+          <img src={MHLogo} alt="Moon Highway" />
         </a>
       </BottomCorner>
       <div className="js-logo">
-        <img src={JSLogo} />
+        <img src={JSLogo} alt="JavaScript" />
       </div>
       <div className="node-logo">
-        <img src={NodeJSLogo} />
+        <img src={NodeJSLogo} alt="node js" />
       </div>
       {content && <TeacherEditionTitle title={content.title} />}
       <Start>
