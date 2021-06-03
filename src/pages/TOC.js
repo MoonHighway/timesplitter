@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CourseLab, Timer, TopicIcon } from "../ui";
-import { totalTime, urlFriendly, pickFirst } from "../lib";
+import { totalTime, urlFriendly } from "../lib";
 import { useContent } from "../hooks";
 import { fonts, colors } from "../theme";
 import styled from "styled-components";
@@ -12,19 +12,15 @@ const TopicList = ({ section, agenda = [] }) => (
   <List>
     {agenda.map((topic, i) => {
       const time = totalTime(topic);
-      let route;
-
-      if (topic.agenda) {
-        [, route] = pickFirst(topic);
-      } else {
-        route = urlFriendly(topic.title);
-      }
-
       return (
         topic.type !== "meta" && (
           <Item key={urlFriendly(topic.title)}>
             <TopicIcon size={20} type={topic.type} />
-            <Link to={`/agenda/${urlFriendly(section.title)}/${route}`}>
+            <Link
+              to={`/agenda/${urlFriendly(section.title)}/${urlFriendly(
+                topic.title
+              )}`}
+            >
               {topic.title}
             </Link>
             {time ? <span>{time} mins</span> : null}
@@ -38,8 +34,7 @@ const TopicList = ({ section, agenda = [] }) => (
 function Block({ id, section }) {
   const time = totalTime(section);
   const startSection = () => {
-    const [, route] = pickFirst(section);
-    window.location = `/agenda/${route}`;
+    window.location = `/agenda/${urlFriendly(section.title)}`;
   };
 
   return (

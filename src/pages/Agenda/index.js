@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { NavigationBar, MDX } from "../../ui";
 import { BookStyles } from "../../book-ui";
-import { useContentLinks, useContentFile } from "../../hooks";
+import { usePresenter } from "../../hooks";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
 import TopicTitle from "./TopicTitle";
@@ -10,29 +10,60 @@ import styled from "styled-components";
 
 export default function Agenda() {
   let { pathname } = useLocation();
-  const md = useContentFile(pathname);
-  const [, , ...pathArray] = pathname.split("/");
-  const [[pTopic, pRoute], [nTopic, nRoute]] = useContentLinks(pathArray);
-  return (
-    <Container>
-      <TopicTime />
-      <TopicIconInfo />
-      <TopicTitle />
-      <Contents>
-        <CourseProgressBar />
-        <BookStyles>
-          <MDX>{md}</MDX>
-          <NavigationBar
-            prev={{ to: pRoute, text: pTopic.title }}
-            next={{ to: nRoute, text: nTopic.title }}
-          />
-        </BookStyles>
-      </Contents>
-    </Container>
-  );
+  const presenter = usePresenter(pathname);
+
+  if (presenter) {
+    const {
+      md,
+      prev,
+      next,
+      topic: { title, time, type, required, breadcrumbs },
+      prevTopic,
+      nextTopic,
+    } = presenter;
+
+    console.log(prevTopic);
+    console.log(title);
+    console.log(nextTopic);
+
+    return (
+      <Container>
+        <TopicTime title={title} {...time} />
+        <TopicIconInfo />
+        <TopicTitle
+          title={title}
+          type={type}
+          required={required}
+          breadcrumbs={breadcrumbs}
+        />
+        <Contents>
+          <CourseProgressBar />
+          <BookStyles>
+            <MDX>{md}</MDX>
+            <NavigationBar
+              onNext={next}
+              onPrev={prev}
+              next={{
+                to: !nextTopic && "/end",
+                text: nextTopic ? nextTopic.title : "End Course",
+              }}
+              prev={{
+                to: !prevTopic && "/overview",
+                text: prevTopic ? prevTopic.title : "Course Overview",
+              }}
+            />
+          </BookStyles>
+        </Contents>
+      </Container>
+    );
+  }
+
+  return null;
 }
 
 const Container = styled.article`
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(9, 1fr);

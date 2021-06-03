@@ -1,12 +1,26 @@
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Breadcrumbs({
-  route = ["sample chapter", "sample section", "sample subsection"],
-}) {
+const first = (arr = [], num) => arr.filter((_, i) => i < num);
+
+export default function Breadcrumbs({ breadcrumbs = [] }) {
+  const [, ...bread] = breadcrumbs;
+  const _breadcrumbs = useMemo(
+    () =>
+      bread.map((text, i) => ({
+        text,
+        to: first(bread, i + 1).join("/"),
+      })),
+    [bread]
+  );
+
   return (
     <Container>
-      {route.map((text) => (
-        <a href="/">{text}</a>
+      {_breadcrumbs.map(({ text, to }) => (
+        <Link key={to} to={to}>
+          {text}
+        </Link>
       ))}
     </Container>
   );

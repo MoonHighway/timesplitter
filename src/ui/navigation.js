@@ -1,16 +1,32 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-const PreviousLink = ({ to, children }) => <Link to={to}>{children}</Link>;
-
-const NextLink = ({ to, children }) => <Link to={to}>{children}</Link>;
-
-export const NavigationBar = ({ prev, next }) => (
-  <Container>
-    <PreviousLink to={prev.to}>{prev.text}</PreviousLink>
-    <NextLink to={next.to}>{next.text}</NextLink>
-  </Container>
+const PreviousLink = ({ children, ...props }) => (
+  <button {...props}>{children}</button>
 );
+
+const NextLink = ({ children, ...props }) => (
+  <button {...props}>{children}</button>
+);
+
+export const NavigationBar = ({
+  prev,
+  next,
+  onPrev = (f) => f,
+  onNext = (f) => f,
+}) => {
+  const history = useHistory();
+
+  const p = prev.to ? () => history.push(prev.to) : onPrev;
+  const n = next.to ? () => history.push(next.to) : onNext;
+
+  return (
+    <Container>
+      <PreviousLink onClick={p}>{prev.text}</PreviousLink>
+      <NextLink onClick={n}>{next.text}</NextLink>
+    </Container>
+  );
+};
 
 const Container = styled.nav`
   width: 100%;
@@ -29,7 +45,7 @@ const Container = styled.nav`
     rgba(255, 255, 255, 1) 54%
   );
 
-  a:after {
+  button:after {
     content: "previous";
     border-top: solid 2px black;
     display: block;
@@ -38,7 +54,10 @@ const Container = styled.nav`
     font-size: 0.6em;
     color: blue;
   }
-  a {
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
     position: relative;
     text-decoration: none;
     margin: 0.25em;

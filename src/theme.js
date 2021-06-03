@@ -60,5 +60,31 @@ export const colors = {
   light: "#B5D2E8",
   bland: "#97AFC2",
   darkbland: "#798D9C",
+  darkhard: "#313236",
   highlight: "#4DFFA7",
+  notRequired: "#ABABAB",
+  meta: "lightblue",
+  sample: "#e6e1ad",
+  lab: "#ade6bb",
+  exercise: "#daade6",
+  slides: "#f53b3b",
+  noTopic: "#adb2e5",
+  beginner: "#32CD32",
+  intermediate: "#6c6cfd",
+  required: "#d25d5d",
 };
+
+export const getTypeColor = ({ type, required = false }) =>
+  !required
+    ? colors.notRequired
+    : type === "section" || type === "meta"
+    ? colors.meta
+    : type === "exercise"
+    ? colors.exercise
+    : type === "lab" || type === "course-lab"
+    ? colors.lab
+    : type === "slides"
+    ? colors.slides
+    : type === "sample"
+    ? colors.sample
+    : colors.noTopic;
