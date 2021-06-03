@@ -18,7 +18,14 @@ export default function Agenda() {
       prev,
       next,
       topic: { title, time, type, required, breadcrumbs },
+      prevTopic,
+      nextTopic,
     } = presenter;
+
+    console.log(prevTopic);
+    console.log(title);
+    console.log(nextTopic);
+
     return (
       <Container>
         <TopicTime title={title} {...time} />
@@ -36,8 +43,14 @@ export default function Agenda() {
             <NavigationBar
               onNext={next}
               onPrev={prev}
-              next={{ text: "Next" }}
-              prev={{ text: "Prev" }}
+              next={{
+                to: !nextTopic && "/end",
+                text: nextTopic ? nextTopic.title : "End Course",
+              }}
+              prev={{
+                to: !prevTopic && "/overview",
+                text: prevTopic ? prevTopic.title : "Course Overview",
+              }}
             />
           </BookStyles>
         </Contents>

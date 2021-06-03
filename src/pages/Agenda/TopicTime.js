@@ -9,6 +9,12 @@ function round(value, precision) {
 export default function TopicTime({ title, length, est }) {
   const [time, setTime] = useState(length || est);
 
+  //
+  // TODO: Replace Quick timer
+  //
+  // This code was rushed to have some quick time indication
+  //
+
   useEffect(() => {
     const to = setTimeout(() => setTime(time - 0.1), 6000);
     return () => clearTimeout(to);

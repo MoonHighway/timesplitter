@@ -8,7 +8,6 @@ export default function TopicTitle({
   required = false,
   breadcrumbs = [],
 }) {
-  console.log(type);
   return (
     <Container type={type} required={required}>
       <h1>{title}</h1>

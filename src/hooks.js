@@ -48,16 +48,19 @@ export const usePresenter = (path) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flatCourse]);
 
-  const prev = () => index > 0 && setIndex(index - 1);
-
   if (!flatCourse) {
     return;
   }
+
+  const prevTopic = index > 0 && flatCourse[index - 1];
+  const nextTopic = index + 1 < flatCourse.length && flatCourse[index + 1];
 
   return {
     flatCourse,
     md,
     topic: flatCourse[index],
+    prevTopic,
+    nextTopic,
     prev() {
       const prevIndex = index - 1;
       if (prevIndex < 0) return;

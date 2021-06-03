@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const PreviousLink = ({ children, ...props }) => (
@@ -13,12 +14,19 @@ export const NavigationBar = ({
   next,
   onPrev = (f) => f,
   onNext = (f) => f,
-}) => (
-  <Container>
-    <PreviousLink onClick={onPrev}>{prev.text}</PreviousLink>
-    <NextLink onClick={onNext}>{next.text}</NextLink>
-  </Container>
-);
+}) => {
+  const history = useHistory();
+
+  const p = prev.to ? () => history.push(prev.to) : onPrev;
+  const n = next.to ? () => history.push(next.to) : onNext;
+
+  return (
+    <Container>
+      <PreviousLink onClick={p}>{prev.text}</PreviousLink>
+      <NextLink onClick={n}>{next.text}</NextLink>
+    </Container>
+  );
+};
 
 const Container = styled.nav`
   width: 100%;

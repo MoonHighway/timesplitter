@@ -1,6 +1,8 @@
+import { useState, useEffect, useMemo } from "react";
+import { flattenCourse } from "../lib";
 import { NavigationBar } from "../ui";
+import { useContent } from "../hooks";
 import { BookStyles } from "../book-ui";
-import { usePresenter } from "../hooks";
 import * as mdxComponents from "../mdx-components";
 import MDX from "@mdx-js/runtime";
 
@@ -15,15 +17,32 @@ Currently timesplitter projects require an README.md that provides presenters/in
 `;
 
 export default function Overview() {
-  const { md, topic } = usePresenter("overview");
+  const [md, setMD] = useState();
+  const course = useContent();
+  const flatCourse = useMemo(() => {
+    if (!course) return;
+    const [, ...topics] = flattenCourse(course);
+    return topics;
+  }, [course]);
 
-  if (md && topic) {
+  useEffect(() => {
+    fetch("/content/overview")
+      .then((res) => (res.status === 500 ? missingREADME : res.text()))
+      .then(setMD)
+      .catch(console.error);
+  }, []);
+
+  if (!flatCourse) return null;
+
+  const [topic] = flatCourse;
+
+  if (md) {
     return (
       <BookStyles>
         <MDX components={mdxComponents}>{md}</MDX>
         <NavigationBar
           prev={{ to: "/how-to-use", text: "How to use this Guide" }}
-          next={{ to: "/", text: `TODO: Setup First Route` }}
+          next={{ to: `/agenda/${topic.id}`, text: `Start: ${topic.title}` }}
         />
       </BookStyles>
     );
