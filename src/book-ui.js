@@ -4,20 +4,9 @@ import "prismjs/themes/prism-tomorrow.css";
 
 export const BookStyles = styled.div`
   font-family: ${fonts.text};
-  font-size: 1.5em;
   margin: 2em;
   padding-bottom: 200px;
   width: 100%;
-
-  pre {
-    position: relative;
-    right: -4.2em;
-    margin: 1em;
-    padding: 1em;
-    background-color: black;
-    border-radius: 2px;
-    font-size: 0.75em;
-  }
 
   h1 {
     font-family: ${fonts.title};
