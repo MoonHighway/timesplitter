@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { fonts } from "./theme";
+import { CodeBlock } from "./ui";
 
 export const Row = styled.div`
   display: flex;
@@ -27,3 +28,7 @@ export const Warning = styled.div`
   background-color: red;
   color: white;
 `;
+
+export const HighlightCode = ({ lines = [], children }) => (
+  <CodeBlock selectLines={lines}>{children}</CodeBlock>
+);

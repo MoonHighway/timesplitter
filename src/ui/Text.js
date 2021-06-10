@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { fonts, colors } from "../theme";
 import * as mdxComponents from "../mdx-components";
 import Markdown from "@mdx-js/runtime";
-import CodeBlock from "./CodeBlock";
+import { CodeBlock } from "./CodeBlock";
 
 export function MDX({ children }) {
   return (

@@ -116,6 +116,13 @@
           "type": "step",
           "required": true,
           "agenda": []
+        },
+        {
+          "title": "line highlighting",
+          "difficulty": "advanced",
+          "type": "step",
+          "required": true,
+          "agenda": []
         }
       ]
     },

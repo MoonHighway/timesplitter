@@ -8,6 +8,11 @@ export const BookStyles = styled.div`
   padding-bottom: 200px;
   width: 100%;
 
+  code {
+    background-color: black;
+    padding: 3px;
+  }
+
   h1 {
     font-family: ${fonts.title};
     font-size: 3.5em;

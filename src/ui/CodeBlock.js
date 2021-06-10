@@ -29,9 +29,9 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-export default function CodeBlock({
+export function CodeBlock({
   selectLines = [],
-  className,
+  className = "",
   live,
   render,
   children,
