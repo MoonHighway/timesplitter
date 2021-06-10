@@ -1,6 +1,4 @@
-## Live Code...
-
-```javascript
+```jsx
 import logo from "./logo.svg";
 import "./App.css";
 

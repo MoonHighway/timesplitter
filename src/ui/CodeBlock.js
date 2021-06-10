@@ -29,9 +29,21 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-export default function CodeBlock({ selectLines = [], children }) {
+export default function CodeBlock({
+  selectLines = [],
+  className,
+  live,
+  render,
+  children,
+}) {
+  const language = className.replace(/language-/, "");
   return (
-    <Highlight {...defaultProps} theme={theme} code={children} language="jsx">
+    <Highlight
+      {...defaultProps}
+      theme={theme}
+      code={children}
+      language={language}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={style}>
           {tokens.map((line, i) => (

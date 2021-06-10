@@ -1,5 +1,3 @@
-## Live Code...
-
 ```css
 .App {
   text-align: center;

@@ -86,44 +86,58 @@
       "length": 10,
       "agenda": [
         {
-          "title": "sample one",
+          "title": "react",
           "difficulty": "intermediate",
           "length": 10,
           "required": true
         },
         {
-          "title": "sample two",
+          "title": "command line",
           "difficulty": "advanced",
           "length": 10,
-          "required": false
+          "required": true
         },
         {
-          "title": "sample three",
+          "title": "css",
           "difficulty": "expert",
           "length": 10,
-          "required": false
+          "required": true
         },
         {
-          "title": "Extra Section",
-          "difficulty": "intermediate",
-          "type": "section",
+          "title": "javascript",
+          "difficulty": "beginner",
+          "type": "step",
           "required": true,
-          "agenda": [
-            {
-              "title": "Extra Sample",
-              "difficulty": "beginner",
-              "type": "sample",
-              "required": true,
-              "agenda": []
-            },
-            {
-              "title": "extra info",
-              "difficulty": "beginner",
-              "type": "slides",
-              "required": false,
-              "agenda": []
-            }
-          ]
+          "agenda": []
+        },
+        {
+          "title": "graphql",
+          "difficulty": "beginner",
+          "type": "step",
+          "required": true,
+          "agenda": []
+        }
+      ]
+    },
+    {
+      "title": "Extra Section",
+      "difficulty": "intermediate",
+      "type": "section",
+      "required": true,
+      "agenda": [
+        {
+          "title": "Extra Sample",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "extra info",
+          "difficulty": "beginner",
+          "type": "slides",
+          "required": false,
+          "agenda": []
         }
       ]
     },
