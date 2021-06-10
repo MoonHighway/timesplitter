@@ -29,6 +29,13 @@ export const Warning = styled.div`
   color: white;
 `;
 
+//
+// TODO: Get Line Numbers Highlighting
+//
+//    [ ] Get any JSX tag to wrap a code block
+//    [ ] Figure out how to pass lines from highlight code to the code block
+//
+
 export const HighlightCode = ({ lines = [], children }) => (
   <CodeBlock selectLines={lines}>{children}</CodeBlock>
 );

@@ -13,6 +13,11 @@ export const BookStyles = styled.div`
     padding: 3px;
   }
 
+  pre {
+    border-radius: 25px;
+    font-size: 1.1em;
+  }
+
   h1 {
     font-family: ${fonts.title};
     font-size: 3.5em;
