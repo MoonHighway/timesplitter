@@ -1,1 +1,0 @@
-A whole extra slide show? Who has the time!?

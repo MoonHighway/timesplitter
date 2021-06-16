@@ -1,3 +1,0 @@
-## Now it's time for the students to try...
-
-We need to try this example out.
