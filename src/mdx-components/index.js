@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { fonts } from "./theme";
-import { CodeBlock } from "./ui";
+import { CodeBlock } from "../ui";
+
+export * from "./Warning";
 
 export const Row = styled.div`
   display: flex;
@@ -16,17 +17,6 @@ export const BlueBox = styled.div`
   background-color: blue;
   color: white;
   padding: 2em;
-`;
-
-export const Warning = styled.div`
-  font-family: ${fonts.text};
-  h1 {
-    font-family: ${fonts.title};
-  }
-  padding: 1em;
-  border: solid 1px black;
-  background-color: red;
-  color: white;
 `;
 
 //
