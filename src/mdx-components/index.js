@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { CodeBlock } from "../ui";
 
 export * from "./Warning";
+export * from "./Error";
 
 export const Row = styled.div`
   display: flex;
