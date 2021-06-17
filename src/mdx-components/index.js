@@ -5,6 +5,7 @@ export * from "./Warning";
 export * from "./Error";
 export * from "./Info";
 export * from "./Success";
+export * from "./Homework";
 
 export const Row = styled.div`
   display: flex;
