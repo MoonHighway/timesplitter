@@ -4,6 +4,7 @@ import { CodeBlock } from "../ui";
 export * from "./Warning";
 export * from "./Error";
 export * from "./Info";
+export * from "./Success";
 
 export const Row = styled.div`
   display: flex;
