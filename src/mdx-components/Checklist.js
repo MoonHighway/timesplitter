@@ -4,39 +4,6 @@ import styled from "styled-components";
 import { Error } from "./Error";
 import { fonts } from "../theme";
 
-//
-// TODO: Add titles and text
-//
-//   [ ] Checklist component title
-//   [ ] Checklist component text
-//   [ ] Finalize Checklist Markdown
-//
-//   [ ] Error title
-//   [ ] Warning title
-//   [ ] Success title
-//   [ ] Homework title
-//   [ ] Info title
-//
-
-//
-//  TODO: Complete Question component
-//
-//  [ ] Setup Markdown
-//  [ ] Question Color
-//  [ ] Question Icon
-//  [ ] Q&A Solution
-//
-
-//
-//  TODO: Publish
-//
-//  [ ] Research Line Number Data to Code Block problem
-//  [ ] Is there a Fix
-//  [ ] Is there a workaround
-//  [ ] Test All
-//  [ ] Publish New Timesplitter
-//
-
 export const CheckBox = ({
   checked = false,
   children,
@@ -75,6 +42,7 @@ const getKey = (title) =>
 
 export const Checklist = ({ title = "untitled list", children }) => {
   const [listItems, setListItems] = useState(initList(children));
+  const extraElements = children.filter((c) => !c.props.mdxType.match(/ul|ol/));
 
   useEffect(() => {
     if (!children) return null;
@@ -108,6 +76,8 @@ export const Checklist = ({ title = "untitled list", children }) => {
 
   return (
     <Container>
+      <h2>{title}</h2>
+      {extraElements}
       {listItems.map(({ text, checked }, i) => (
         <CheckBox key={i} checked={checked} onChange={itemChecked}>
           {text}
@@ -158,5 +128,15 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+  }
+  h2 {
+    margin: 0;
+    margin-bottom: 0 !important;
+    font-size: 2em;
+    font-family: ${fonts.text};
+  }
+  p {
+    margin: 0;
+    margin-bottom: 1em;
   }
 `;
