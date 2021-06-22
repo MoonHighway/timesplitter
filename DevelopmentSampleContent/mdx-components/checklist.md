@@ -2,7 +2,7 @@
 
 Checklist components are used to add a list of items that an instructor must accomplish. They are indicators and reminders that are baked into courses. For example, there is typically a classroom setup checklist that the instructor must complete upon arrival. Additionally they can be used anywhere to verify or keep track of things.
 
-<Checklist>
+<Checklist title="AVY list">
 
 - Get the Gear
 - Get the Training

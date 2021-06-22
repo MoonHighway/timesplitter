@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
+import { urlFriendly } from "../lib";
 import styled from "styled-components";
 import { Error } from "./Error";
 import { fonts } from "../theme";
 
 //
-//  TODO: Complete Checkbox Component
+// TODO: Add titles and text
 //
-//  [x] split * or - lists
-//  [x] test with space around markdown
-//  [x] List Checkboxes
-//  [x] (Find,Create) Checkbox component
-//      [x] Checklist Background and Icon
-//      [x] Larger Checklist Text
-//      [x] Grey out and strike-through completed items
-//      [x] Use Cool check icon fo checkbox
-//  [ ] Save Data
-//      [x] Saved Checked items to session
-//      [ ] Make sure checkboxes are reset after session
+//   [ ] Checklist component title
+//   [ ] Checklist component text
+//   [ ] Finalize Checklist Markdown
+//
+//   [ ] Error title
+//   [ ] Warning title
+//   [ ] Success title
+//   [ ] Homework title
+//   [ ] Info title
 //
 
 //
@@ -33,6 +32,7 @@ import { fonts } from "../theme";
 //
 //  [ ] Research Line Number Data to Code Block problem
 //  [ ] Is there a Fix
+//  [ ] Is there a workaround
 //  [ ] Test All
 //  [ ] Publish New Timesplitter
 //
@@ -60,14 +60,20 @@ function initList(children) {
   try {
     return children.props.children.map((c) => ({
       text: c.props.children,
-      checked: true,
+      checked: false,
     }));
   } catch (error) {
     return null;
   }
 }
 
-export const Checklist = ({ children }) => {
+const getKey = (title) =>
+  window.location.href.replace(
+    `${window.location.protocol}//${window.location.host}/`,
+    ""
+  ) + `/${urlFriendly(title)}`;
+
+export const Checklist = ({ title = "untitled list", children }) => {
   const [listItems, setListItems] = useState(initList(children));
 
   useEffect(() => {
@@ -75,16 +81,22 @@ export const Checklist = ({ children }) => {
     setListItems(initList(children));
   }, [children]);
 
-  const itemChecked = (text, checked) => {
-    setListItems(
-      listItems.map((item) => {
-        if (item.text === text) return { ...item, checked };
-        return item;
-      })
-    );
-  };
+  useEffect(() => {
+    if (sessionStorage[getKey(title)]) {
+      console.log("loading list from sessionStorage");
+      const list = JSON.parse(sessionStorage[getKey(title)]);
+      setListItems(list);
+    }
+  }, []);
 
-  console.log(listItems);
+  const itemChecked = (text, checked) => {
+    const newList = listItems.map((item) => {
+      if (item.text === text) return { ...item, checked };
+      return item;
+    });
+    sessionStorage.setItem(getKey(title), JSON.stringify(newList));
+    setListItems(newList);
+  };
 
   if (!listItems)
     return (
