@@ -9,13 +9,13 @@ import { fonts } from "../theme";
 //  [x] split * or - lists
 //  [x] test with space around markdown
 //  [x] List Checkboxes
-//  [ ] (Find,Create) Checkbox component
-//      [ ] Checklist Background and Icon
-//      [ ] Larger Checklist Text
-//      [ ] Grey out and strike-through completed items
-//      [ ] Use Cool check icon fo checkbox
+//  [x] (Find,Create) Checkbox component
+//      [x] Checklist Background and Icon
+//      [x] Larger Checklist Text
+//      [x] Grey out and strike-through completed items
+//      [x] Use Cool check icon fo checkbox
 //  [ ] Save Data
-//      [ ] Saved Checked items to session
+//      [x] Saved Checked items to session
 //      [ ] Make sure checkboxes are reset after session
 //
 
@@ -37,47 +37,85 @@ import { fonts } from "../theme";
 //  [ ] Publish New Timesplitter
 //
 
-export const CheckBox = ({ checked = false, children }) => {
-  const [isChecked, setChecked] = useState(checked);
-
-  useEffect(() => {
-    if (isChecked !== checked) setChecked(checked);
-  }, [checked]);
-
+export const CheckBox = ({
+  checked = false,
+  children,
+  onChange = (f) => f,
+  ...props
+}) => {
   return (
     <CheckRow>
-      <input
+      <Check
         type="checkbox"
-        value={isChecked}
-        onChange={(e) => setChecked(e.target.checked)}
+        checked={checked}
+        onChange={(e) => onChange(children, e.target.checked)}
+        {...props}
       />
-      <span>{children}</span>
+      <Text checked={checked}>{children}</Text>
     </CheckRow>
   );
 };
 
-export const Checklist = ({ children }) => {
-  let listItems;
-
+function initList(children) {
   try {
-    listItems = children.props.children.map((c) => c.props.children);
+    return children.props.children.map((c) => ({
+      text: c.props.children,
+      checked: true,
+    }));
   } catch (error) {
+    return null;
+  }
+}
+
+export const Checklist = ({ children }) => {
+  const [listItems, setListItems] = useState(initList(children));
+
+  useEffect(() => {
+    if (!children) return null;
+    setListItems(initList(children));
+  }, [children]);
+
+  const itemChecked = (text, checked) => {
+    setListItems(
+      listItems.map((item) => {
+        if (item.text === text) return { ...item, checked };
+        return item;
+      })
+    );
+  };
+
+  console.log(listItems);
+
+  if (!listItems)
     return (
       <Error>
         Checklist Error, something is wrong with the markdown content for this
         Checklist.
       </Error>
     );
-  }
 
   return (
     <Container>
-      {listItems.map((item, i) => (
-        <CheckBox key={i}>{item}</CheckBox>
+      {listItems.map(({ text, checked }, i) => (
+        <CheckBox key={i} checked={checked} onChange={itemChecked}>
+          {text}
+        </CheckBox>
       ))}
     </Container>
   );
 };
+
+const Text = styled.span`
+  font-size: 1.5em;
+
+  color: ${(props) => (props.checked ? "grey" : "inherit")};
+  text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
+`;
+
+const Check = styled.input`
+  width: 35px;
+  height: 35px;
+`;
 
 const CheckRow = styled.div`
   display: flex;
@@ -94,10 +132,10 @@ const Container = styled.div`
   width: 500px;
   min-width: 500px;
   padding: 1em;
-  background-color: #00800017;
-  color: green;
-  border: solid 1px green;
-  border-left: solid 5px green;
+  background-color: #00809b14;
+  color: #00809b;
+  border: solid 1px #00809b;
+  border-left: solid 5px #00809b;
   margin: 1em;
 
   svg {
