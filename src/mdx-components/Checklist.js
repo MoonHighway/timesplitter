@@ -24,8 +24,9 @@ export const CheckBox = ({
 };
 
 function initList(children) {
+  const [list] = children.filter((c) => c.props.mdxType.match(/ul|ol/));
   try {
-    return children.props.children.map((c) => ({
+    return list.props.children.map((c) => ({
       text: c.props.children,
       checked: false,
     }));
@@ -51,7 +52,6 @@ export const Checklist = ({ title = "untitled list", children }) => {
 
   useEffect(() => {
     if (sessionStorage[getKey(title)]) {
-      console.log("loading list from sessionStorage");
       const list = JSON.parse(sessionStorage[getKey(title)]);
       setListItems(list);
     }
