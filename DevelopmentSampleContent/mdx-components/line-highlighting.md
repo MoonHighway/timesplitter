@@ -1,11 +1,31 @@
-## TODO: Problem Line Highlights
+## Highlighting Lines in a Code Block
 
-Problem: in order to highlight code, we need to send the selectLines to the CodeBlock component. The following code would highlight lines number `3`,`10`, and `14`.
+You can highlight lines in a code block simply by adding a select property to the code block's string properties. `jsx select=3,10,14`.
 
-```jsx
-<CodeBlock selectLines={[3, 10, 14]}>{children}</CodeBlock>
+```jsx select=3,10,14
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
 ```
-
-<Warning>
-How to we work the ability to select line numbers into the mdx itself?
-</Warning>

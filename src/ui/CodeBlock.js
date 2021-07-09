@@ -29,14 +29,10 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-export function CodeBlock({
-  selectLines = [],
-  className = "",
-  live,
-  render,
-  children,
-}) {
+export function CodeBlock({ select, className = "", live, render, children }) {
   const language = className.replace(/language-/, "");
+  const selectLines = select ? select.split(",").map((l) => parseInt(l)) : [];
+
   return (
     <Highlight
       {...defaultProps}
