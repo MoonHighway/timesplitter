@@ -1,1 +1,0 @@
-Close out the course

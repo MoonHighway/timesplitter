@@ -2,125 +2,178 @@
   "title": "Timesplitter Development Mode",
   "agenda": [
     {
-      "title": "Chapter One",
-      "type": "section",
+      "title": "Timesplitter Topics",
       "difficulty": "beginner",
-      "required": true,
-      "agenda": [
-        {
-          "title": "Overview Slides",
-          "length": 5,
-          "type": "slides",
-          "required": true,
-          "difficulty": "beginner"
-        },
-        {
-          "title": "Main Example",
-          "type": "exercise",
-          "difficulty": "intermediate",
-          "required": true,
-          "agenda": [
-            {
-              "title": "list pets",
-              "length": 2,
-              "difficulty": "beginner",
-              "type": "step",
-              "required": true,
-              "agenda": []
-            },
-            {
-              "title": "Markup pets",
-              "difficulty": "intermediate",
-              "type": "step",
-              "required": true,
-              "length": 1,
-              "agenda": []
-            },
-            {
-              "title": "add indicators",
-              "difficulty": "advanced",
-              "type": "step",
-              "required": true,
-              "length": 2,
-              "agenda": []
-            }
-          ]
-        },
-        {
-          "title": "Try it out",
-          "difficulty": "advanced",
-          "type": "lab",
-          "required": true,
-          "length": 5,
-          "agenda": [
-            {
-              "title": "create content",
-              "difficulty": "beginner",
-              "type": "step",
-              "required": true,
-              "agenda": []
-            },
-            {
-              "title": "covert to html",
-              "difficulty": "intermediate",
-              "type": "step",
-              "required": true,
-              "agenda": []
-            },
-            {
-              "title": "add loading",
-              "difficulty": "advanced",
-              "type": "step",
-              "required": false,
-              "agenda": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Chapter Two",
       "type": "section",
-      "difficulty": "advanced",
       "required": true,
-      "length": 10,
       "agenda": [
         {
-          "title": "sample one",
-          "difficulty": "intermediate",
-          "length": 10,
-          "required": true
-        },
-        {
-          "title": "sample two",
-          "difficulty": "advanced",
-          "length": 10,
-          "required": false
-        },
-        {
-          "title": "sample three",
-          "difficulty": "expert",
-          "length": 10,
-          "required": false
-        },
-        {
-          "title": "Extra Section",
-          "difficulty": "intermediate",
-          "type": "section",
+          "title": "Topic Types",
+          "difficulty": "beginner",
+          "type": "sample",
           "required": true,
           "agenda": [
             {
-              "title": "Extra Sample",
+              "title": "slide topics",
+              "difficulty": "beginner",
+              "type": "slides",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "sample topic",
               "difficulty": "beginner",
               "type": "sample",
               "required": true,
               "agenda": []
             },
             {
-              "title": "extra info",
+              "title": "topic sections",
               "difficulty": "beginner",
-              "type": "slides",
-              "required": false,
+              "type": "section",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "meta topic",
+              "difficulty": "beginner",
+              "type": "meta",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "exercise",
+              "difficulty": "beginner",
+              "type": "exercise",
+              "required": true,
+              "agenda": [
+                {
+                  "title": "exercise required step",
+                  "difficulty": "beginner",
+                  "type": "step",
+                  "required": true,
+                  "agenda": []
+                },
+                {
+                  "title": "exercise bonus step",
+                  "difficulty": "beginner",
+                  "type": "step",
+                  "required": false,
+                  "agenda": []
+                }
+              ]
+            },
+            {
+              "title": "lab",
+              "difficulty": "beginner",
+              "type": "lab",
+              "required": true,
+              "agenda": [
+                {
+                  "title": "lab required step",
+                  "difficulty": "beginner",
+                  "type": "step",
+                  "required": true,
+                  "agenda": []
+                },
+                {
+                  "title": "lab bonus step",
+                  "difficulty": "beginner",
+                  "type": "step",
+                  "required": false,
+                  "agenda": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Topic Difficulty",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Topic Times",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Required Topics",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        }
+      ]
+    },
+    {
+      "title": "Markdown",
+      "type": "section",
+      "difficulty": "beginner",
+      "required": true,
+      "agenda": [
+        {
+          "title": "headings and text",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "tables",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "images",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Code Blocks",
+          "type": "section",
+          "difficulty": "advanced",
+          "required": true,
+          "length": 10,
+          "agenda": [
+            {
+              "title": "react",
+              "difficulty": "intermediate",
+              "length": 10,
+              "required": true
+            },
+            {
+              "title": "command line",
+              "difficulty": "advanced",
+              "length": 10,
+              "required": true
+            },
+            {
+              "title": "css",
+              "difficulty": "expert",
+              "length": 10,
+              "required": true
+            },
+            {
+              "title": "javascript",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "graphql",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
               "agenda": []
             }
           ]
@@ -128,11 +181,68 @@
       ]
     },
     {
-      "title": "Closing slides",
-      "difficulty": "advanced",
-      "type": "slides",
+      "title": "MDX Components",
+      "difficulty": "intermediate",
+      "type": "section",
       "required": true,
-      "agenda": []
+      "agenda": [
+        {
+          "title": "Warning",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Error",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Info",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Success",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Homework",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Checklist",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "Question",
+          "difficulty": "beginner",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        },
+        {
+          "title": "line highlighting",
+          "difficulty": "advanced",
+          "type": "sample",
+          "required": true,
+          "agenda": []
+        }
+      ]
     }
   ]
 }

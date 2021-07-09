@@ -21,11 +21,6 @@ export default function Agenda() {
       prevTopic,
       nextTopic,
     } = presenter;
-
-    console.log(prevTopic);
-    console.log(title);
-    console.log(nextTopic);
-
     return (
       <Container>
         <TopicTime title={title} {...time} />
