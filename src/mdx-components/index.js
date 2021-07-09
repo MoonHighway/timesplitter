@@ -7,6 +7,7 @@ export * from "./Info";
 export * from "./Success";
 export * from "./Homework";
 export * from "./Checklist";
+export * from "./Question";
 
 export const Row = styled.div`
   display: flex;
