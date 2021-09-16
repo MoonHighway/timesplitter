@@ -8,105 +8,101 @@
       "required": true,
       "agenda": [
         {
-          "title": "Topic Types",
+          "title": "Slides",
+          "difficulty": "beginner",
+          "type": "slides",
+          "required": true,
+          "length": 5,
+          "agenda": []
+        },
+        {
+          "title": "Sample",
           "difficulty": "beginner",
           "type": "sample",
           "required": true,
+          "length": 15,
           "agenda": [
             {
-              "title": "slide topics",
+              "title": "sample step I",
               "difficulty": "beginner",
-              "type": "slides",
+              "type": "step",
               "required": true,
               "agenda": []
             },
             {
-              "title": "sample topic",
+              "title": "sample step II",
               "difficulty": "beginner",
-              "type": "sample",
+              "type": "step",
               "required": true,
               "agenda": []
             },
             {
-              "title": "topic sections",
-              "difficulty": "beginner",
-              "type": "section",
-              "required": true,
+              "title": "sample step III",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
               "agenda": []
             },
             {
-              "title": "meta topic",
-              "difficulty": "beginner",
-              "type": "meta",
-              "required": true,
+              "title": "sample step IV",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
               "agenda": []
-            },
-            {
-              "title": "exercise",
-              "difficulty": "beginner",
-              "type": "exercise",
-              "required": true,
-              "agenda": [
-                {
-                  "title": "exercise required step",
-                  "difficulty": "beginner",
-                  "type": "step",
-                  "required": true,
-                  "agenda": []
-                },
-                {
-                  "title": "exercise bonus step",
-                  "difficulty": "beginner",
-                  "type": "step",
-                  "required": false,
-                  "agenda": []
-                }
-              ]
-            },
-            {
-              "title": "lab",
-              "difficulty": "beginner",
-              "type": "lab",
-              "required": true,
-              "agenda": [
-                {
-                  "title": "lab required step",
-                  "difficulty": "beginner",
-                  "type": "step",
-                  "required": true,
-                  "agenda": []
-                },
-                {
-                  "title": "lab bonus step",
-                  "difficulty": "beginner",
-                  "type": "step",
-                  "required": false,
-                  "agenda": []
-                }
-              ]
             }
           ]
         },
         {
-          "title": "Topic Difficulty",
+          "title": "exercise",
           "difficulty": "beginner",
-          "type": "sample",
+          "type": "exercise",
           "required": true,
-          "agenda": []
+          "length": 15,
+          "agenda": [
+            {
+              "title": "exercise step I",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "exercise step II",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "exercise step III",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         },
         {
-          "title": "Topic Times",
+          "title": "lab",
           "difficulty": "beginner",
-          "type": "sample",
+          "type": "lab",
           "required": true,
-          "agenda": []
-        },
-        {
-          "title": "Required Topics",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
+          "agenda": [
+            {
+              "title": "lab required step",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "lab bonus step",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         }
       ]
     },
