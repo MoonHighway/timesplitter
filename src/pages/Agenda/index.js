@@ -2,6 +2,9 @@ import { useLocation } from "react-router-dom";
 import { NavigationBar, MDX } from "../../ui";
 import { BookStyles } from "../../book-ui";
 import { usePresenter } from "../../hooks";
+import Section from "./Section";
+import Exercise from "./Exercise";
+import Lab from "./Lab";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
 import TopicTitle from "./TopicTitle";
@@ -21,6 +24,42 @@ export default function Agenda() {
       prevTopic,
       nextTopic,
     } = presenter;
+
+    const nav = <NavigationBar
+    onNext={next}
+    onPrev={prev}
+    next={{
+      to: !nextTopic && "/end",
+      text: nextTopic ? nextTopic.title : "End Course",
+    }}
+    prev={{
+      to: !prevTopic && "/overview",
+      text: prevTopic ? prevTopic.title : "Course Overview",
+    }}
+  />
+
+
+    if (type === "section") {
+      return <>
+        <Section title={title} time={time} />
+        {nav}
+        </>
+    }
+
+    if (type === "exercise") {
+      return <>
+        <Exercise title={title} time={time} />
+        {nav}
+        </>
+    }
+
+    if (type === "lab") {
+      return <>
+      <Lab title={title} time={time} />
+      {nav}
+      </>
+    }
+
     return (
       <Container>
         <TopicTime title={title} {...time} />
@@ -35,18 +74,7 @@ export default function Agenda() {
           <CourseProgressBar />
           <BookStyles>
             <MDX>{md}</MDX>
-            <NavigationBar
-              onNext={next}
-              onPrev={prev}
-              next={{
-                to: !nextTopic && "/end",
-                text: nextTopic ? nextTopic.title : "End Course",
-              }}
-              prev={{
-                to: !prevTopic && "/overview",
-                text: prevTopic ? prevTopic.title : "Course Overview",
-              }}
-            />
+            {nav}
           </BookStyles>
         </Contents>
       </Container>
