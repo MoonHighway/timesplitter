@@ -1,12 +1,10 @@
+import { fonts, colors } from "../../theme";
 import { Link } from "react-router-dom";
-import { CourseLab, Timer, TopicIcon } from "../ui";
-import { totalTime, urlFriendly } from "../lib";
-import { useContent } from "../hooks";
-import { fonts, colors } from "../theme";
+import { CourseLab, Timer, TopicIcon } from "../../ui";
+import { totalTime, urlFriendly } from "../../lib";
 import styled from "styled-components";
-import { GrOverview } from "react-icons/gr";
-import { GiTeacher } from "react-icons/gi";
-import { IoIosArrowBack } from "react-icons/io";
+import CourseTitle from "./CourseTitle";
+import { useTimesplitter } from "../../useTimesplitter";
 
 const TopicList = ({ section, agenda = [] }) => (
   <List>
@@ -53,84 +51,18 @@ function Block({ id, section }) {
 }
 
 export default function TOC() {
-  const content = useContent();
-
-  if (content) {
-    return (
-      <Layout>
-        <Title>{content.title}</Title>
-        <Menu>
-          <Link to="/overview">
-            <GrOverview size={25} color="black" />
-            Course Overview
-          </Link>
-          <Link to="/how-to-use">
-            <GiTeacher size={25} color="black" />
-            How to Use this Guide
-          </Link>
-          <Link to="/">
-            <IoIosArrowBack size={25} color="black" />
-            Back to Cover
-          </Link>
-        </Menu>
-        {content.agenda.map((section, i) => (
-          <Block
-            key={urlFriendly(section.title)}
-            id={i + 1}
-            section={section}
-          />
-        ))}
-      </Layout>
-    );
-  }
-
-  return null;
+  const { agenda } = useTimesplitter();
+  return (
+    <Container>
+      <CourseTitle />
+      {agenda.map((section, i) => (
+        <Block key={urlFriendly(section.title)} id={i + 1} section={section} />
+      ))}
+    </Container>
+  );
 }
 
-const Layout = styled.section`
-  width: calc(100% - 50px);
-  @media (orientation: portrait) {
-    width: calc(100% - 25px);
-  }
-  height: calc(100% - 50px);
-  display: grid;
-  @media screen and (max-width: 800px) {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-
-    > div {
-      margin: 1em 0.2em;
-    }
-  }
-
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(11, 1fr);
-
-  @media (orientation: portrait) {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-  }
-
-  grid-column-gap: 25px;
-  grid-row-gap: 25px;
-  margin: 25px 25px 25px 25px;
-  @media (orientation: portrait) {
-    margin: 25px 0 25px 25px;
-  }
-`;
-
-const Title = styled.h1`
-  grid-area: 1 / 1 / 2 / 6;
-  font-family: ${fonts.title};
-  color: ${colors.primary};
-  font-size: 3em;
-  text-align: center;
-  min-width: 355px;
-`;
+const Container = styled.section``;
 
 const Menu = styled.div`
   grid-area: 12 / 1 / 2 / 1;
