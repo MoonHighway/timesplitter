@@ -11,6 +11,7 @@
     "url": "git+https://github.com/MoonHighway/timesplitter.git"
   },
   "dependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
     "express": "^4.17.1",
     "react-select": "^4.3.1"
   },

@@ -11,6 +11,6 @@ describe("useTimesplitter - title state", () => {
       </TimesplitterProvider>
     );
     const { result } = renderHook(() => useTimesplitter(), { wrapper });
-    expect(result.title).toEqual("Small Sample Course");
+    expect(result.current.title).toEqual("Test Course");
   });
 });
