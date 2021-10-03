@@ -19,20 +19,27 @@ export function TimesplitterProvider({
 }) {
   // Hooks
   const [content, setContent] = useState(defaultContent);
+  const [loading, setLoading] = useState(false);
 
   // Functions
-  const refresh = () => refreshContent(contentUrl).then(setContent);
+  const refresh = () => {
+    setLoading(true);
+    refreshContent(contentUrl).then((data) => {
+      setLoading(false);
+      setContent(data);
+    });
+  };
 
   let value = !content
     ? {
-        loading: true,
         title: "",
         agenda: [],
+        loading,
         refresh,
       }
     : {
-        loading: false,
         ...content,
+        loading,
         refresh,
       };
 

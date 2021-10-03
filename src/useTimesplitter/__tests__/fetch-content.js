@@ -1,41 +1,39 @@
-describe("Fuck", () => it("YOU", () => {}));
-// import { screen, fireEvent } from "@testing-library/react";
-// import { useTimesplitter } from "..";
-// import { renderTimesplitter } from "../test-helpers";
+import { renderHook, act } from "@testing-library/react-hooks";
+import "@testing-library/jest-dom";
+import { useTimesplitter, TimesplitterProvider } from "..";
 
-// //
-// // [ ] Click the button
-// // [ ] Test for "loading" flicker
-// // [ ] Test change /content retrieved from fetchMock
-// // [ ] Test for initial "loading" flicker
-// // [ ] Test for "loaded" after flicker
-// //
+const _fetch = global.fetch;
+const fetchMock = (url) =>
+  Promise.resolve({
+    json: () => Promise.resolve({ title: "loading test sample" }),
+  });
 
-// function LoadingConsumer() {
-//   const { title, loading, refresh } = useTimesplitter();
-//   if (loading) return <p>loading</p>;
-//   return (
-//     <>
-//       <p>{title}</p>
-//       <button onClick={refresh} data-testid="refresh">
-//         refresh course
-//       </button>
-//     </>
-//   );
-// }
+describe("useTimesplitter - loading and refresh", () => {
+  beforeAll(() => {
+    global.fetch = fetchMock;
+  });
+  afterAll(() => {
+    global.fetch = _fetch;
+  });
+  it("Learning ASYNC test", async () => {
+    const testContent = { title: "Test Course", agenda: [] };
+    const wrapper = ({ children }) => (
+      <TimesplitterProvider defaultContent={testContent}>
+        {children}
+      </TimesplitterProvider>
+    );
+    const { result, waitForNextUpdate } = renderHook(() => useTimesplitter(), {
+      wrapper,
+    });
 
-// const fetchMock = (url) =>
-//   Promise.resolve({
-//     json: () => Promise.resolve({ title: "loading test sample" }),
-//   });
-
-// describe("useTimesplitter", () => {
-//   it("correct title", async () => {
-//     global.fetch = fetchMock;
-//     renderTimesplitter(<LoadingConsumer />);
-//     expect(screen.queryByText("Small Sample Course")).toBeInTheDocument();
-//     const button = screen.getByRole("button", { name: "refresh course" });
-//     fireEvent.click(button);
-//     await screen.findByText("loading test sample");
-//   });
-// });
+    expect(result.current.loading).toEqual(false);
+    expect(result.current.title).toEqual("Test Course");
+    act(() => {
+      result.current.refresh();
+    });
+    expect(result.current.loading).toEqual(true);
+    await waitForNextUpdate();
+    expect(result.current.loading).toEqual(false);
+    expect(result.current.title).toEqual("loading test sample");
+  });
+});
