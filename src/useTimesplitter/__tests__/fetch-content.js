@@ -8,32 +8,48 @@ const fetchMock = (url) =>
     json: () => Promise.resolve({ title: "loading test sample" }),
   });
 
-describe("useTimesplitter - loading and refresh", () => {
-  beforeAll(() => {
-    global.fetch = fetchMock;
-  });
-  afterAll(() => {
-    global.fetch = _fetch;
-  });
-  it("Learning ASYNC test", async () => {
-    const testContent = { title: "Test Course", agenda: [] };
-    const wrapper = ({ children }) => (
-      <TimesplitterProvider defaultContent={testContent}>
-        {children}
-      </TimesplitterProvider>
-    );
-    const { result, waitForNextUpdate } = renderHook(() => useTimesplitter(), {
-      wrapper,
-    });
+const testContent = { title: "Test Course", agenda: [] };
+const wrapper = ({ children }) => (
+  <TimesplitterProvider defaultContent={testContent}>
+    {children}
+  </TimesplitterProvider>
+);
 
-    expect(result.current.loading).toEqual(false);
-    expect(result.current.title).toEqual("Test Course");
-    act(() => {
-      result.current.refresh();
-    });
-    expect(result.current.loading).toEqual(true);
-    await waitForNextUpdate();
-    expect(result.current.loading).toEqual(false);
-    expect(result.current.title).toEqual("loading test sample");
+beforeAll(() => {
+  global.fetch = fetchMock;
+});
+afterAll(() => {
+  global.fetch = _fetch;
+});
+
+it("correct initial setup", () => {
+  const { result } = renderHook(() => useTimesplitter(), {
+    wrapper,
   });
+  expect(result.current.loading).toEqual(false);
+  expect(result.current.title).toEqual("Test Course");
+});
+
+it("refresh triggers loading", async () => {
+  const { result, waitForNextUpdate } = renderHook(() => useTimesplitter(), {
+    wrapper,
+  });
+
+  act(() => {
+    result.current.refresh();
+  });
+  expect(result.current.loading).toEqual(true);
+  await waitForNextUpdate();
+});
+
+it("fetches correct content", async () => {
+  const { result, waitForNextUpdate } = renderHook(() => useTimesplitter(), {
+    wrapper,
+  });
+  act(() => {
+    result.current.refresh();
+  });
+  await waitForNextUpdate();
+  expect(result.current.loading).toEqual(false);
+  expect(result.current.title).toEqual("loading test sample");
 });
