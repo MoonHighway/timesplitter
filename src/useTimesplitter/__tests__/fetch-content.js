@@ -36,7 +36,7 @@ it("refresh triggers loading", async () => {
   });
 
   act(() => {
-    result.current.refresh();
+    result.current.actions.refresh();
   });
   expect(result.current.loading).toEqual(true);
   await waitForNextUpdate();
@@ -47,7 +47,7 @@ it("fetches correct content", async () => {
     wrapper,
   });
   act(() => {
-    result.current.refresh();
+    result.current.actions.refresh();
   });
   await waitForNextUpdate();
   expect(result.current.loading).toEqual(false);

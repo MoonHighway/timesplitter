@@ -20,14 +20,23 @@ export function TimesplitterProvider({
   // Hooks
   const [content, setContent] = useState(defaultContent);
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(true);
 
   // Functions
-  const refresh = () => {
-    setLoading(true);
-    refreshContent(contentUrl).then((data) => {
-      setLoading(false);
-      setContent(data);
-    });
+  const actions = {
+    refresh() {
+      setLoading(true);
+      refreshContent(contentUrl).then((data) => {
+        setLoading(false);
+        setContent(data);
+      });
+    },
+    start() {
+      setPreview(false);
+    },
+    end() {
+      setPreview(true);
+    },
   };
 
   let value = !content
@@ -35,17 +44,19 @@ export function TimesplitterProvider({
         title: "",
         agenda: [],
         loading,
-        refresh,
+        preview,
+        actions,
       }
     : {
         ...content,
         loading,
-        refresh,
+        preview,
+        actions,
       };
 
   useEffect(() => {
     if (content) return;
-    refresh();
+    actions.refresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
