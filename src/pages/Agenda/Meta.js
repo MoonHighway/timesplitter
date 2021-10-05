@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { StartButton } from "../../ui";
 import { colors, fonts } from "../../theme";
 
-export default function Lab({ title }) {
+export default function Meta({ title }) {
   return (
     <Container>
       <StartButton />
@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.lab};
+  background-color: ${colors.meta};
 
   .btn-start {
     position: fixed;

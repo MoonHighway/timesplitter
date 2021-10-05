@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
-import { NavigationBar, MDX } from "../../ui";
+import { NavigationBar, MDX, StartButton } from "../../ui";
 import { BookStyles } from "../../book-ui";
 import { usePresenter } from "../../hooks";
 import Section from "./Section";
 import Exercise from "./Exercise";
 import Lab from "./Lab";
+import Meta from "./Meta";
+import Slides from "./Slides";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
 import TopicTitle from "./TopicTitle";
@@ -25,43 +27,69 @@ export default function Agenda() {
       nextTopic,
     } = presenter;
 
-    const nav = <NavigationBar
-    onNext={next}
-    onPrev={prev}
-    next={{
-      to: !nextTopic && "/end",
-      text: nextTopic ? nextTopic.title : "End Course",
-    }}
-    prev={{
-      to: !prevTopic && "/overview",
-      text: prevTopic ? prevTopic.title : "Course Overview",
-    }}
-  />
+    const nav = (
+      <NavigationBar
+        onNext={next}
+        onPrev={prev}
+        next={{
+          to: !nextTopic && "/end",
+          text: nextTopic ? nextTopic.title : "End Course",
+        }}
+        prev={{
+          to: !prevTopic && "/overview",
+          text: prevTopic ? prevTopic.title : "Course Overview",
+        }}
+      />
+    );
 
+    if (type === "slides") {
+      return (
+        <>
+          <Slides title={title} time={time} />
+          {nav}
+        </>
+      );
+    }
+
+    if (type === "meta") {
+      return (
+        <>
+          <Meta title={title} time={time} />
+          {nav}
+        </>
+      );
+    }
 
     if (type === "section") {
-      return <>
-        <Section title={title} time={time} />
-        {nav}
+      return (
+        <>
+          <Section title={title} time={time} />
+          {nav}
         </>
+      );
     }
 
     if (type === "exercise") {
-      return <>
-        <Exercise title={title} time={time} />
-        {nav}
+      return (
+        <>
+          <Exercise title={title} time={time} />
+          {nav}
         </>
+      );
     }
 
     if (type === "lab") {
-      return <>
-      <Lab title={title} time={time} />
-      {nav}
-      </>
+      return (
+        <>
+          <Lab title={title} time={time} />
+          {nav}
+        </>
+      );
     }
 
     return (
       <Container>
+        <StartButton />
         <TopicTime title={title} {...time} />
         <TopicIconInfo />
         <TopicTitle
@@ -92,6 +120,12 @@ const Container = styled.article`
   grid-template-rows: repeat(9, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+
+  .btn-start {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
 `;
 
 const Contents = styled.div`
