@@ -32,12 +32,12 @@ export default function Agenda() {
         onNext={next}
         onPrev={prev}
         next={{
-          to: !nextTopic && "/end",
-          text: nextTopic ? nextTopic.title : "End Course",
+          to: !nextTopic && "/",
+          text: nextTopic ? nextTopic.title : "Contents",
         }}
         prev={{
-          to: !prevTopic && "/overview",
-          text: prevTopic ? prevTopic.title : "Course Overview",
+          to: !prevTopic && "/",
+          text: prevTopic ? prevTopic.title : "Contents",
         }}
       />
     );
