@@ -107,35 +107,44 @@
       ]
     },
     {
-      "title": "Markdown",
+      "title": "Content Editing",
       "type": "section",
-      "difficulty": "beginner",
+      "difficulty": "intermediate",
       "required": true,
       "agenda": [
         {
-          "title": "headings and text",
+          "title": "Editing Text",
           "difficulty": "beginner",
           "type": "sample",
           "required": true,
-          "agenda": []
-        },
-        {
-          "title": "tables",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
-        },
-        {
-          "title": "images",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
+          "length": 5,
+          "agenda": [
+            {
+              "title": "headings and text",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "tables",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "images",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         },
         {
           "title": "Code Blocks",
-          "type": "section",
+          "type": "exercise",
           "difficulty": "advanced",
           "required": true,
           "length": 10,
@@ -143,19 +152,16 @@
             {
               "title": "react",
               "difficulty": "intermediate",
-              "length": 10,
-              "required": true
+              "required": false
             },
             {
               "title": "command line",
               "difficulty": "advanced",
-              "length": 10,
-              "required": true
+              "required": false
             },
             {
               "title": "css",
               "difficulty": "expert",
-              "length": 10,
               "required": true
             },
             {
@@ -173,70 +179,274 @@
               "agenda": []
             }
           ]
+        },
+        {
+          "title": "MDX Components",
+          "difficulty": "intermediate",
+          "type": "sample",
+          "required": true,
+          "length": 10,
+          "agenda": [
+            {
+              "title": "Warning",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Error",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Info",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Success",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Homework",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "Checklist",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "Question",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "line highlighting",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         }
       ]
     },
     {
-      "title": "MDX Components",
-      "difficulty": "intermediate",
+      "title": "Example Section",
+      "difficulty": "advanced",
       "type": "section",
       "required": true,
       "agenda": [
         {
-          "title": "Warning",
-          "difficulty": "beginner",
-          "type": "sample",
+          "title": "Maybe Slides",
+          "difficulty": "expert",
+          "type": "slides",
           "required": true,
+          "length": 10,
           "agenda": []
         },
         {
-          "title": "Error",
+          "title": "Maybe a Sample",
           "difficulty": "beginner",
           "type": "sample",
           "required": true,
-          "agenda": []
+          "length": 10,
+          "agenda": [
+            {
+              "title": "Check this out",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Then This",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "Isn't this cool",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         },
         {
-          "title": "Info",
-          "difficulty": "beginner",
+          "title": "Maybe Another",
+          "difficulty": "intermediate",
           "type": "sample",
           "required": true,
-          "agenda": []
+          "length": 10,
+          "agenda": [
+            {
+              "title": "let me show you",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "something cool",
+              "difficulty": "expert",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "then something else",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "maybe this thing",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "finally this idea",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         },
         {
-          "title": "Success",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
-        },
-        {
-          "title": "Homework",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
-        },
-        {
-          "title": "Checklist",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
-        },
-        {
-          "title": "Question",
-          "difficulty": "beginner",
-          "type": "sample",
-          "required": true,
-          "agenda": []
-        },
-        {
-          "title": "line highlighting",
+          "title": "Maybe an Exercise",
           "difficulty": "advanced",
+          "type": "exercise",
+          "required": true,
+          "length": 10,
+          "agenda": [
+            {
+              "title": "try this step",
+              "difficulty": "expert",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "then this step",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "maybe we'll do this one",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
+        },
+        {
+          "title": "Sandwich Sample",
+          "difficulty": "expert",
           "type": "sample",
           "required": true,
-          "agenda": []
+          "length": 5,
+          "agenda": [
+            {
+              "title": "short step",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "edgecase",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
+        },
+        {
+          "title": "Follow up Exercise",
+          "difficulty": "beginner",
+          "type": "exercise",
+          "required": true,
+          "length": 5,
+          "agenda": [
+            {
+              "title": "last step for app",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "bonus step",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "bonus feature",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
+        },
+        {
+          "title": "Maybe a Lab",
+          "difficulty": "intermediate",
+          "type": "lab",
+          "required": true,
+          "length": 10,
+          "agenda": [
+            {
+              "title": "must complete",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "hope to complete",
+              "difficulty": "expert",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "maybe complete",
+              "difficulty": "beginner",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
         }
       ]
     }
