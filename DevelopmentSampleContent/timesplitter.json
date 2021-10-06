@@ -17,7 +17,7 @@
         },
         {
           "title": "Sample",
-          "difficulty": "beginner",
+          "difficulty": "intermediate",
           "type": "sample",
           "required": true,
           "length": 15,
@@ -54,7 +54,7 @@
         },
         {
           "title": "exercise",
-          "difficulty": "beginner",
+          "difficulty": "advanced",
           "type": "exercise",
           "required": true,
           "length": 15,
@@ -84,9 +84,10 @@
         },
         {
           "title": "lab",
-          "difficulty": "beginner",
+          "difficulty": "expert",
           "type": "lab",
           "required": true,
+          "length": 10,
           "agenda": [
             {
               "title": "lab required step",
@@ -296,7 +297,7 @@
           "difficulty": "intermediate",
           "type": "sample",
           "required": true,
-          "length": 10,
+          "length": 5,
           "agenda": [
             {
               "title": "let me show you",
@@ -423,7 +424,7 @@
           "difficulty": "intermediate",
           "type": "lab",
           "required": true,
-          "length": 10,
+          "length": 5,
           "agenda": [
             {
               "title": "must complete",

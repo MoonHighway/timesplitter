@@ -14,9 +14,9 @@ export const TopicIcon = ({ type, ...props }) =>
   ) : type === "course-lab" ? (
     <CourseLab {...props} />
   ) : type === "exercise" ? (
-    <Exercise />
+    <Exercise {...props} />
   ) : (
-    <Slides />
+    <Slides {...props} />
   );
 
 export const CircleLink = ({ Icon, children }) => (

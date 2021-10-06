@@ -95,7 +95,7 @@ const Double = styled.div`
   float: left;
   svg:last-of-type {
     position: relative;
-    left: -5px;
+    left: -${(props) => props.size * 1.7}px;
   }
 `;
 
@@ -112,7 +112,7 @@ export const BlackDiamond = ({ size = 25, ...props }) => (
 );
 
 export const DoubleDiamond = ({ size = 25, ...props }) => (
-  <Double {...props}>
+  <Double size={size} {...props}>
     <BsDiamondFill color="black" size={size} />
     <BsDiamondFill color="black" size={size} />
   </Double>
