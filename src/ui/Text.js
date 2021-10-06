@@ -21,3 +21,9 @@ export const SubTitle = styled.h2`
   font-family: ${fonts.subtitle};
   font-size: 1.5em;
 `;
+
+export const Text = styled.p`
+  padding: 0;
+  margin: 0;
+  font-family: ${fonts.text};
+`;

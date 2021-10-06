@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@testing-library/react-hooks": "^7.0.2",
+    "date-fns": "^2.25.0",
     "express": "^4.17.1",
     "react-select": "^4.3.1"
   },
