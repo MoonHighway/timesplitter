@@ -14,10 +14,10 @@ export function MDX({ children }) {
 
 export const Title = styled.h1`
   font-family: ${fonts.title};
-  font-size: 3.5em;
+  font-size: 3em;
 `;
 
 export const SubTitle = styled.h2`
   font-family: ${fonts.subtitle};
-  font-size: 2em;
+  font-size: 1.5em;
 `;

@@ -18,7 +18,7 @@ export default function CourseTitle() {
 
 const Layout = styled.header`
   display: flex;
-  padding: 0.5em;
+  padding: 1em;
 
   svg {
     margin-right: 1em;
