@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StartButton } from "../../ui";
-import { colors, fonts } from "../../theme";
+import { colors } from "../../theme";
 
 export default function Section({ title }) {
   return (

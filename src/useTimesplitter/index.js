@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { totalTime } from "../lib";
 
 async function refreshContent(url) {
   try {

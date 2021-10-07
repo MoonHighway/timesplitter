@@ -30,11 +30,6 @@ export const TopicIcon = ({ type, ...props }) =>
     <CodeBlocks {...props} />
   );
 
-const Code = styled.p`
-  font-family: "Raleway", sans-serif;
-  font-size: 1.2em;
-`;
-
 export const Info = ({ color = "#898989", size = 25, ...props }) => (
   <GoInfo size={size} color={color} {...props} />
 );

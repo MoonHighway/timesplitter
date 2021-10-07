@@ -23,7 +23,11 @@ function options(duration) {
 
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
-  const times = useMemo(() => options(courseLength), []);
+  const times = useMemo(
+    () => options(courseLength),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
   const [selectedTime, setSelectedTime] = useState(times[0]);
   const chooseTime = function ({ value, length }) {
     setSelectedTime(times.find((time) => time.value === value));

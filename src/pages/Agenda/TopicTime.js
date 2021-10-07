@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function round(value, precision) {
@@ -18,10 +18,13 @@ export default function TopicTime({ title, length, est }) {
   useEffect(() => {
     const to = setTimeout(() => setTime(time - 0.1), 6000);
     return () => clearTimeout(to);
-  });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTime(length || est);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
   if (length) {
