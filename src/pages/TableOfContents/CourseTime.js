@@ -1,28 +1,48 @@
-import { formatDuration, intervalToDuration } from "date-fns";
-import { StartButton, Text } from "../../ui";
+import { useState } from "react";
+import { format, formatDuration, intervalToDuration } from "date-fns";
+import { StartButton, SubTitle, Text } from "../../ui";
 import { useTimesplitter } from "../../useTimesplitter";
+import { fonts } from "../../theme";
 import styled from "styled-components";
+import Select from "react-select";
 
-const format = "h:mm a";
+function options(duration) {
+  const times = [];
+  for (let i = 0; i < 250; i++) {
+    let d = new Date();
+    d.setMinutes(d.getMinutes() + duration + i);
+    if (i === 0 || d.getMinutes() % 5 === 0)
+      times.push({
+        value: d,
+        label: format(d, "h:mm aaa"),
+      });
+  }
+  return times;
+}
 
 export default function CourseTime() {
-  const { courseLength = 90 } = useTimesplitter();
-
-  function onChange(...args) {
-    console.log("time change");
-  }
-
+  const { courseLength = 90, adjust = (f) => f } = useTimesplitter();
+  const times = options(courseLength);
+  const [selectedTime, setSelectedTime] = useState(times[0]);
+  const chooseTime = function ({ value }) {
+    setSelectedTime(times.find((time) => time.value === value));
+  };
   return (
     <Container>
-      <Text>
-        Course Length
-        <br />
+      <SubTitle>Course Length</SubTitle>
+      <Text className="course-length">
         {formatDuration(
           intervalToDuration({ start: 0, end: courseLength * 60 * 1000 })
         )}
       </Text>
       <hr />
-      <Text>End Time</Text>
+      <SubTitle>End Time</SubTitle>
+      <Select
+        className="time-select"
+        options={times}
+        value={selectedTime}
+        onChange={chooseTime}
+      />
       <StartButton />
     </Container>
   );
@@ -30,4 +50,11 @@ export default function CourseTime() {
 
 const Container = styled.div`
   padding: 1em;
+  .time-select,
+  .course-length {
+    width: 300px;
+    font-family: ${fonts.text};
+    font-weight: bold;
+    font-size: 1.4em;
+  }
 `;

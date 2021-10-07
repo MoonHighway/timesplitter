@@ -16,7 +16,7 @@ export default function CourseTitle() {
         <Title>{title}</Title>
       </Row>
       <Text className="date">
-        {format(new Date(), "eeee MMMM do yyyy - hh:mmaaa ")}
+        {format(new Date(), "eeee MMMM do yyyy - h:mmaaa ")}
       </Text>
     </Layout>
   );

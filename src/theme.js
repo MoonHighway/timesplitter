@@ -74,9 +74,8 @@ export const colors = {
   required: "#d25d5d",
 };
 
-export const getTypeColor = ({ type, required = false }) => {
-  console.log("called: ", type, !required);
-  return !required
+export const getTypeColor = ({ type, required = false }) =>
+  !required
     ? colors.notRequired
     : type === "section" || type === "meta"
     ? colors.meta
@@ -89,4 +88,3 @@ export const getTypeColor = ({ type, required = false }) => {
     : type === "sample"
     ? colors.sample
     : colors.noTopic;
-};
