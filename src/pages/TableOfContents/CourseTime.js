@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { format, formatDuration, intervalToDuration } from "date-fns";
 import { StartButton, SubTitle, Text } from "../../ui";
 import { useTimesplitter } from "../../useTimesplitter";
@@ -14,6 +14,7 @@ function options(duration) {
     if (i === 0 || d.getMinutes() % 5 === 0)
       times.push({
         value: d,
+        length: new Date(d - new Date()) / (60 * 1000),
         label: format(d, "h:mm aaa"),
       });
   }
@@ -21,11 +22,12 @@ function options(duration) {
 }
 
 export default function CourseTime() {
-  const { courseLength = 90, adjust = (f) => f } = useTimesplitter();
-  const times = options(courseLength);
+  const { courseLength, actions } = useTimesplitter();
+  const times = useMemo(() => options(courseLength), []);
   const [selectedTime, setSelectedTime] = useState(times[0]);
-  const chooseTime = function ({ value }) {
+  const chooseTime = function ({ value, length }) {
     setSelectedTime(times.find((time) => time.value === value));
+    actions.adjust(length);
   };
   return (
     <Container>

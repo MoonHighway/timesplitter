@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { totalTime } from "../lib";
 
-async function refreshContent(url, beforeRefresh, refreshComplete) {
+async function refreshContent(url) {
   try {
     return await fetch(url).then((res) => res.json());
   } catch (error) {
@@ -21,6 +22,7 @@ export function TimesplitterProvider({
   const [content, setContent] = useState(defaultContent);
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(true);
+  const [courseLength, setCourseLength] = useState(90);
 
   // Functions
   const actions = {
@@ -37,6 +39,9 @@ export function TimesplitterProvider({
     end() {
       setPreview(true);
     },
+    adjust(length) {
+      setCourseLength(length);
+    },
   };
 
   let value = !content
@@ -46,12 +51,14 @@ export function TimesplitterProvider({
         loading,
         preview,
         actions,
+        courseLength,
       }
     : {
         ...content,
         loading,
         preview,
         actions,
+        courseLength,
       };
 
   useEffect(() => {
