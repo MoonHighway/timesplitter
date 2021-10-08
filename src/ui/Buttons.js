@@ -1,5 +1,6 @@
 import { useTimesplitter } from "../useTimesplitter";
 import styled from "styled-components";
+import { Delete } from "./icons";
 
 export function StartButton({ disabled = false, ...props }) {
   const { preview } = useTimesplitter();
@@ -33,4 +34,35 @@ const Container = styled.div`
       background-color: yellow;
     }
   }
+`;
+
+export function RemoveButton({ disabled = false, ...props }) {
+  return (
+    <Remove {...props} className="btn-remove">
+      <Delete />
+    </Remove>
+  );
+}
+
+const Remove = styled.div`
+  cursor: pointer;
+  fill: #ffcccc;
+  svg:hover {
+    fill: red;
+  }
+`;
+
+export const AdjustButton = styled.button`
+cursor: pointer;
+font-size: 2em;
+padding: .5em;
+margin: .5em 0;
+min-width: 420px;
+className="topic"
+border: solid 3px red;
+border-radius: 20px;
+background-color: #ffcccc;
+color: red;
+&:hover {
+  background-color: yellow;
 `;

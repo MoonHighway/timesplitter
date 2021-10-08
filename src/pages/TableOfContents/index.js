@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import CourseTime from "./CourseTime";
+import ManualAdjust from "../ManualAdjust";
 
 import TOC from "./TOC";
 
 export default function TableOfContents() {
   return (
-    <Layout>
-      <CourseTime />
-      <TOC />
-    </Layout>
+    <>
+      <ManualAdjust />
+      <Layout>
+        <CourseTime />
+        <TOC />
+      </Layout>
+    </>
   );
 }
 
