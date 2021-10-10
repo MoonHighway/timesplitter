@@ -3,11 +3,7 @@ import CourseTime from "./CourseTime";
 import ManualAdjust from "../ManualAdjust";
 import TOC from "./TOC";
 
-import { useTimesplitter } from "../../useTimesplitter";
-
 export default function TableOfContents() {
-  const results = useTimesplitter();
-  console.log(results);
   return (
     <>
       <ManualAdjust />

@@ -3,36 +3,24 @@ import { format } from "date-fns";
 import { Title, Text, Row, RemoveButton, AdjustButton } from "../ui";
 import { useTimesplitter } from "../useTimesplitter";
 
-const samples = [
-  { title: "this topic", time: { est: 5 } },
-  { title: "that topic", time: { est: 2 } },
-  { title: "the other topic", time: { est: 12 } },
-  { title: "the main topic", time: { est: 3 } },
-];
-
 export default function ManualAdjust() {
-  const {
-    manualAdjustRequired = false,
-    minsOverTime = 10,
-    endTime = new Date(),
-    remainingTopics = samples,
-  } = useTimesplitter();
-
-  const suggestEndTime = new Date(endTime.getTime() + minsOverTime * 60 * 1000);
-
-  if (manualAdjustRequired)
+  const { adjust } = useTimesplitter();
+  if (adjust && adjust.manualAdjust) {
+    const suggestEndTime = new Date(
+      adjust.endTime.getTime() + adjust.minsOver * 60 * 1000
+    );
     return (
       <Container>
         <div>
           <Title>Adjustment Required</Title>
           <Text className="description">
             There is not enough time to get to everything and end by{" "}
-            <strong>{format(endTime, "h:mm aaa")}</strong>. We need to cut{" "}
-            <strong>{minsOverTime}</strong> minutes from this course.
+            <strong>{format(adjust.endTime, "h:mm aaa")}</strong>. We need to
+            cut <strong>{adjust.minsOver}</strong> minutes from this course.
           </Text>
           <br />
 
-          {remainingTopics.map((topic, i) => (
+          {adjust.remainingTopics.map((topic, i) => (
             <Row key={i} className="topic">
               <RemoveButton size={35} />
               <Text>
@@ -46,6 +34,7 @@ export default function ManualAdjust() {
         </div>
       </Container>
     );
+  }
 
   return null;
 }

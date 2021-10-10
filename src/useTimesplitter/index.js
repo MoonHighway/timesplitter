@@ -47,10 +47,33 @@ function preview(state = true, action = {}) {
   }
 }
 
+const samples = [
+  { title: "this topic", time: { est: 5 } },
+  { title: "that topic", time: { est: 2 } },
+  { title: "the other topic", time: { est: 12 } },
+  { title: "the main topic", time: { est: 3 } },
+];
+
+function adjust(
+  state = {
+    manualAdjust: false,
+    minsOver: 10,
+    endTime: new Date(),
+    remainingTopics: samples,
+  },
+  action = {}
+) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
 function reducer(state = null, action = {}) {
   return {
     loading: loading(state.loading, action),
     preview: preview(state.preview, action),
+    adjust: adjust(state.adjust, action),
     course: course(state.course, action),
   };
 }
@@ -83,14 +106,13 @@ export function TimesplitterProvider({
   contentUrl = "/content",
   children,
 }) {
-  const [{ loading, preview, course }, dispatch] = useReducer(reducer, {
+  const [{ loading, preview, adjust, course }, dispatch] = useReducer(reducer, {
     loading: true,
     preview: true,
     course: defaultContent,
   });
 
   const courseLength = useMemo(() => {
-    console.log(course);
     if (!course) return 0;
     return totalTime(course);
   }, [course]);
@@ -109,6 +131,7 @@ export function TimesplitterProvider({
         ...course,
         loading,
         preview,
+        adjust,
         courseLength,
         actions,
       }}
