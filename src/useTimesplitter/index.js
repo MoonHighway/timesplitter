@@ -18,7 +18,7 @@ export function TimesplitterProvider({
   children,
 }) {
   const [{ loading, preview, adjust, course }, dispatch] = useReducer(reducer, {
-    loading: true,
+    loading: false,
     preview: true,
     course: defaultContent,
   });
