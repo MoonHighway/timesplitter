@@ -21,11 +21,10 @@ it("correctly schedules an on time course", () => {
     </TimesplitterProvider>
   );
   const { result } = renderHook(() => useTimesplitter(), { wrapper });
-
   expect(result.current.agenda).toMatchSnapshot();
 
   act(() => {
-    result.current.actions.adjust(0);
+    result.current.actions.adjust(0, new Date("3/28/2021 12:00 PM").getTime());
   });
 
   expect(result.current.agenda).toMatchSnapshot();

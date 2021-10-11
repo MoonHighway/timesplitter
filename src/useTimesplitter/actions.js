@@ -21,8 +21,8 @@ export default function createActions(dispatch = (f) => f, contentUrl) {
     end() {
       dispatch({ type: "END" });
     },
-    adjust(length) {
-      dispatch({ type: "ADJUST", payload: { length } });
+    adjust(length, startTime) {
+      dispatch({ type: "ADJUST", payload: { length, startTime } });
     },
   };
 }

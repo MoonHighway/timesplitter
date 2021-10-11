@@ -466,6 +466,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
+          "startsAt": "12:00 PM",
         },
         "title": "Slides",
         "type": "slides",
@@ -506,6 +507,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 15,
+          "startsAt": "12:05 PM",
         },
         "title": "Sample",
         "type": "sample",
@@ -539,6 +541,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 15,
+          "startsAt": "12:20 PM",
         },
         "title": "exercise",
         "type": "exercise",
@@ -565,6 +568,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
+          "startsAt": "12:35 PM",
         },
         "title": "lab",
         "type": "lab",
@@ -574,6 +578,7 @@ Array [
     "required": true,
     "time": Object {
       "est": 45,
+      "startsAt": "12:00 PM",
     },
     "title": "Timesplitter Topics",
     "type": "section",
@@ -609,6 +614,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
+          "startsAt": "12:45 PM",
         },
         "title": "Editing Text",
         "type": "sample",
@@ -653,6 +659,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
+          "startsAt": "12:50 PM",
         },
         "title": "Code Blocks",
         "type": "exercise",
@@ -721,6 +728,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
+          "startsAt": "1:00 PM",
         },
         "title": "MDX Components",
         "type": "sample",
@@ -730,6 +738,7 @@ Array [
     "required": true,
     "time": Object {
       "est": 25,
+      "startsAt": "12:45 PM",
     },
     "title": "Content Editing",
     "type": "section",
@@ -743,6 +752,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
+          "startsAt": "1:10 PM",
         },
         "title": "Maybe Slides",
         "type": "slides",
@@ -776,6 +786,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
+          "startsAt": "1:20 PM",
         },
         "title": "Maybe a Sample",
         "type": "sample",
@@ -823,6 +834,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
+          "startsAt": "1:30 PM",
         },
         "title": "Maybe Another",
         "type": "sample",
@@ -856,6 +868,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
+          "startsAt": "1:35 PM",
         },
         "title": "Maybe an Exercise",
         "type": "exercise",
@@ -882,6 +895,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
+          "startsAt": "1:45 PM",
         },
         "title": "Sandwich Sample",
         "type": "sample",
@@ -915,6 +929,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
+          "startsAt": "1:50 PM",
         },
         "title": "Follow up Exercise",
         "type": "exercise",
@@ -948,6 +963,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
+          "startsAt": "1:55 PM",
         },
         "title": "Maybe a Lab",
         "type": "lab",
@@ -957,6 +973,7 @@ Array [
     "required": true,
     "time": Object {
       "est": 50,
+      "startsAt": "1:10 PM",
     },
     "title": "Example Section",
     "type": "section",

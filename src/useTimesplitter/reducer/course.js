@@ -1,15 +1,25 @@
 import { totalTime } from "../../lib";
+import { format } from "date-fns";
 
 //
-// [ ] Sections should total time
-// [ ] {time} should contained scheduled in MS
+// PROBLEM
+// I need to recursively pass the total.
+// It needs to be wrapped and passed so the functions remain pure.
 //
 
-function addTime(topic, est) {
+const toMilliseconds = (time) => time * 60 * 1000;
+
+let total = 0;
+function addTime(topic, est, startTime) {
   if (est) {
+    const t = startTime + toMilliseconds(total);
+    if (topic.type !== "section") total += est;
     return {
       ...topic,
-      time: { est },
+      time: {
+        est,
+        startsAt: format(t, "h:mm aa"),
+      },
     };
   }
 
@@ -20,7 +30,11 @@ function topic(state = {}, action = {}) {
   switch (action.type) {
     case "ADJUST":
       return {
-        ...addTime(state, state.length || totalTime(state)),
+        ...addTime(
+          state,
+          state.length || totalTime(state),
+          action.payload.startTime
+        ),
         agenda: agenda(state.agenda, action),
       };
 
