@@ -13,3 +13,5 @@ export const throwIt = (msg) => (error) => {
   }
   throw error;
 };
+
+export const toMilliseconds = (time) => time * 60 * 1000;

@@ -21,6 +21,7 @@ it("correctly schedules an on time course", () => {
     </TimesplitterProvider>
   );
   const { result } = renderHook(() => useTimesplitter(), { wrapper });
+
   expect(result.current.agenda).toMatchSnapshot();
 
   act(() => {
@@ -29,12 +30,6 @@ it("correctly schedules an on time course", () => {
 
   expect(result.current.agenda).toMatchSnapshot();
 
-  //
-  // [x] Before: topics should not have {time}
-  // [ ] After: topics have {time}
-  // [ ] After: {time} has est, scheduled
-  // [ ] After: {time} schedules should be correct (snapshot??)
-  //
-
-  // await waitForNextUpdate();
 });
+
+

@@ -4,6 +4,13 @@ import { Timer, TopicIcon, SubTitle, Row, Column } from "../../ui";
 import { totalTime, urlFriendly, Difficulty } from "../../lib";
 import styled from "styled-components";
 
+// 
+// [ ] Display Start Times in section components
+// [ ] Add and populate a start time drop down
+// [ ] User can select a different start time
+// [ ] Add interval to auto adjust when user doesn't select start time
+//
+
 export default function Section({ section }) {
   const time = totalTime(section);
   const startSection = () => {

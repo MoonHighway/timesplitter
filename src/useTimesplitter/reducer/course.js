@@ -1,43 +1,28 @@
-import { totalTime } from "../../lib";
+import { totalTime, toMilliseconds } from "../../lib";
 import { format } from "date-fns";
 
-//
-// PROBLEM
-// I need to recursively pass the total.
-// It needs to be wrapped and passed so the functions remain pure.
-//
-
-const toMilliseconds = (time) => time * 60 * 1000;
-
-let total = 0;
-function addTime(topic, est, startTime) {
-  if (est) {
-    const t = startTime + toMilliseconds(total);
-    if (topic.type !== "section") total += est;
-    return {
-      ...topic,
-      time: {
-        est,
-        startsAt: format(t, "h:mm aa"),
-      },
-    };
-  }
-
-  return topic;
-}
+const scopedCounters = {
+  runningTotal: 0
+};
 
 function topic(state = {}, action = {}) {
   switch (action.type) {
     case "ADJUST":
+      
+      const est = state.length || totalTime(state);
+      if (!est) return {
+        ...state,
+        agenda: agenda(state.agenda, action),
+      }
+
+      const startsAt = action.payload.startTime + toMilliseconds(scopedCounters.runningTotal);
+      if (state.type !== "section") scopedCounters.runningTotal += est;
+      
       return {
-        ...addTime(
-          state,
-          state.length || totalTime(state),
-          action.payload.startTime
-        ),
+        ...state,
+        time: { est, startsAt },
         agenda: agenda(state.agenda, action),
       };
-
     default:
       return state;
   }
@@ -55,6 +40,7 @@ function agenda(state = [], action = {}) {
 export default function course(state, action = {}) {
   switch (action.type) {
     case "ADJUST":
+      scopedCounters.runningTotal = 0;
       return {
         ...state,
         agenda: agenda(state.agenda, action),

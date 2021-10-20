@@ -466,7 +466,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
-          "startsAt": "12:00 PM",
+          "startsAt": 1616958000000,
         },
         "title": "Slides",
         "type": "slides",
@@ -507,7 +507,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 15,
-          "startsAt": "12:05 PM",
+          "startsAt": 1616958300000,
         },
         "title": "Sample",
         "type": "sample",
@@ -541,7 +541,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 15,
-          "startsAt": "12:20 PM",
+          "startsAt": 1616959200000,
         },
         "title": "exercise",
         "type": "exercise",
@@ -568,7 +568,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
-          "startsAt": "12:35 PM",
+          "startsAt": 1616960100000,
         },
         "title": "lab",
         "type": "lab",
@@ -578,7 +578,7 @@ Array [
     "required": true,
     "time": Object {
       "est": 45,
-      "startsAt": "12:00 PM",
+      "startsAt": 1616958000000,
     },
     "title": "Timesplitter Topics",
     "type": "section",
@@ -614,7 +614,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
-          "startsAt": "12:45 PM",
+          "startsAt": 1616960700000,
         },
         "title": "Editing Text",
         "type": "sample",
@@ -659,7 +659,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
-          "startsAt": "12:50 PM",
+          "startsAt": 1616961000000,
         },
         "title": "Code Blocks",
         "type": "exercise",
@@ -728,7 +728,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
-          "startsAt": "1:00 PM",
+          "startsAt": 1616961600000,
         },
         "title": "MDX Components",
         "type": "sample",
@@ -738,7 +738,7 @@ Array [
     "required": true,
     "time": Object {
       "est": 25,
-      "startsAt": "12:45 PM",
+      "startsAt": 1616960700000,
     },
     "title": "Content Editing",
     "type": "section",
@@ -752,7 +752,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
-          "startsAt": "1:10 PM",
+          "startsAt": 1616962200000,
         },
         "title": "Maybe Slides",
         "type": "slides",
@@ -786,7 +786,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
-          "startsAt": "1:20 PM",
+          "startsAt": 1616962800000,
         },
         "title": "Maybe a Sample",
         "type": "sample",
@@ -834,7 +834,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
-          "startsAt": "1:30 PM",
+          "startsAt": 1616963400000,
         },
         "title": "Maybe Another",
         "type": "sample",
@@ -868,7 +868,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 10,
-          "startsAt": "1:35 PM",
+          "startsAt": 1616963700000,
         },
         "title": "Maybe an Exercise",
         "type": "exercise",
@@ -895,7 +895,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
-          "startsAt": "1:45 PM",
+          "startsAt": 1616964300000,
         },
         "title": "Sandwich Sample",
         "type": "sample",
@@ -929,7 +929,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
-          "startsAt": "1:50 PM",
+          "startsAt": 1616964600000,
         },
         "title": "Follow up Exercise",
         "type": "exercise",
@@ -963,7 +963,7 @@ Array [
         "required": true,
         "time": Object {
           "est": 5,
-          "startsAt": "1:55 PM",
+          "startsAt": 1616964900000,
         },
         "title": "Maybe a Lab",
         "type": "lab",
@@ -973,7 +973,7 @@ Array [
     "required": true,
     "time": Object {
       "est": 50,
-      "startsAt": "1:10 PM",
+      "startsAt": 1616962200000,
     },
     "title": "Example Section",
     "type": "section",

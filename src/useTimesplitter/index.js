@@ -17,7 +17,7 @@ export function TimesplitterProvider({
   contentUrl = "/content",
   children,
 }) {
-  const [{ loading, preview, adjust, course }, dispatch] = useReducer(reducer, {
+  const [{ loading, preview, course }, dispatch] = useReducer(reducer, {
     loading: false,
     preview: true,
     course: defaultContent,
@@ -36,13 +36,20 @@ export function TimesplitterProvider({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      actions.adjust(0, new Date().getTime());
+    }, 500);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <TimesplitterContext.Provider
       value={{
         ...course,
         loading,
         preview,
-        adjust,
         courseLength,
         actions,
       }}
