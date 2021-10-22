@@ -1,5 +1,4 @@
 import { totalTime, toMilliseconds } from "../../lib";
-import { format } from "date-fns";
 
 const scopedCounters = {
   runningTotal: 0
@@ -21,7 +20,7 @@ function topic(state = {}, action = {}) {
       return {
         ...state,
         time: { est, startsAt },
-        agenda: agenda(state.agenda, action),
+        agenda: agenda(state.agenda, action)
       };
     default:
       return state;
@@ -44,6 +43,9 @@ export default function course(state, action = {}) {
       return {
         ...state,
         agenda: agenda(state.agenda, action),
+        time: {
+          start: action.payload.startTime
+        }
       };
     case "LOADED":
       return action.payload;

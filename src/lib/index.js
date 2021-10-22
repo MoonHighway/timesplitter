@@ -2,6 +2,7 @@ export * from "./totalTime";
 export * from "./topicManager";
 export * from "./icons";
 export * from "./DifficultyDropDown";
+export * from "./TimeDropDown";
 
 export const toJSON = (res) => res.json();
 

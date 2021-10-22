@@ -1,38 +1,44 @@
 import { useState, useMemo } from "react";
 import { format, formatDuration, intervalToDuration } from "date-fns";
 import { StartButton, SubTitle, Text } from "../../ui";
+import { TimeDropDown } from "../../lib";
 import { useTimesplitter } from "../../useTimesplitter";
 import { fonts } from "../../theme";
 import styled from "styled-components";
 import Select from "react-select";
 
-function options(duration) {
-  const times = [];
-  for (let i = 0; i < 250; i++) {
-    let d = new Date();
-    d.setMinutes(d.getMinutes() + duration + i);
-    if (i === 0 || d.getMinutes() % 5 === 0)
-      times.push({
-        value: d,
-        length: new Date(d - new Date()) / (60 * 1000),
-        label: format(d, "h:mm aaa"),
-      });
-  }
-  return times;
-}
+//
+//  TODOS
+//
+//  [ ] Select Approprate end time based on course length (DDL)
+//  [ ] Select Approaprate end time after start time has been selected
+//  [ ] Adjust schedule after start time has been selected
+//
+//  -----------------------
+//
+//  [ ] Adjust for a longer course after end time has been selected
+//  [ ] Adjust for a shorter course after end time has been selected
+//  [ ] Trigger Manual adjust after end time ahs been selected
+//  [ ] Handle Manual Adjust
+//
 
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
-  const times = useMemo(
-    () => options(courseLength),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-  const [selectedTime, setSelectedTime] = useState(times[0]);
-  const chooseTime = function ({ value, length }) {
-    setSelectedTime(times.find((time) => time.value === value));
-    actions.adjust(length);
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
+
+  const chooseStartTime = function (time) {
+    setStartTime(time);
+    actions.adjust(0, time.value);
   };
+
+  const chooseEndTime = function (time) {
+    console.log("TODO: Handle End Time Selection");
+    console.log(time);
+    setEndTime(time);
+    //actions.adjust(length);
+  };
+
   return (
     <Container>
       <SubTitle>Course Length</SubTitle>
@@ -42,12 +48,18 @@ export default function CourseTime() {
         )}
       </Text>
       <hr />
-      <SubTitle>End Time</SubTitle>
-      <Select
+      <SubTitle>Start</SubTitle>
+      <TimeDropDown
         className="time-select"
-        options={times}
-        value={selectedTime}
-        onChange={chooseTime}
+        value={startTime}
+        onChange={chooseStartTime}
+      />
+      <SubTitle>End</SubTitle>
+      <TimeDropDown
+        className="time-select"
+        delay={Math.floor(courseLength*.25)}
+        value={endTime}
+        onChange={chooseEndTime}
       />
       <StartButton />
     </Container>

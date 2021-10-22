@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Timer, TopicIcon, SubTitle, Row, Column } from "../../ui";
 import { totalTime, urlFriendly, Difficulty } from "../../lib";
 import styled from "styled-components";
+import { format } from "date-fns"
 
 // 
 // [ ] Display Start Times in section components
@@ -11,8 +12,10 @@ import styled from "styled-components";
 // [ ] Add interval to auto adjust when user doesn't select start time
 //
 
+const formatTimeDisplay = (topic) => topic.time ? format(new Date(topic.time.startsAt), "h:mm aa") : totalTime(topic) + " mins";
+
 export default function Section({ section }) {
-  const time = totalTime(section);
+  const time = formatTimeDisplay(section);
   const startSection = () => {
     window.location = `/agenda/${urlFriendly(section.title)}`;
   };
@@ -21,17 +24,18 @@ export default function Section({ section }) {
     <Container>
       <Row className="timer-row">
         <Timer size={30} />
-        <SubTitle className="section-time">{time} mins</SubTitle>
+        <SubTitle className="section-time">{time}</SubTitle>
         <SubTitle className="section-title" onClick={startSection}>
-          {section.title}
+          {section.title} 
         </SubTitle>
+        {section.time &&<Smalltime>{section.time.est} min</Smalltime>}
       </Row>
       <Column>
         {section.agenda.map((topic, i) => {
-          const time = totalTime(topic);
+          const time = formatTimeDisplay(topic)
           return (
             <Item key={urlFriendly(topic.title)} type={topic.type}>
-              {time ? <span className="time">{time} mins</span> : null}
+              <span className="time">{time}</span>
               <Row className="topic-row">
                 <TopicIcon className="topic-type" size={30} type={topic.type} />
                 <Difficulty
@@ -54,12 +58,18 @@ export default function Section({ section }) {
   );
 }
 
+const Smalltime = styled.div`
+  background-color: red;
+
+`
+
 const Container = styled.section`
   margin: 1em;
   margin-left: 2em;
 
   .timer-row {
     display: flex;
+
     align-items: center;
     cursor: pointer;
     &:hover {
