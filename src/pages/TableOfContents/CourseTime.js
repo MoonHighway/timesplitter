@@ -7,28 +7,20 @@ import { fonts } from "../../theme";
 import styled from "styled-components";
 import Select from "react-select";
 
-//
-//  TODOS
-//
-//  [ ] Select Approprate end time based on course length (DDL)
-//  [ ] Select Approaprate end time after start time has been selected
-//  [ ] Adjust schedule after start time has been selected
-//
-//  -----------------------
-//
-//  [ ] Adjust for a longer course after end time has been selected
-//  [ ] Adjust for a shorter course after end time has been selected
-//  [ ] Trigger Manual adjust after end time ahs been selected
-//  [ ] Handle Manual Adjust
-//
-
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
 
   const chooseStartTime = function (time) {
+    
+    const dStart = new Date(time.value);
+    const endTime = {};
+    endTime.value = dStart.getTime() + (courseLength * 60 * 1000);
+    endTime.offsetMinutes = time.offsetMinutes + courseLength
+    endTime.label = format(endTime.value, "h:mm aaa");
     setStartTime(time);
+    setEndTime(endTime);
     actions.adjust(0, time.value);
   };
 
@@ -36,7 +28,11 @@ export default function CourseTime() {
     console.log("TODO: Handle End Time Selection");
     console.log(time);
     setEndTime(time);
+
+    //
     //actions.adjust(length);
+    //
+
   };
 
   return (
@@ -57,7 +53,7 @@ export default function CourseTime() {
       <SubTitle>End</SubTitle>
       <TimeDropDown
         className="time-select"
-        delay={Math.floor(courseLength*.25)}
+        delay={courseLength}
         value={endTime}
         onChange={chooseEndTime}
       />
