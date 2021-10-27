@@ -28,6 +28,7 @@ export function TimesplitterProvider({
     return totalTime(course);
   }, [course]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const actions = useMemo(() => createActions(dispatch, contentUrl), []);
 
   useEffect(() => {

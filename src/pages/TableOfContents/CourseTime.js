@@ -1,11 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { format, formatDuration, intervalToDuration } from "date-fns";
 import { StartButton, SubTitle, Text } from "../../ui";
 import { TimeDropDown } from "../../lib";
 import { useTimesplitter } from "../../useTimesplitter";
 import { fonts } from "../../theme";
 import styled from "styled-components";
-import Select from "react-select";
 
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
@@ -13,15 +12,14 @@ export default function CourseTime() {
   const [endTime, setEndTime] = useState();
 
   const chooseStartTime = function (time) {
-    
     const dStart = new Date(time.value);
     const endTime = {};
-    endTime.value = dStart.getTime() + (courseLength * 60 * 1000);
-    endTime.offsetMinutes = time.offsetMinutes + courseLength
+    endTime.value = dStart.getTime() + courseLength * 60 * 1000;
+    endTime.offsetMinutes = time.offsetMinutes + courseLength;
     endTime.label = format(endTime.value, "h:mm aaa");
     setStartTime(time);
     setEndTime(endTime);
-    actions.adjust(0, time.value);
+    actions.adjust(0, time.value.getTime());
   };
 
   const chooseEndTime = function (time) {
@@ -32,7 +30,6 @@ export default function CourseTime() {
     //
     //actions.adjust(length);
     //
-
   };
 
   return (

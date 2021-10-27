@@ -1,8 +1,12 @@
 import Select from "react-select";
 import { format } from "date-fns";
 
-export function TimeDropDown({ value, delay=0, onChange=f=>f, ...props }) {
-  const start = new Date();
+export function TimeDropDown({
+  value,
+  delay = 0,
+  onChange = (f) => f,
+  ...props
+}) {
   const options = [];
   for (let i = 0; i < 250; i++) {
     let d = new Date();
@@ -14,10 +18,12 @@ export function TimeDropDown({ value, delay=0, onChange=f=>f, ...props }) {
         label: format(d, "h:mm aaa"),
       });
   }
-  return <Select 
-        options={options}
-        value={value ? value : options[0]}
-        onChange={onChange}
-        {...props}
-      />
+  return (
+    <Select
+      options={options}
+      value={value ? value : options[0]}
+      onChange={onChange}
+      {...props}
+    />
+  );
 }

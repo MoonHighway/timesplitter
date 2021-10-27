@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import { Timer, TopicIcon, SubTitle, Row, Column } from "../../ui";
 import { totalTime, urlFriendly, Difficulty } from "../../lib";
 import styled from "styled-components";
-import { format } from "date-fns"
+import { format } from "date-fns";
 
-// 
-// [ ] Display Start Times in section components
-// [ ] Add and populate a start time drop down
-// [ ] User can select a different start time
-// [ ] Add interval to auto adjust when user doesn't select start time
-//
-
-const formatTimeDisplay = (topic) => topic.time ? format(new Date(topic.time.startsAt), "h:mm aa") : totalTime(topic) + " mins";
+const formatTimeDisplay = (topic) =>
+  topic.time
+    ? format(new Date(topic.time.startsAt), "h:mm aa")
+    : totalTime(topic) + " mins";
 
 export default function Section({ section }) {
   const time = formatTimeDisplay(section);
@@ -26,13 +22,13 @@ export default function Section({ section }) {
         <Timer size={30} />
         <SubTitle className="section-time">{time}</SubTitle>
         <SubTitle className="section-title" onClick={startSection}>
-          {section.title} 
+          {section.title}
         </SubTitle>
-        {section.time &&<Smalltime>{section.time.est} min</Smalltime>}
+        {section.time && <Smalltime>{section.time.est} min</Smalltime>}
       </Row>
       <Column>
         {section.agenda.map((topic, i) => {
-          const time = formatTimeDisplay(topic)
+          const time = formatTimeDisplay(topic);
           return (
             <Item key={urlFriendly(topic.title)} type={topic.type}>
               <span className="time">{time}</span>
@@ -60,8 +56,7 @@ export default function Section({ section }) {
 
 const Smalltime = styled.div`
   background-color: red;
-
-`
+`;
 
 const Container = styled.section`
   margin: 1em;
