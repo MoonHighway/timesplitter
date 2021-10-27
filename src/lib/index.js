@@ -3,6 +3,7 @@ export * from "./topicManager";
 export * from "./icons";
 export * from "./DifficultyDropDown";
 export * from "./TimeDropDown";
+export * from "./TimeDisplay";
 
 export const toJSON = (res) => res.json();
 

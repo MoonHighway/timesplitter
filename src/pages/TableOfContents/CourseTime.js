@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format, formatDuration, intervalToDuration } from "date-fns";
 import { StartButton, SubTitle, Text } from "../../ui";
 import { TimeDropDown } from "../../lib";
 import { useTimesplitter } from "../../useTimesplitter";
 import { fonts } from "../../theme";
 import styled from "styled-components";
+
+//
+// TODO: Create Custom Hook for start and end times
+//
+//  There is a lot of code here that has to do with updating the
+//  start and end times based on a clock, all that code should be
+//  encapsulated into it's own hook.
+//
 
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
@@ -31,6 +39,28 @@ export default function CourseTime() {
     //actions.adjust(length);
     //
   };
+
+  useEffect(() => {
+    let tsRender = new Date();
+    const iCheckStart = setInterval(() => {
+      const now = new Date();
+      if (!startTime) {
+        if (tsRender.getMinutes() !== now.getMinutes()) {
+          actions.adjust(0, now.getTime());
+          tsRender = new Date();
+        }
+        return;
+      }
+
+      if (now > startTime.value) {
+        setStartTime();
+        actions.adjust(0, now.getTime());
+        tsRender = new Date();
+        return;
+      }
+    }, 3000);
+    return () => clearInterval(iCheckStart);
+  }, [startTime]);
 
   return (
     <Container>

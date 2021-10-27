@@ -1,7 +1,7 @@
 import { fonts, colors, getTypeColor } from "../../theme";
 import { Link } from "react-router-dom";
 import { Timer, TopicIcon, SubTitle, Row, Column } from "../../ui";
-import { totalTime, urlFriendly, Difficulty } from "../../lib";
+import { totalTime, urlFriendly, Difficulty, TimeDisplay } from "../../lib";
 import styled from "styled-components";
 import { format } from "date-fns";
 
@@ -19,12 +19,16 @@ export default function Section({ section }) {
   return (
     <Container>
       <Row className="timer-row">
-        <Timer size={30} />
+        <Timer size={30} className="section-clock" />
         <SubTitle className="section-time">{time}</SubTitle>
         <SubTitle className="section-title" onClick={startSection}>
-          {section.title}
+          {section.title} &nbsp;
         </SubTitle>
-        {section.time && <Smalltime>{section.time.est} min</Smalltime>}
+        {section.time && (
+          <>
+            (<TimeDisplay time={section.time.est} short={true} />)
+          </>
+        )}
       </Row>
       <Column>
         {section.agenda.map((topic, i) => {
@@ -38,6 +42,7 @@ export default function Section({ section }) {
                   className="topic-difficulty"
                   level={topic.difficulty}
                 />
+
                 <Link
                   to={`/agenda/${urlFriendly(section.title)}/${urlFriendly(
                     topic.title
@@ -54,10 +59,6 @@ export default function Section({ section }) {
   );
 }
 
-const Smalltime = styled.div`
-  background-color: red;
-`;
-
 const Container = styled.section`
   margin: 1em;
   margin-left: 2em;
@@ -72,7 +73,7 @@ const Container = styled.section`
     }
   }
 
-  svg,
+  svg:first-of-type,
   .section-time {
     margin-right: 1em;
   }
