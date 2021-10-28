@@ -13,6 +13,10 @@ import styled from "styled-components";
 //  start and end times based on a clock, all that code should be
 //  encapsulated into it's own hook.
 //
+//  Consider putting start and end times into useTimesplitter
+//
+//  Change the time drop downs to have same labels and values
+//
 
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();

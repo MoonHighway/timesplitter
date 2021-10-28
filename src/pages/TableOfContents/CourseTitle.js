@@ -6,7 +6,9 @@ import { Title, Text, Row } from "../../ui";
 import { useTimesplitter } from "../../useTimesplitter";
 
 export default function CourseTitle() {
-  const { title, time } = useTimesplitter();
+  const { courseLength, title, time } = useTimesplitter();
+  const courseEnd = time && new Date(time.start + courseLength * 60 * 1000);
+
   return (
     <Layout>
       <Row>
@@ -15,9 +17,12 @@ export default function CourseTitle() {
         </Link>
         <Title>{title}</Title>
       </Row>
-      <Text className="date">
-        {time && format(new Date(time.start), "eeee MMMM do yyyy - h:mmaaa ")}
-      </Text>
+      {time && (
+        <Text className="date">
+          {format(new Date(time.start), "eeee MMMM do yyyy - h:mmaaa ")}
+          {format(new Date(courseEnd), "- h:mmaaa ")}
+        </Text>
+      )}
     </Layout>
   );
 }
