@@ -1,6 +1,6 @@
 export const totalTime = (topic = {}) => {
   if (topic.length) {
-    return topic.length;
+    return topic.length + (topic.adjusted || 0);
   }
 
   if (topic.agenda && topic.agenda.length) {
