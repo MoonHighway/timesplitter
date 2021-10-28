@@ -27,7 +27,16 @@ it("correctly schedules an on time course", () => {
   act(() => result.current.actions.adjust(0, sampleDate));
   expect(result.current.agenda).toMatchSnapshot();
   expect(result.current.time.start).toEqual(sampleDate);
-
 });
 
-
+it("correctly schedules a course that has more time", () => {
+  const wrapper = ({ children }) => (
+    <TimesplitterProvider defaultContent={testCourse}>
+      {children}
+    </TimesplitterProvider>
+  );
+  const { result } = renderHook(() => useTimesplitter(), { wrapper });
+  const sampleDate = new Date("3/28/2021 12:00 PM").getTime();
+  act(() => result.current.actions.adjust(30, sampleDate));
+  expect(result.current.agenda).toMatchSnapshot();
+});

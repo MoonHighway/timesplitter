@@ -1,26 +1,27 @@
-import { totalTime, toMilliseconds } from "../../lib";
+import { totalTime, toMilliseconds, adjustCourseTimes } from "../../lib";
 
 const scopedCounters = {
-  runningTotal: 0
+  runningTotal: 0,
 };
 
 function topic(state = {}, action = {}) {
   switch (action.type) {
     case "ADJUST":
-      
-      const est = state.length || totalTime(state);
-      if (!est) return {
-        ...state,
-        agenda: agenda(state.agenda, action),
-      }
+      const est = state.length + (state.adjusted || 0) || totalTime(state);
+      if (!est)
+        return {
+          ...state,
+          agenda: agenda(state.agenda, action),
+        };
 
-      const startsAt = action.payload.startTime + toMilliseconds(scopedCounters.runningTotal);
+      const startsAt =
+        action.payload.startTime + toMilliseconds(scopedCounters.runningTotal);
       if (state.type !== "section") scopedCounters.runningTotal += est;
-      
+
       return {
         ...state,
         time: { est, startsAt },
-        agenda: agenda(state.agenda, action)
+        agenda: agenda(state.agenda, action),
       };
     default:
       return state;
@@ -40,12 +41,14 @@ export default function course(state, action = {}) {
   switch (action.type) {
     case "ADJUST":
       scopedCounters.runningTotal = 0;
+      if (action.payload.length > 0)
+        state = adjustCourseTimes(state, action.payload.length);
       return {
         ...state,
         agenda: agenda(state.agenda, action),
         time: {
-          start: action.payload.startTime
-        }
+          start: action.payload.startTime,
+        },
       };
     case "LOADED":
       return action.payload;
