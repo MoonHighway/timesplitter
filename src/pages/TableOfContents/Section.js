@@ -49,6 +49,9 @@ export default function Section({ section }) {
                   )}`}
                 >
                   {topic.title}
+                  <Adjusted>
+                    &nbsp; {topic.adjusted && `(+ ${topic.adjusted} min)`}
+                  </Adjusted>
                 </Link>
               </Row>
             </Item>
@@ -58,6 +61,11 @@ export default function Section({ section }) {
     </Container>
   );
 }
+
+const Adjusted = styled.span`
+  color: green;
+  font-size: 0.8em;
+`;
 
 const Container = styled.section`
   margin: 1em;

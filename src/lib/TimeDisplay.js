@@ -10,7 +10,6 @@ export function TimeDisplay({
   if (time >= 60) {
     let h = Math.floor(time / 60);
     let m = time % 60;
-    console.log(short);
     const message = short
       ? `${h}hr${h > 1 ? "s" : ""} ${m > 0 ? `${m}min` : ""}`
       : `${h}hour${h > 1 ? "s" : ""} ${m > 0 ? `${m}minutes` : ""}`;

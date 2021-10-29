@@ -35,10 +35,12 @@ export default function CourseTime() {
   };
 
   const chooseEndTime = function (time) {
-    console.log("TODO: Handle End Time Selection");
     setEndTime(time);
-    console.log("TODO: Adjust end time, right now it's hard coded");
-    const length = 30;
+    const end = new Date(`1/1/2010 ${time.label}`);
+    const start = new Date(
+      `1/1/2010 ${startTime ? startTime.label : format(new Date(), "h:mm aaa")}`
+    );
+    const length = (end - start) / 60000 - courseLength;
     actions.adjust(
       length,
       (startTime ? startTime.value : new Date()).getTime()
