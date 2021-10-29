@@ -1,27 +1,35 @@
-import { flattenCourse } from ".";
+function flatten(course) {
+  if (!course) return;
+  if (course.agenda) {
+    return [course, ...course.agenda.flatMap((t) => flatten(t))];
+  }
+  return course;
+}
 
 export function adjustCourseTimes(course, adjustMinutes) {
   // Create an array of topic titles that have time and their length
-  const timedTopics = flattenCourse(course)
-    .reduce((results, topic) => {
-      if (topic.time.length && topic.time.length > 1 && !topic.lock)
-        return [...results, topic];
-      return results;
-    }, [])
-    .map((topic) => ({ title: topic.title, length: topic.time.length }));
+  const timedTopics = flatten(course).reduce((results, topic) => {
+    if (topic.length && topic.length > 1 && !topic.lock)
+      return [...results, topic];
+    return results;
+  }, []);
 
-  // Adjust times in the topics array
-  let index = timedTopics.length - 1;
-  while (adjustMinutes > 0) {
-    if (timedTopics[index].adjusted) timedTopics[index].adjusted++;
-    else timedTopics[index].adjusted = 1;
-    adjustMinutes--;
-    if (index === 0) index = timedTopics.length - 1;
-    else index--;
+  if (!!timedTopics.length) {
+    // Adjust times in the topics array
+    let index = timedTopics.length - 1;
+    while (adjustMinutes > 0) {
+      if (timedTopics[index].adjusted) timedTopics[index].adjusted++;
+      else timedTopics[index].adjusted = 1;
+      adjustMinutes--;
+      if (index === 0) index = timedTopics.length - 1;
+      else index--;
+    }
+
+    // Add the adjusted times back to the original course
+    return hydrateTopics(course, timedTopics);
   }
 
-  // Add the adjusted times back to the original course
-  return hydrateTopics(course, timedTopics);
+  return course;
 }
 
 const withTitle = (title) => (t) => t.title === title;

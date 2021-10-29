@@ -36,12 +36,13 @@ export default function CourseTime() {
 
   const chooseEndTime = function (time) {
     console.log("TODO: Handle End Time Selection");
-    console.log(time);
     setEndTime(time);
-
-    //
-    //actions.adjust(length);
-    //
+    console.log("TODO: Adjust end time, right now it's hard coded");
+    const length = 30;
+    actions.adjust(
+      length,
+      (startTime ? startTime.value : new Date()).getTime()
+    );
   };
 
   useEffect(() => {

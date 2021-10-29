@@ -41,10 +41,12 @@ export default function course(state, action = {}) {
   switch (action.type) {
     case "ADJUST":
       scopedCounters.runningTotal = 0;
-      if (action.payload.length > 0)
-        state = adjustCourseTimes(state, action.payload.length);
+      let nextState =
+        action.payload.length > 0
+          ? adjustCourseTimes(state, action.payload.length)
+          : { ...state };
       return {
-        ...state,
+        ...nextState,
         agenda: agenda(state.agenda, action),
         time: {
           start: action.payload.startTime,

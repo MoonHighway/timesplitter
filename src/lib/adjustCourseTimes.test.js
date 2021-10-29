@@ -66,14 +66,11 @@ const expectedResults = {
 
 describe("adjustCourseTimes()", () => {
   it("correctly distributes an additional 20 minutes to a course", () => {
-    const result = adjustCourseTimes(sampleData, 20);
-
-    // Replaces correct times only
-    expect(result).toEqual(expectedResults);
-
     // Correctly totals sample times
     expect(totalTime(sampleData)).toEqual(120);
-
+    const result = adjustCourseTimes(sampleData, 20);
+    // Replaces correct times only
+    expect(result).toEqual(expectedResults);
     // Correctly totals course times with adjusted time
     expect(totalTime(result)).toEqual(140);
   });
