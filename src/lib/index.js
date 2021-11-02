@@ -5,6 +5,7 @@ export * from "./DifficultyDropDown";
 export * from "./TimeDropDown";
 export * from "./TimeDisplay";
 export * from "./adjustCourseTimes";
+export * from "./canReduceCourseTime";
 
 export const toJSON = (res) => res.json();
 
