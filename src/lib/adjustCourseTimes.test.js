@@ -79,18 +79,46 @@ const lessTimeResults = {
     {
       title: "second section",
       agenda: [
-        { title: "locked", lock: true, length: 20 },
-        { title: "topic d", length: 20, adjusted: -2 },
-        { title: "topic e", length: 15, adjusted: -2 },
+        {
+          title: "locked",
+          lock: true,
+          length: 20,
+        },
+        {
+          title: "topic d",
+          length: 20,
+          adjusted: -3,
+        },
+        {
+          title: "topic e",
+          length: 15,
+          adjusted: -3,
+        },
       ],
     },
     {
       title: "third section",
       agenda: [
-        { title: "topic f", length: 7, adjusted: -3 },
-        { title: "topic h", length: 5, adjusted: -3 },
-        { title: "topic i", length: 19, adjusted: -3 },
-        { title: "topic j", length: 25, adjusted: -3 },
+        {
+          title: "topic f",
+          length: 7,
+          adjusted: -3,
+        },
+        {
+          title: "topic h",
+          length: 5,
+          adjusted: -3,
+        },
+        {
+          title: "topic i",
+          length: 19,
+          adjusted: -2,
+        },
+        {
+          title: "topic j",
+          length: 25,
+          adjusted: -2,
+        },
       ],
     },
   ],
@@ -98,6 +126,9 @@ const lessTimeResults = {
 
 const manualResults = {
   title: "sample data",
+  manualAdjustmentRequired: {
+    remainingTime: -30,
+  },
   agenda: [
     {
       title: "first section",
@@ -130,32 +161,31 @@ const manualResults = {
 
 describe("adjustCourseTimes()", () => {
   it("correctly distributes an additional 20 minutes to a course", () => {
-    // Correctly totals sample times
     expect(totalTime(sampleData)).toEqual(120);
     const result = adjustCourseTimes(sampleData, 20);
-    // Replaces correct times only
     expect(result).toEqual(moreTimeResults);
-    // Correctly totals course times with adjusted time
     expect(totalTime(result)).toEqual(140);
   });
 
-  //
-  //  TODO
-  //
-
-  it.skip("correctly reduces 20 minutes from a course", () => {
-    // Correctly totals sample times
+  it("correctly reduces 40 minutes from a course", () => {
     expect(totalTime(sampleData)).toEqual(140);
     const result = adjustCourseTimes(sampleData, -40);
-    // Replaces correct times only
     expect(result).toEqual(lessTimeResults);
-    // Correctly totals course times with adjusted time
     expect(totalTime(result)).toEqual(100);
   });
 
-  //
-  // TODO: Trigger Manual Adjust
-  //
+  it("triggers a manual adjust", () => {
+    expect(totalTime(sampleData)).toEqual(100);
+    const result = adjustCourseTimes(sampleData, -100);
+    expect(result).toEqual(manualResults);
+    expect(totalTime(result)).toEqual(30);
+  });
 
-  it.skip("triggers a manual adjust", () => {});
+  it("triggers a manual adjust", () => {
+    expect(totalTime(sampleData)).toEqual(30);
+    const result = adjustCourseTimes(sampleData, 0);
+    delete manualResults.manualAdjustmentRequired;
+    expect(result).toEqual(manualResults);
+    expect(totalTime(result)).toEqual(30);
+  });
 });
