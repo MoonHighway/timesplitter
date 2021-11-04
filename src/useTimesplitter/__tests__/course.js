@@ -40,3 +40,15 @@ it("correctly schedules a course that has more time", () => {
   act(() => result.current.actions.adjust(30, sampleDate));
   expect(result.current.agenda).toMatchSnapshot();
 });
+
+it("correctly schedules a course that has less time", () => {
+  const wrapper = ({ children }) => (
+    <TimesplitterProvider defaultContent={testCourse}>
+      {children}
+    </TimesplitterProvider>
+  );
+  const { result } = renderHook(() => useTimesplitter(), { wrapper });
+  const sampleDate = new Date("3/28/2021 12:00 PM").getTime();
+  act(() => result.current.actions.adjust(-60, sampleDate));
+  expect(result.current.agenda).toMatchSnapshot();
+});

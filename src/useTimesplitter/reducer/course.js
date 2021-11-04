@@ -42,7 +42,7 @@ export default function course(state, action = {}) {
     case "ADJUST":
       scopedCounters.runningTotal = 0;
       let nextState =
-        action.payload.length > 0
+        action.payload.length !== 0
           ? adjustCourseTimes(state, action.payload.length)
           : { ...state };
       return {
