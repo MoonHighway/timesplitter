@@ -1,6 +1,13 @@
 import { fonts, colors, getTypeColor } from "../../theme";
 import { Link } from "react-router-dom";
-import { Timer, TopicIcon, SubTitle, Row, Column } from "../../ui";
+import {
+  Timer,
+  TopicIcon,
+  SubTitle,
+  Row,
+  Column,
+  AdjustedTimeIndicator,
+} from "../../ui";
 import { totalTime, urlFriendly, Difficulty, TimeDisplay } from "../../lib";
 import styled from "styled-components";
 import { format } from "date-fns";
@@ -31,7 +38,7 @@ export default function Section({ section }) {
         )}
       </Row>
       <Column>
-        {section.agenda.map((topic, i) => {
+        {section.agenda.map((topic) => {
           const time = formatTimeDisplay(topic);
           return (
             <Item key={urlFriendly(topic.title)} type={topic.type}>
@@ -49,9 +56,7 @@ export default function Section({ section }) {
                   )}`}
                 >
                   {topic.title}
-                  <Adjusted>
-                    &nbsp; {topic.adjusted && `(+ ${topic.adjusted} min)`}
-                  </Adjusted>
+                  <AdjustedTimeIndicator adjusted={topic.adjusted} />
                 </Link>
               </Row>
             </Item>
@@ -61,11 +66,6 @@ export default function Section({ section }) {
     </Container>
   );
 }
-
-const Adjusted = styled.span`
-  color: green;
-  font-size: 0.8em;
-`;
 
 const Container = styled.section`
   margin: 1em;
