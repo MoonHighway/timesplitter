@@ -34,6 +34,12 @@ export default function Section({ section }) {
         {section.time && (
           <>
             (<TimeDisplay time={section.time.est} short={true} />)
+            <AdjustedTimeIndicator
+              adjusted={section.agenda.reduce(
+                (total, topic) => total + (topic.adjusted || 0),
+                0
+              )}
+            />
           </>
         )}
       </Row>

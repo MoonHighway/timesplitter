@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { format, formatDuration, intervalToDuration } from "date-fns";
-import { StartButton, SubTitle, Text } from "../../ui";
+import { StartButton, SubTitle, Text, AdjustedTimeIndicator } from "../../ui";
 import { TimeDropDown } from "../../lib";
 import { useTimesplitter } from "../../useTimesplitter";
 import { fonts } from "../../theme";
@@ -22,6 +22,12 @@ export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
+  const OCL = useRef(0);
+
+  useEffect(() => {
+    if (OCL.current !== 0) return;
+    OCL.current = courseLength;
+  }, [courseLength]);
 
   const chooseStartTime = function (time) {
     const dStart = new Date(time.value);
@@ -77,6 +83,9 @@ export default function CourseTime() {
           intervalToDuration({ start: 0, end: courseLength * 60 * 1000 })
         )}
       </Text>
+      {!!OCL.current && (
+        <AdjustedTimeIndicator adjusted={courseLength - OCL.current} />
+      )}
       <hr />
       <SubTitle>Start</SubTitle>
       <TimeDropDown

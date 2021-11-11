@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import CourseTitle from "./CourseTitle";
 import Section from "./Section";
 import { Timer, SubTitle, Row } from "../../ui";
 import { format } from "date-fns";
-import { urlFriendly } from "../../lib";
+import { urlFriendly, totalTime } from "../../lib";
 import { useTimesplitter } from "../../useTimesplitter";
 import styled from "styled-components";
 
