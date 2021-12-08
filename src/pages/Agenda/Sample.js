@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { StartButton } from "../../ui";
 import { colors } from "../../theme";
 
-export default function Slides({ title }) {
+export default function Sample({ title }) {
   return (
     <Container>
       <StartButton />
@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.slides};
+  background-color: ${colors.sample};
 
   .btn-start {
     position: fixed;

@@ -7,6 +7,7 @@ import Exercise from "./Exercise";
 import Lab from "./Lab";
 import Meta from "./Meta";
 import Slides from "./Slides";
+import Sample from "./Sample";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
 import TopicTitle from "./TopicTitle";
@@ -82,6 +83,15 @@ export default function Agenda() {
       return (
         <>
           <Lab title={title} time={time} />
+          {nav}
+        </>
+      );
+    }
+
+    if (type === "sample") {
+      return (
+        <>
+          <Sample title={title} time={time} />
           {nav}
         </>
       );
