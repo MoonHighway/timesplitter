@@ -30,11 +30,6 @@ export const TopicIcon = ({ type, ...props }) =>
     <CodeBlocks {...props} />
   );
 
-const Code = styled.p`
-  font-family: "Raleway", sans-serif;
-  font-size: 1.2em;
-`;
-
 export const Info = ({ color = "#898989", size = 25, ...props }) => (
   <GoInfo size={size} color={color} {...props} />
 );
@@ -95,7 +90,7 @@ const Double = styled.div`
   float: left;
   svg:last-of-type {
     position: relative;
-    left: -5px;
+    left: -${(props) => props.size * 1.7}px;
   }
 `;
 
@@ -112,7 +107,7 @@ export const BlackDiamond = ({ size = 25, ...props }) => (
 );
 
 export const DoubleDiamond = ({ size = 25, ...props }) => (
-  <Double {...props}>
+  <Double size={size} {...props}>
     <BsDiamondFill color="black" size={size} />
     <BsDiamondFill color="black" size={size} />
   </Double>

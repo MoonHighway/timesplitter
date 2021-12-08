@@ -1,0 +1,74 @@
+{
+  "title": "Small Sample Course",
+  "agenda": [
+    {
+      "title": "One Section",
+      "difficulty": "advanced",
+      "type": "section",
+      "required": true,
+      "agenda": [
+        {
+          "title": "First Topic: Slides",
+          "difficulty": "beginner",
+          "type": "slides",
+          "required": true,
+          "length": 5,
+          "agenda": []
+        },
+        {
+          "title": "Second Topic: Sample",
+          "difficulty": "intermediate",
+          "type": "sample",
+          "required": true,
+          "length": 15,
+          "agenda": [
+            {
+              "title": "sample step I",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "sample step II",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
+        },
+        {
+          "title": "Third Topic: Exercise",
+          "difficulty": "beginner",
+          "type": "exercise",
+          "required": true,
+          "length": 15,
+          "agenda": [
+            {
+              "title": "exercise step I",
+              "difficulty": "intermediate",
+              "type": "step",
+              "required": true,
+              "agenda": []
+            },
+            {
+              "title": "exercise step II",
+              "difficulty": "advanced",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            },
+            {
+              "title": "exercise step III",
+              "difficulty": "expert",
+              "type": "step",
+              "required": false,
+              "agenda": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

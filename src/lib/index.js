@@ -2,6 +2,10 @@ export * from "./totalTime";
 export * from "./topicManager";
 export * from "./icons";
 export * from "./DifficultyDropDown";
+export * from "./TimeDropDown";
+export * from "./TimeDisplay";
+export * from "./adjustCourseTimes";
+export * from "./canReduceCourseTime";
 
 export const toJSON = (res) => res.json();
 
@@ -13,3 +17,5 @@ export const throwIt = (msg) => (error) => {
   }
   throw error;
 };
+
+export const toMilliseconds = (time) => time * 60 * 1000;

@@ -14,8 +14,6 @@ export const Column = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Centered = styled.div`

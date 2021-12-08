@@ -20,7 +20,13 @@ export function flattenCourse(course, parent, breadcrumbs = []) {
   if (!course) return;
   const { agenda, length, ...rest } = course;
   const time = createTime(length, course, parent);
-  const topic = { id: urlFriendly(rest.title), time, breadcrumbs, ...rest };
+  const topic = {
+    id: urlFriendly(rest.title),
+    time,
+    breadcrumbs,
+    agenda,
+    ...rest,
+  };
   if (agenda) {
     topic.agenda = agenda.map(titlesOnly);
     return [

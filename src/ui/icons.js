@@ -1,4 +1,4 @@
-import { MdTimer } from "react-icons/md";
+import { MdTimer, MdOutlineRemoveCircle } from "react-icons/md";
 import { RiSlideshowFill } from "react-icons/ri";
 import { GrWorkshop } from "react-icons/gr";
 import { ImLab } from "react-icons/im";
@@ -14,9 +14,9 @@ export const TopicIcon = ({ type, ...props }) =>
   ) : type === "course-lab" ? (
     <CourseLab {...props} />
   ) : type === "exercise" ? (
-    <Exercise />
+    <Exercise {...props} />
   ) : (
-    <Slides />
+    <Slides {...props} />
   );
 
 export const CircleLink = ({ Icon, children }) => (
@@ -48,4 +48,8 @@ export const Exercise = ({ color = "#898989", size = 25, ...props }) => (
 
 export const CourseLab = ({ color = "#898989", size = 25, ...props }) => (
   <FaUserGraduate size={size} color={color} {...props} />
+);
+
+export const Delete = ({ color = "red", size = 25, ...props }) => (
+  <MdOutlineRemoveCircle size={size} color={color} {...props} />
 );

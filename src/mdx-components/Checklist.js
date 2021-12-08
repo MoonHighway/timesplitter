@@ -55,6 +55,7 @@ export const Checklist = ({ title = "untitled list", children }) => {
       const list = JSON.parse(sessionStorage[getKey(title)]);
       setListItems(list);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const itemChecked = (text, checked) => {
