@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { format, formatDuration, intervalToDuration } from "date-fns";
 import { StartButton, SubTitle, Text, AdjustedTimeIndicator } from "../../ui";
 import { TimeDropDown } from "../../lib";
@@ -6,74 +6,60 @@ import { useTimesplitter } from "../../useTimesplitter";
 import { fonts } from "../../theme";
 import styled from "styled-components";
 
-//
-// TODO: Create Custom Hook for start and end times
-//
-//  There is a lot of code here that has to do with updating the
-//  start and end times based on a clock, all that code should be
-//  encapsulated into it's own hook.
-//
-//  Consider putting start and end times into useTimesplitter
-//
-//  Change the time drop downs to have same labels and values
-//
-
 export default function CourseTime() {
   const { courseLength, actions } = useTimesplitter();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const OCL = useRef(0);
+  const today = useMemo(() => format(new Date(), "MM/dd/yyyy"), []);
 
   useEffect(() => {
     if (OCL.current !== 0) return;
     OCL.current = courseLength;
   }, [courseLength]);
 
-  const chooseStartTime = function (time) {
-    const dStart = new Date(time.value);
-    const endTime = {};
-    endTime.value = dStart.getTime() + courseLength * 60 * 1000;
-    endTime.offsetMinutes = time.offsetMinutes + courseLength;
-    endTime.label = format(endTime.value, "h:mm aaa");
-    setStartTime(time);
-    setEndTime(endTime);
-    actions.adjust(0, time.value.getTime());
+  useEffect(() => {
+    if (endTime) return;
+    const start = new Date();
+    setStartTime(format(start, "h:mm aaa"));
+    if (!courseLength) return;
+    const end = start.getTime() + courseLength * 60 * 1000;
+    setEndTime(format(end, "h:mm aaa"));
+  }, [courseLength]);
+
+  const chooseStartTime = function ({ value }) {
+    const uStart = new Date(`${today} ${value}`);
+    const uEnd = new Date(uStart.getTime() + courseLength * 60 * 1000);
+    setStartTime(format(uStart, "h:mm aaa"));
+    setEndTime(format(uEnd, "h:mm aaa"));
+    actions.adjust(0, uStart.getTime());
   };
 
-  const chooseEndTime = function (time) {
-    setEndTime(time);
-    const end = new Date(`1/1/2010 ${time.label}`);
-    const start = new Date(
-      `1/1/2010 ${startTime ? startTime.label : format(new Date(), "h:mm aaa")}`
-    );
-    const length = (end - start) / 60000 - courseLength;
-    actions.adjust(
-      length,
-      (startTime ? startTime.value : new Date()).getTime()
-    );
+  const chooseEndTime = function ({ value }) {
+    const uEnd = new Date(`${today} ${value}`);
+    const uStart = new Date(`${today} ${startTime}`);
+    const length = (uEnd - uStart) / 60000 - courseLength;
+    setEndTime(format(uEnd, "h:mm aaa"));
+    actions.adjust(length, uStart.getTime());
   };
 
   useEffect(() => {
-    let tsRender = new Date();
+    if (!startTime) return;
+    let tsRender = new Date(`${today} ${startTime}`);
+    console.log("updating start time");
     const iCheckStart = setInterval(() => {
+      console.log(tsRender);
       const now = new Date();
-      if (!startTime) {
-        if (tsRender.getMinutes() !== now.getMinutes()) {
-          actions.adjust(0, now.getTime());
-          tsRender = new Date();
-        }
-        return;
-      }
-
-      if (now > startTime.value) {
-        setStartTime();
+      if (tsRender.getMinutes() !== now.getMinutes()) {
+        tsRender = now;
+        chooseStartTime({ value: format(now, "h:mm aaa") });
         actions.adjust(0, now.getTime());
-        tsRender = new Date();
-        return;
       }
     }, 3000);
     return () => clearInterval(iCheckStart);
-  }, [startTime]);
+  }, [startTime, courseLength]);
+
+  console.log(startTime, " - ", endTime);
 
   return (
     <Container>
@@ -90,12 +76,14 @@ export default function CourseTime() {
       <SubTitle>Start</SubTitle>
       <TimeDropDown
         className="time-select"
+        length={courseLength}
         value={startTime}
         onChange={chooseStartTime}
       />
       <SubTitle>End</SubTitle>
       <TimeDropDown
         className="time-select"
+        length={courseLength}
         delay={courseLength}
         value={endTime}
         onChange={chooseEndTime}
