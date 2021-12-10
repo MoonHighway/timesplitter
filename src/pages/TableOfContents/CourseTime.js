@@ -46,9 +46,7 @@ export default function CourseTime() {
   useEffect(() => {
     if (!startTime) return;
     let tsRender = new Date(`${today} ${startTime}`);
-    console.log("updating start time");
     const iCheckStart = setInterval(() => {
-      console.log(tsRender);
       const now = new Date();
       if (tsRender.getMinutes() !== now.getMinutes()) {
         tsRender = now;
@@ -58,8 +56,6 @@ export default function CourseTime() {
     }, 3000);
     return () => clearInterval(iCheckStart);
   }, [startTime, courseLength]);
-
-  console.log(startTime, " - ", endTime);
 
   return (
     <Container>

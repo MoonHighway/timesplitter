@@ -9,70 +9,14 @@ function round(value, precision) {
 export default function TopicTime({ title, length, est }) {
   const [time, setTime] = useState(length || est);
 
-  //
-  // TODO: Replace Quick timer
-  //
-  // This code was rushed to have some quick time indication
-  //
-
-  useEffect(() => {
-    const to = setTimeout(() => setTime(time - 0.1), 6000);
-    return () => clearTimeout(to);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    setTime(length || est);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title]);
-
-  if (length) {
-    return (
-      <Exact warning={time > 0 && time < 1} overTime={time < 0}>
-        {round(time, 1)}
-      </Exact>
-    );
-  }
-
   return (
-    <Estimate warning={time > 0 && time < 1} overTime={time < 0}>
-      {round(time, 1)}
-    </Estimate>
+    <Container>
+      <span>{round(time, 1)}</span>
+    </Container>
   );
 }
 
-const Exact = styled.span`
-  grid-area: 1 / 1 / 2 / 2;
-  background-color: ${(props) =>
-    props.warning ? "orange" : props.overTime ? "lightpink" : "lightgreen"};
-
-  font-size: 4em;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-family: Verdana;
-  font-size: 2em;
-`;
-
-const Estimate = styled.span`
-  grid-area: 1 / 1 / 2 / 2;
-  background-color: ${(props) =>
-    props.warning ? "orange" : props.overTime ? "lightpink" : "lightgreen"};
-
-  font-size: 4em;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Verdana;
-
-  color: #787878;
-  font-size: 2em;
-
-  &:before {
-    content: "~";
-  }
+const Container = styled.span`
+  grid-area: 1 / 6 / 2 / 7;
+  background-color: orange;
 `;
