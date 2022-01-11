@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { NavigationBar } from "../../ui";
 import { usePresenter } from "../../hooks";
@@ -12,6 +13,13 @@ import Sample from "./Sample";
 export default function Agenda() {
   let { pathname } = useLocation();
   const presenter = usePresenter(pathname);
+  const [parentType, setParentType] = useState();
+
+  useEffect(() => {
+    if (!presenter || !presenter.topic || presenter.topic.type === "step")
+      return;
+    setParentType(presenter.topic.type);
+  });
 
   if (presenter) {
     const {
@@ -96,6 +104,7 @@ export default function Agenda() {
       <Step
         title={title}
         time={time}
+        parentType={parentType}
         breadcrumbs={breadcrumbs}
         type={type}
         required={required}

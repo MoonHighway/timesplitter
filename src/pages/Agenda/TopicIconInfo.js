@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { getTypeColor } from "../../theme";
 
-export default function TopicIconInfo() {
-  return <Container>&lt;TopicIconInfo /&gt;</Container>;
+export default function TopicIconInfo({ type }) {
+  return <Container>{type}</Container>;
 }
 
 const Container = styled.div`

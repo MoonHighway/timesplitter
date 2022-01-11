@@ -13,11 +13,12 @@ export default function Step({
   required,
   nav,
   md,
+  parentType,
 }) {
   return (
     <Container>
       <StartButton />
-      <TopicIconInfo type={type} />
+      <TopicIconInfo type={parentType} />
       <TopicTitle
         title={title}
         type={type}
@@ -46,7 +47,7 @@ const Container = styled.article`
 
   .btn-start {
     position: fixed;
-    top: 100px;
+    top: 120px;
     right: 10px;
   }
 `;

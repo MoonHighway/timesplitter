@@ -23,9 +23,9 @@ const Container = styled.div`
   padding-top: 1em;
   button {
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1em;
     padding: 1em;
-    min-width: 300px;
+    min-width: 150px;
     border: solid 3px #074d07;
     border-radius: 20px;
     background-color: #40f640;
