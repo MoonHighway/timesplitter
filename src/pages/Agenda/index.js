@@ -18,6 +18,7 @@ export default function Agenda() {
   useEffect(() => {
     if (!presenter || !presenter.topic || presenter.topic.type === "step")
       return;
+
     setParentType(presenter.topic.type);
   });
 
