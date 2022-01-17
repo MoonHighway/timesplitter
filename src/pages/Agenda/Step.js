@@ -9,8 +9,6 @@ export default function Step({
   title,
   time,
   breadcrumbs,
-  type,
-  required,
   nav,
   md,
   parentType,
@@ -19,12 +17,7 @@ export default function Step({
     <Container>
       <StartButton />
       <TopicIconInfo type={parentType} />
-      <TopicTitle
-        title={title}
-        type={type}
-        required={required}
-        breadcrumbs={breadcrumbs}
-      />
+      <TopicTitle title={title} breadcrumbs={breadcrumbs} />
       <TopicTime title={title} {...time} />
       <Contents>
         <BookStyles>
@@ -53,5 +46,5 @@ const Container = styled.article`
 `;
 
 const Contents = styled.div`
-  grid-area: 2 / 2 / 8 / 6;
+  grid-area: 2 / 1 / 8 / 6;
 `;

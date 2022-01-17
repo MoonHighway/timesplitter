@@ -47,7 +47,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 1em;
 `;
 
 const Section = styled.div`

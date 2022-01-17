@@ -1,18 +1,13 @@
 import CourseProgressBar from "./CourseProgressBar";
-import Breadcrumbs from "./Breadcrumbs";
-
+import { Title, Row } from "../../ui";
 import styled from "styled-components";
 
-export default function TopicTitle({
-  title = "Untitled Topic",
-  type = "section",
-  required = false,
-  breadcrumbs = [],
-}) {
+export default function TopicTitle({ title = "Untitled Topic" }) {
   return (
-    <Container type={type} required={required}>
-      <h1>{title}</h1>
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+    <Container>
+      <Row>
+        <Title>{title}</Title>
+      </Row>
       <CourseProgressBar />
     </Container>
   );
@@ -20,13 +15,12 @@ export default function TopicTitle({
 
 const Container = styled.div`
   grid-area: 1 / 2 / 2 / 6;
-  padding: 1em;
   display: flex;
+  padding: 1em;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
 
   h1 {
+    font-size: 3.5em;
   }
 
   a {
