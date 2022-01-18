@@ -1,3 +1,16 @@
-# First Lab Step
+## Solution
 
-Keep this step easy. All students should be able to take the first step, for first few steps, on their own.
+Query one hero using leftComparison.
+
+```graphql
+query HeroComparison($first: Int = 3) {
+  leftComparison: hero(episode: EMPIRE) {
+    totalCount
+    edges {
+      node {
+        name
+      }
+    }
+  }
+}
+```

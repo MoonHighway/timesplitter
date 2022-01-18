@@ -15,7 +15,7 @@ export const BookStyles = styled.div`
 
   pre {
     border-radius: 25px;
-    font-size: 1.1em;
+    font-size: 1em;
   }
 
   h1 {

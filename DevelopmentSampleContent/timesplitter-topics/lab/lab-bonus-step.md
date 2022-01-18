@@ -1,3 +1,26 @@
-# Additional Lab Iterations 
+# Bonus Solution
 
-Having additional steps and iterations for you lab means that faster students will always have something cool to do. It will also re-enforce everything they are learning. Each lab step that students complete builds their confidence and gets them ready for real world scenarios. 
+Add a Fragment
+
+```graphql
+query HeroComparison($first: Int = 3) {
+  leftComparison: hero(episode: EMPIRE) {
+    ...comparisonFields
+  }
+  rightComparison: hero(episode: JEDI) {
+    ...comparisonFields
+  }
+}
+
+fragment comparisonFields on Character {
+  name
+  friendsConnection(first: $first) {
+    totalCount
+    edges {
+      node {
+        name
+      }
+    }
+  }
+}
+```

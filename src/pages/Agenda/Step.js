@@ -1,4 +1,4 @@
-import { MDX, StartButton } from "../../ui";
+import { MDX } from "../../ui";
 import { BookStyles } from "../../book-ui";
 import TopicTime from "./TopicTime";
 import TopicIconInfo from "./TopicIconInfo";
@@ -15,7 +15,6 @@ export default function Step({
 }) {
   return (
     <Container>
-      <StartButton />
       <TopicIconInfo type={parentType} />
       <TopicTitle title={title} breadcrumbs={breadcrumbs} />
       <TopicTime title={title} {...time} />
@@ -37,12 +36,6 @@ const Container = styled.article`
   grid-template-rows: repeat(7, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-
-  .btn-start {
-    position: fixed;
-    top: 120px;
-    right: 10px;
-  }
 `;
 
 const Contents = styled.div`

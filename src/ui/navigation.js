@@ -1,13 +1,6 @@
 import { useHistory } from "react-router-dom";
+import { BiSkipPreviousCircle, BiSkipNextCircle } from "react-icons/bi";
 import styled from "styled-components";
-
-const PreviousLink = ({ children, ...props }) => (
-  <button {...props}>{children}</button>
-);
-
-const NextLink = ({ children, ...props }) => (
-  <button {...props}>{children}</button>
-);
 
 export const NavigationBar = ({
   prev,
@@ -22,15 +15,31 @@ export const NavigationBar = ({
 
   return (
     <Container>
-      <PreviousLink onClick={p}>{prev.text}</PreviousLink>
-      <NextLink onClick={n}>{next.text}</NextLink>
+      <Button onClick={p}>
+        <BiSkipPreviousCircle size={42} />
+        <button>{prev.text}</button>
+      </Button>
+      <Button onClick={n}>
+        <button>{next.text}</button>
+        <BiSkipNextCircle size={42} />
+      </Button>
     </Container>
   );
 };
 
+const Button = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  opacity: 0.7;
+`;
+
 const Container = styled.nav`
   width: 100%;
-  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -38,22 +47,6 @@ const Container = styled.nav`
   bottom: 0;
   left: 0;
 
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 67%,
-    rgba(255, 255, 255, 1) 54%
-  );
-
-  button:after {
-    content: "previous";
-    border-top: solid 2px black;
-    display: block;
-    width: 150%;
-    text-align: right;
-    font-size: 0.6em;
-    color: blue;
-  }
   button {
     cursor: pointer;
     background: none;
@@ -61,14 +54,6 @@ const Container = styled.nav`
     position: relative;
     text-decoration: none;
     margin: 0.25em;
-    color: blue;
-    font-size: 0.8em;
-
-    &:last-of-type {
-      right: 10%;
-      :after {
-        content: "next";
-      }
-    }
+    font-size: 1.25em;
   }
 `;

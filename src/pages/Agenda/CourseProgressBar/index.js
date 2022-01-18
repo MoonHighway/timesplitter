@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function CourseProgressBar() {
   return (
-    <Container>
+    <Container onClick={(e) => (window.location = "/")}>
       <Section />
       <TopicIndicator />
       <TopicIndicator />

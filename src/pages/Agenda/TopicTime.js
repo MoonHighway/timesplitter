@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { StartButton } from "../../ui";
+
 import styled from "styled-components";
 
 function round(value, precision) {
@@ -12,6 +14,7 @@ export default function TopicTime({ title, length, est }) {
   return (
     <Container>
       <span>{round(time, 1)}</span>
+      <StartButton />
     </Container>
   );
 }
@@ -19,4 +22,9 @@ export default function TopicTime({ title, length, est }) {
 const Container = styled.span`
   grid-area: 1 / 6 / 2 / 7;
   background-color: orange;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
