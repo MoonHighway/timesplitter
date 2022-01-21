@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { StartButton, Row, TopicIcon, Title } from "../../ui";
+import { Row, TopicIcon, Title } from "../../ui";
 import { colors } from "../../theme";
 import { TimeDisplay } from "../../lib";
 
 export default function Section({ title, time }) {
   return (
     <Container>
-      <StartButton />
       <Row className="title-row">
         <TopicIcon size={120} type="section" fill="black" />
         <Title>{title}</Title>

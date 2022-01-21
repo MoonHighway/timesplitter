@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { StartButton } from "../../ui";
 import { colors } from "../../theme";
 
 export default function Meta({ title }) {
   return (
     <Container>
-      <StartButton />
       <h1>{title}</h1>
     </Container>
   );
