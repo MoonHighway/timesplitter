@@ -22,7 +22,9 @@ export default function TopicTime({ length, est }) {
 
 const Glass = styled.svg`
   width: 4.2em;
-  fill: green;
+  stroke: green;
+  stroke-width: 2px;
+  fill: transparent;
 `;
 
 const Container = styled.span`
