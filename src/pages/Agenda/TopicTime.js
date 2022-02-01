@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { round } from "../../lib";
 import { fonts } from "../../theme";
 import styled from "styled-components";
 
 function makeReadableTime(time = 0) {
   if (time === 0) {
-    return "on time";
+    return "move on";
   }
   if (time >= 60) {
     let h = Math.floor(time / 60);
     let m = time % 60;
     return `${h} hr ${m > 0 ? `${m} min` : ""}`;
   }
+
   return `${time} min`;
 }
 
@@ -22,12 +23,38 @@ export default function TopicTime({
   showTime = true,
 }) {
   const [fillPercent, setFillPercent] = useState(
-    actual === undefined ? "100%" : (actual / total) * 100 + "%"
+    actual === undefined ? "100%" : 100 - (actual / total) * 100 + "%"
   );
   const [color, setColor] = useState({
     stroke: "darkgreen",
     fill: "lightgreen",
   });
+
+  useEffect(() => {
+    if (actual === undefined) return;
+    setFillPercent(100 - (actual / total) * 100 + "%");
+  }, [actual]);
+
+  useEffect(() => {
+    if (actual === undefined) return;
+    let p = parseFloat(fillPercent.replace("%", ""));
+    if (total - actual < 0) {
+      setColor({
+        stroke: "red",
+        fill: "red",
+      });
+    } else if (p < 10) {
+      setColor({
+        stroke: "orange",
+        fill: "orange",
+      });
+    } else {
+      setColor({
+        stroke: "darkgreen",
+        fill: "lightgreen",
+      });
+    }
+  }, [fillPercent]);
 
   return (
     <Container preserveAspectRatio="none" size={size}>
@@ -55,7 +82,9 @@ export default function TopicTime({
       </Glass>
       {showTime && (
         <TimeText color={color.stroke}>
-          {makeReadableTime(round(total))}
+          {actual === undefined
+            ? makeReadableTime(round(total))
+            : makeReadableTime(round(total - actual))}
         </TimeText>
       )}
     </Container>
