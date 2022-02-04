@@ -18,7 +18,7 @@ export default function Step({
       <TopicIconInfo type={parentType} />
       <TopicTitle title={title} breadcrumbs={breadcrumbs} />
       {/* <TopicTime total={time.est} /> */}
-      <TopicTime total={60} actual={60} />
+      <TopicTime total={60} actual={121} />
       <Contents>
         <BookStyles>
           <MDX>{md}</MDX>
