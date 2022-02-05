@@ -75,19 +75,18 @@ export default function TopicTime({
   );
   const [color, setColor] = useState({
     stroke: "darkgreen",
-    fill: "lightgreen",
+    fill: "#00b700",
   });
   const [numGlasses, setNumGlasses] = useState(1);
 
   useEffect(() => {
-    if (actual === undefined) return;
+    if (actual === undefined) return setNumGlasses(1);
     let tMins = total - actual;
     tMins = tMins < 0 ? Math.abs(tMins) : tMins;
     let numGlasses = Math.floor(tMins / total) || 1;
     if (tMins / total - 1 > 0) numGlasses += 1;
     let remainingMins = tMins % total;
     let p = !!remainingMins ? (remainingMins / total) * 100 + "%" : "100%";
-    console.log(remainingMins, p, tMins / total);
     if (remainingMins === 0 && p === "100%" && numGlasses > 1) numGlasses -= 1;
 
     setNumGlasses(numGlasses);
@@ -100,14 +99,13 @@ export default function TopicTime({
   // }, [actual]);
 
   useEffect(() => {
-    if (actual === undefined) return;
     let p = parseFloat(fillPercent.replace("%", ""));
-    if (total - actual < 0) {
+    if (!!actual && total - actual < 0) {
       setColor({
         stroke: "red",
         fill: "red",
       });
-    } else if (p < 10) {
+    } else if (p < 10 || total - actual === 0) {
       setColor({
         stroke: "orange",
         fill: "orange",
@@ -115,10 +113,10 @@ export default function TopicTime({
     } else {
       setColor({
         stroke: "darkgreen",
-        fill: "lightgreen",
+        fill: "#00b700",
       });
     }
-  }, [fillPercent]);
+  }, [actual, fillPercent]);
 
   return (
     <Container preserveAspectRatio="none" size={size}>
