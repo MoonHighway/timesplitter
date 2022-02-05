@@ -13,7 +13,7 @@ import styled from "styled-components";
 //
 
 function makeReadableTime(time = 0, total) {
-  if (time === 0) {
+  if (isNaN(time) || time === 0) {
     return "move on";
   }
   if (time >= 60) {
@@ -74,8 +74,8 @@ export default function TopicTime({
     actual === undefined ? "100%" : 100 - (actual / total) * 100 + "%"
   );
   const [color, setColor] = useState({
-    stroke: "darkgreen",
-    fill: "#00b700",
+    stroke: "#09a709",
+    fill: "#09a709",
   });
   const [numGlasses, setNumGlasses] = useState(1);
 
@@ -112,8 +112,8 @@ export default function TopicTime({
       });
     } else {
       setColor({
-        stroke: "darkgreen",
-        fill: "#00b700",
+        stroke: "#09a709",
+        fill: "#09a709",
       });
     }
   }, [actual, fillPercent]);
@@ -149,8 +149,8 @@ export default function TopicTime({
         {showTime && (
           <TimeText color={color.stroke}>
             {actual === undefined
-              ? makeReadableTime(round(total, total))
-              : makeReadableTime(round(total - actual, total)).replace("-", "")}
+              ? makeReadableTime(round(total))
+              : makeReadableTime(round(total - actual)).replace("-", "")}
           </TimeText>
         )}
       </Column>
