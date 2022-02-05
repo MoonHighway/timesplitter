@@ -3,16 +3,7 @@ import { round } from "../../lib";
 import { fonts } from "../../theme";
 import styled from "styled-components";
 
-//
-//  TODO
-//
-//  [ ] Refactor Independant Hooks
-//  [ ] Compose Hooks and Files
-//  [ ] Refactor independant components
-//  [ ] Compose Components and Files
-//
-
-function makeReadableTime(time = 0, total) {
+function makeReadableTime(time = 0) {
   if (isNaN(time) || time === 0) {
     return "move on";
   }
@@ -67,56 +58,60 @@ function Glass({ stroke, fill, percent, glassNum }) {
 export default function TopicTime({
   total,
   actual,
+  label,
+  percentFull,
+  strokeColor,
+  fillColor,
+  numberOfHourGlasses,
   size = "md",
   showTime = true,
 }) {
   const [fillPercent, setFillPercent] = useState(
-    actual === undefined ? "100%" : 100 - (actual / total) * 100 + "%"
+    percentFull
+      ? `${percentFull}%`
+      : actual === undefined
+      ? "100%"
+      : 100 - (actual / total) * 100 + "%"
   );
   const [color, setColor] = useState({
-    stroke: "#09a709",
-    fill: "#09a709",
+    stroke: strokeColor || "#09a709",
+    fill: fillColor || "#09a709",
   });
-  const [numGlasses, setNumGlasses] = useState(1);
+  const [numGlasses, setNumGlasses] = useState(numberOfHourGlasses || 1);
 
   useEffect(() => {
-    if (actual === undefined) return setNumGlasses(1);
+    if (actual === undefined) return setNumGlasses(numberOfHourGlasses || 1);
     let tMins = total - actual;
     tMins = tMins < 0 ? Math.abs(tMins) : tMins;
-    let numGlasses = Math.floor(tMins / total) || 1;
+    let numGlasses = numberOfHourGlasses || Math.floor(tMins / total) || 1;
     if (tMins / total - 1 > 0) numGlasses += 1;
     let remainingMins = tMins % total;
     let p = !!remainingMins ? (remainingMins / total) * 100 + "%" : "100%";
     if (remainingMins === 0 && p === "100%" && numGlasses > 1) numGlasses -= 1;
 
     setNumGlasses(numGlasses);
-    setFillPercent(p);
-  }, [actual]);
-
-  // useEffect(() => {
-  //   if (actual === undefined) return;
-  //   setFillPercent(100 - (actual / total) * 100 + "%");
-  // }, [actual]);
+    setFillPercent(percentFull ? `${percentFull}%` : p);
+  }, [actual, percentFull, numberOfHourGlasses]);
 
   useEffect(() => {
     let p = parseFloat(fillPercent.replace("%", ""));
     if (!!actual && total - actual < 0) {
       setColor({
-        stroke: "red",
-        fill: "red",
+        stroke: strokeColor || "red",
+        fill: fillColor || "red",
       });
     } else if (p < 10 || total - actual === 0) {
       setColor({
-        stroke: "orange",
-        fill: "orange",
+        stroke: strokeColor || "orange",
+        fill: fillColor || "orange",
       });
     } else {
       setColor({
-        stroke: "#09a709",
-        fill: "#09a709",
+        stroke: strokeColor || "#09a709",
+        fill: fillColor || "#09a709",
       });
     }
-  }, [actual, fillPercent]);
+  }, [actual, fillPercent, fillColor, strokeColor]);
 
   return (
     <Container preserveAspectRatio="none" size={size}>
@@ -148,7 +143,9 @@ export default function TopicTime({
         </Icons>
         {showTime && (
           <TimeText color={color.stroke}>
-            {actual === undefined
+            {label
+              ? label
+              : actual === undefined
               ? makeReadableTime(round(total))
               : makeReadableTime(round(total - actual)).replace("-", "")}
           </TimeText>
