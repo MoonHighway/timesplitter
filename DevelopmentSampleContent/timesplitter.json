@@ -8,6 +8,13 @@
       "required": true,
       "agenda": [
         {
+          "title": "Welcome Instructor",
+          "difficulty": "beginner",
+          "type": "meta",
+          "required": true,
+          "agenda": []
+        },
+        {
           "title": "Slides",
           "difficulty": "beginner",
           "type": "slides",
@@ -22,6 +29,13 @@
           "required": true,
           "length": 15,
           "agenda": [
+            {
+              "title": "what is important",
+              "difficulty": "intermediate",
+              "type": "meta",
+              "required": true,
+              "agenda": []
+            },
             {
               "title": "sample step I",
               "difficulty": "beginner",
@@ -48,6 +62,13 @@
               "difficulty": "advanced",
               "type": "step",
               "required": false,
+              "agenda": []
+            },
+            {
+              "title": "Optional Steps?",
+              "difficulty": "beginner",
+              "type": "meta",
+              "required": true,
               "agenda": []
             }
           ]
@@ -81,6 +102,13 @@
               "agenda": []
             }
           ]
+        },
+        {
+          "title": "Before the lab...",
+          "difficulty": "beginner",
+          "type": "meta",
+          "required": true,
+          "agenda": []
         },
         {
           "title": "lab",
