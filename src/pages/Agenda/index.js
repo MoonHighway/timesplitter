@@ -56,15 +56,6 @@ export default function Agenda() {
       );
     }
 
-    if (type === "meta") {
-      return (
-        <>
-          <Meta title={title} time={time} />
-          {nav}
-        </>
-      );
-    }
-
     if (type === "section") {
       return (
         <>
