@@ -46,6 +46,31 @@ export default function Section({ section }) {
       <Column>
         {section.agenda.map((topic) => {
           const time = formatTimeDisplay(topic);
+          if (topic.type === "meta") {
+            return (
+              <Item key={urlFriendly(topic.title)} type={topic.type}>
+                <Row className="topic-row">
+                  <Link
+                    to={`/agenda/${urlFriendly(section.title)}/${urlFriendly(
+                      topic.title
+                    )}`}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <TopicIcon
+                      className="topic-type"
+                      size={30}
+                      type={topic.type}
+                    />
+                    <span>{topic.title}</span>
+                  </Link>
+                </Row>
+              </Item>
+            );
+          }
           return (
             <Item key={urlFriendly(topic.title)} type={topic.type}>
               <span className="time">{time}</span>
@@ -55,7 +80,6 @@ export default function Section({ section }) {
                   className="topic-difficulty"
                   level={topic.difficulty}
                 />
-
                 <Link
                   to={`/agenda/${urlFriendly(section.title)}/${urlFriendly(
                     topic.title
@@ -140,6 +164,7 @@ const Item = styled.div`
     margin-left: 60px;
     align-items: center;
     position: relative;
+    height: 35px;
 
     > a {
       flex: 1;
